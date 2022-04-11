@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,14 @@ export class RegLogServiceService {
       username: username,
       password:password
      })
+  }
+
+  login(username: string, password: number): Observable<any> {
+    return this.httpClient.post(this.BACKEND_BASE + "/api/user/login", {
+      username: username,
+      password: password
+    }).pipe(map((resp: any) => {
+      return resp;
+    }))
   }
 }
