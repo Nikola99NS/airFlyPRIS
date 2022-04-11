@@ -1,0 +1,36 @@
+<section class="hero is-info is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Napravi nalog!</h1>
+        </div>
+    </div>
+</section>
+
+<div class="main">
+    <section class="section">
+        <div class="container">
+
+
+
+            <form (ngSubmit)="register()">
+
+                <div class="field">
+                    <label class="label">User name</label>
+                    <input class="input is-info" style="width: 33%;" type="text" placeholder="Username" required name="username" [(ngModel)]="username">
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Password</label>
+                    <input class="input is-info" style="width: 33%;" type="number" placeholder="Password" required name="password" [(ngModel)]="password">
+                </div>
+
+                <button type="submit" class="button is-large is-info">
+          Register
+       </button>
+            </form>
+
+        </div>
+    </section>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</div>
