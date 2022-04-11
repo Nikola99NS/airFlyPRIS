@@ -11,7 +11,9 @@ app.use(cors())
 
 app.use(bodyParser.json())
 
-
+app.use('/api', api)
+app.use('/api/user', require('./user'));
+app.use('/api/let', require('./let'));
 
 app.get('/', function(req, res) {
     res.send("hello form server")
