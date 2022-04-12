@@ -1,0 +1,62 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item">
+            <i class="fa-solid fa-plane"></i>
+        </a>
+
+    </div>
+
+    <div id="navbarBasicExample " class="navbar-menu ">
+        <div class="navbar-start ">
+            <a class="navbar-item ">
+              DOBRODOŠLI NA AIR FLY
+      </a>
+
+            <a class="navbar-item ">
+        Svi prevoznici
+      </a>
+            <a class="navbar-item ">
+          O nama
+        </a>
+        </div>
+
+        <div class="navbar-end ">
+            <div class="navbar-item ">
+                <div class="buttons ">
+                    <form (ngSubmit)="login()">
+                        <button class="button is-info " type="submit">
+                              <strong>Log in</strong>
+                        </button>
+                    </form>
+                    &nbsp;&nbsp;
+                    <form (ngSubmit)="logout()">
+                        <button class="button is-info ">
+                            <strong>Log out</strong>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="main">
+    <br><br><br><br> &nbsp;&nbsp;&nbsp;Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove, potrebno je da se ulogujete ukoliko ste se prethodno registrovali.
+    <br><br>
+    <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
+    <input class="input is-info"  type="text" style="width: 250px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
+ 
+      
+    &nbsp;&nbsp;&nbsp;
+                        <input class="input is-info" type="text" style="width: 250px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
+                        &nbsp;&nbsp;&nbsp;
+                        <button class="button is-info is-small" type="submit">
+      Search
+    </button>
+                        <br><br><br>
+
+</span>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div> 

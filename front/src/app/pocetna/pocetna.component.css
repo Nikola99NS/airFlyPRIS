@@ -1,0 +1,40 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-size: large;
+    font-weight: 500;
+}
+
+.navbar-item {
+    color: white
+}
+
+.main {
+    font-size: large;
+    font-weight: 500;
+    color: black;
+    background-color: #cfe6fe;
+}
+
+.datum {
+    font-size: medium;
+    font-weight: 500;
+    color: black;
+}
+
+.red {
+    font-size: 15px;
+}
+
+.button2 {
+    font-size: 12px;
+    background-color: #307ce0;
+    color: white;
+}

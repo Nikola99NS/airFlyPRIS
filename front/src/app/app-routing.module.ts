@@ -8,9 +8,9 @@ import { PocetnaComponent } from './pocetna/pocetna.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'pocetna', pathMatch: 'full' },
-  {
-    path:'pocetna', component: PocetnaComponent},
+ // { path: '', redirectTo: 'pocetna', pathMatch: 'full' },
+ {
+       path:'pocetna', component: PocetnaComponent},
   {
     path:'login',component: LoginComponent
   },
