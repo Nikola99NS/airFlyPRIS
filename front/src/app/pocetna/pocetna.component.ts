@@ -1,10 +1,9 @@
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { timeoutWith } from 'rxjs/operators';
-// import { Let } from '../Let';
-// import { LetService } from '../services/let.service';
+import { empty, Observable } from 'rxjs';
+import { Let } from '../Let';
+import { LetService } from '../let.service';
 
 @Component({
   selector: 'app-pocetna',
@@ -14,32 +13,19 @@ import { timeoutWith } from 'rxjs/operators';
 export class PocetnaComponent {
 
 
-  // constructor(private letService : LetService,private router: Router){
-
-  // }
-  constructor(private router: Router){
-
-     }
+  constructor(private letService : LetService, private router: Router){  }
 
 
   headers = ["Polazak - dolazak", "datum", "vreme polaska", "vreme dolaska"]
 
-  public spojeno:string=''
-  
-  // public user: string = localStorage.getItem("trenutniUser")
+  public user: string | null = localStorage.getItem("trenutniUser")
 
-  public datum:string='';
-  public polazni:string='';
-  public dolazni:string='';
-  // public letovi:Observable<Let[]>=''
+  public datum: string='';
+  public polazni: string='';
+  public dolazni: string='';
+  public letovi: Let[] | null = null;
 
 
-  // pretrazi() {
-  //   this.spojeno = this.polazni + " - " + this.dolazni;
-  //   this.letovi = this.letService.getLet();
-
-  // }
-  
   login(){
     this.router.navigate(['login'])
     console.log('nesto')
@@ -49,11 +35,19 @@ export class PocetnaComponent {
     this.router.navigate(['logout'])
   }
 
-  // rezervisi(id:string,l:string){
+  pretrazi() {
+    this.letService.pretrazi(this.polazni, this.dolazni, this.datum).subscribe(resp => {
+      this.letovi = resp;
+    })
+  }
 
-  //   const user = localStorage.getItem("trenutniUser");
-  //   this.letService.rezervisi(id,l,user);
-  //   console.log(id, l , user)
+  rezervisi(id:string){
 
-  // }
+    const user:string | null = localStorage.getItem("trenutniUser");
+
+    this.letService.rezervisi(user, id).subscribe(resp => {
+      alert(resp.msg)
+    })
+
+  }
 }
