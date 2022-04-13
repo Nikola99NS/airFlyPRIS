@@ -4,153 +4,199 @@ var router = express.Router();
 const letovi = [
     {
         "id": "1",
-        "let": "Beograd - Istanbul",
+        "polazak": "Beograd",
+        "dolazak": "Istanbul",
         "datum": "2022-04-05",
-        "vreme polaska": "9",
-        "vreme dolaska": "10:30"
+        "vreme_polaska": "9",
+        "vreme_dolaska": "10:30"
     },
     {
         "id": "2",
-        "let": "Beograd - Sofia",
+        "polazak": "Beograd",
+        "dolazak": "Sofia",
         "datum": "2022-04-05",
-        "vreme polaska": "10",
-        "vreme dolaska": "11"
+        "vreme_polaska": "10",
+        "vreme_dolaska": "11"
     },
     {
         "id": "3",
-        "let": "Istanbul - Dubai",
+        "polazak": "Istanbul",
+        "dolazak": "Dubai",
         "datum": "2022-04-05",
-        "vreme polaska": "12",
-        "vreme dolaska": "13:30"
+        "vreme_polaska": "12",
+        "vreme_dolaska": "13:30"
     },
     {
         "id": "4",
-        "let": "New York - Los Angeles",
+        "polazak": "New York",
+        "dolazak": "Los Angeles",
         "datum": "2022-04-05",
-        "vreme polaska": "16",
-        "vreme dolaska": "22"
+        "vreme_polaska": "16",
+        "vreme_dolaska": "22"
     },
     {
         "id": "5",
-        "let": "Podgorica - Budimpešta",
+        "polazak": "Podgorica",
+        "dolazak": "Budimpešta",
         "datum": "2022-04-05",
-        "vreme polaska": "9",
-        "vreme dolaska": "10:30"
+        "vreme_polaska": "9",
+        "vreme_dolaska": "10:30"
     },
     {
         "id": "6",
-        "let": "Zagreb - Bukurešt",
+        "polazak": "Zagreb",
+        "dolazak": "Bukurešt",
         "datum": "2022-04-05",
-        "vreme polaska": "10",
-        "vreme dolaska": "11"
+        "vreme_polaska": "10",
+        "vreme_dolaska": "11"
     },
     {
         "id": "7",
-        "let": "Ljubljana - Dubai",
+        "polazak": "Ljubljana",
+        "dolazak": "Dubai",
         "datum": "2022-04-05",
-        "vreme polaska": "12",
-        "vreme dolaska": "14"
+        "vreme_polaska": "12",
+        "vreme_dolaska": "14"
     },
     {
         "id": "8",
-        "let": "Baku - Tokio",
+        "polazak": "Baku",
+        "dolazak": "Tokio",
         "datum": "2022-04-06",
-        "vreme polaska": "16",
-        "vreme dolaska": "21"
+        "vreme_polaska": "16",
+        "vreme_dolaska": "21"
     },
     {
         "id": "9",
-        "let": "London - Madrid",
+        "polazak": "London",
+        "dolazak": "Madrid",
         "datum": "2022-04-6",
-        "vreme polaska": "9",
-        "vreme dolaska": "10"
+        "vreme_polaska": "9",
+        "vreme_dolaska": "10"
     },
     {
         "id": "10",
-        "let": "Pariz - Rim",
+        "polazak": "Pariz",
+        "dolazak": "Rim",
         "datum": "2022-04-06",
-        "vreme polaska": "8",
-        "vreme dolaska": "10:30"
+        "vreme_polaska": "8",
+        "vreme_dolaska": "10:30"
     },
     {
         "id": "11",
-        "let": "Bazel - Amesterdam",
+        "polazak": "Beograd",
+        "dolazak": "Amesterdam",
         "datum": "2022-04-06",
-        "vreme polaska": "12",
-        "vreme dolaska": "13:30"
+        "vreme_polaska": "12",
+        "vreme_dolaska": "13:30"
     },
     {
         "id": "12",
-        "let": "Niš - Atina",
+        "polazak": "Niš",
+        "dolazak": "Atina",
         "datum": "2022-04-07",
-        "vreme polaska": "16",
-        "vreme dolaska": "19"
+        "vreme_polaska": "16",
+        "vreme_dolaska": "19"
     }, 
     {
         "id": "13",
-        "let": "Kazablanka - Istanbul",
+        "polazak": "Kazablanka",
+        "dolazak": "Istanbul",
         "datum": "2022-04-07",
-        "vreme polaska": "9",
-        "vreme dolaska": "10:30"
+        "vreme_polaska": "9",
+        "vreme_dolaska": "10:30"
     },
     {
         "id": "14",
-        "let": "Tokio - Moskva",
+        "polazak": "Tokio",
+        "dolazak": "Moskva",
         "datum": "2022-04-07",
-        "vreme polaska": "15",
-        "vreme dolaska": "22"
+        "vreme_polaska": "15",
+        "vreme_dolaska": "22"
     },
     {
         "id": "15",
-        "let": "Kijev - Varšava",
+        "polazak": "Kijev",
+        "dolazak": "Varšava",
         "datum": "2022-04-08",
-        "vreme polaska": "12",
-        "vreme dolaska": "14"
+        "vreme_polaska": "12",
+        "vreme_dolaska": "14"
     },
     {
         "id": "16",
-        "let": "Beograd - Moskva",
+        "polazak": "Beograd",
+        "dolazak": "Moskva",
         "datum": "2022-04-08",
-        "vreme polaska": "16",
-        "vreme dolaska": "21"
+        "vreme_polaska": "16",
+        "vreme_dolaska": "21"
     }, 
     {
         "id": "17",
-        "let": "Beograd - Beč",
+        "polazak": "Beograd",
+        "dolazak": "Beč",
         "datum": "2022-04-08",
-        "vreme polaska": "9",
-        "vreme dolaska": "10:30"
+        "vreme_polaska": "9",
+        "vreme_dolaska": "10:30"
     },
     {
         "id": "18",
-        "let": "Beograd - Kopenhagen",
+        "polazak": "Beograd",
+        "dolazak": "Kopenhagen",
         "datum": "2022-04-09",
-        "vreme polaska": "10",
-        "vreme dolaska": "12"
+        "vreme_polaska": "10",
+        "vreme_dolaska": "12"
     },
     {
         "id": "19",
-        "let": "Sarajevo - Dubai",
+        "polazak": "Sarajevo",
+        "dolazak": "Dubai",
         "datum": "2022-04-09",
-        "vreme polaska": "12",
-        "vreme dolaska": "15"
+        "vreme_polaska": "12",
+        "vreme_dolaska": "15"
     },
     {
         "id": "20",
-        "let": "Skoplje - Atina",
+        "polazak": "Skoplje",
+        "dolazak": "Atina",
         "datum": "2022-04-05",
-        "vreme polaska": "20",
-        "vreme dolaska": "21"
+        "vreme_polaska": "20",
+        "vreme_dolaska": "21"
     }
 ];
 
-const rezervacije = [{
-    "id": "1",
-    korisnici: []
-}]
+let rezervacije = []
 
 router.get('/', (req, res) => {
     return res.status(200).json(letovi);
 });
+
+router.get('/pretrazi', (req, res) => {
+
+    let resultList = [];
+
+    for(let i = 0; i < letovi.length; i++){
+        if(letovi[i].polazak == req.query.polazak && letovi[i].dolazak == req.query.dolazak && letovi[i].datum == req.query.datum){
+            resultList.push(letovi[i]);
+        }
+    }
+
+    return res.status(200).json(resultList);
+});
+
+router.post('/rezervisi', (req, res) => {
+
+    try{
+        if(req.body.username != "" && req.body.let_id != ""){
+            rezervacije.push(req.body)
+        }
+        res.json({
+            msg: 'Rezervisano!'
+        });
+    }catch{
+        res.json({
+            msg: 'Greska'
+        });
+    }
+})
 
 module.exports = router;
