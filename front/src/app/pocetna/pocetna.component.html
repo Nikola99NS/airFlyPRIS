@@ -42,21 +42,28 @@
 
 
 
-<div class="main">
+<div class="pretraga">
     <br><br><br><br> &nbsp;&nbsp;&nbsp;Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove, potrebno je da se ulogujete ukoliko ste se prethodno registrovali.
     <br><br>
-    <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
-    <input class="input is-info"  type="text" style="width: 250px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
- 
-      
-    &nbsp;&nbsp;&nbsp;
-                        <input class="input is-info" type="text" style="width: 250px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
-                        &nbsp;&nbsp;&nbsp;
-                        <button class="button is-info is-small" type="submit">
-      Search
-    </button>
-                        <br><br><br>
+    <form (ngSubmit)="pretrazi()">
+      <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
+      <input class="input is-info"  type="text" style="width: 250px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
 
-</span>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+      &nbsp;&nbsp;&nbsp;
+                          <input class="input is-info" type="text" style="width: 250px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
+                          &nbsp;&nbsp;&nbsp;
+                          <button class="button is-info is-small" type="submit">
+        Search
+                          </button>
+                              <br><br><br>
+
+      </span>
+    </form>
+    <br><br><br>
 </div>
+
+<ul class="rezultati">
+  <li *ngFor="let l of letovi" >
+    {{l.polazak}} - {{l.dolazak}}  Datum: {{l.datum}} -  Vreme polaska: {{l.vreme_polaska}}  Vreme dolaska: {{l.vreme_dolaska}}   &nbsp;&nbsp;  <button class="button2" (click)="rezervisi(l.id)" >Rezervisi</button>
+</ul>

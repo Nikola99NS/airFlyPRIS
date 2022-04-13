@@ -16,7 +16,7 @@
     color: white
 }
 
-.main {
+.pretraga {
     font-size: large;
     font-weight: 500;
     color: black;
@@ -37,4 +37,11 @@
     font-size: 12px;
     background-color: #307ce0;
     color: white;
+}
+
+.rezultati{
+  font-size: large;
+  font-weight: 500;
+  color: black;
+  background-color: #cfe6fe;
 }
