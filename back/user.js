@@ -6,6 +6,8 @@ var router = express.Router();
 const users = {};
 const korisnici = []
 
+const admin = ["pero", "6377"];
+
 var trenutniUser;
 
 router.get('/', (req, res) => {
@@ -27,7 +29,7 @@ router.post('/login', (req, res) => {
 
         });
     } else {
-        res.status(400).json({ msg: 'Invalid username or password' });
+        res.json({ msg: 'Invalide username or password' });
     }
 });
 

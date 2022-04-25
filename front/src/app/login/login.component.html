@@ -1,8 +1,8 @@
 <section class="hero is-info is-bold">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title is-4">Dobrodošli na sajt Air Fly</h1>
-            <h1 class="title">Uloguj se! Nemaš nalog?<a href="http://localhost:4200/register">Klikni ovde</a><i class="fa fa-mouse-pointer px-2"></i></h1>
+            <h1 class="title is-4">Welcome to Air Fly</h1>
+            <h1 class="title">Log in! Don't have account?<a href="http://localhost:4200/register"> Registration here</a><i class="fa fa-mouse-pointer px-2"></i></h1>
 
         </div>
     </div>
@@ -19,7 +19,7 @@
 
                 <div class="field">
                     <label class="label">Password </label><i class="fa fa-user fa-2x px-1"></i>
-                    <input class="input is-info" style="width: 33%;" type="number" placeholder="Password" required name="password" [(ngModel)]="password">
+                    <input class="input is-info" style="width: 33%;" type="text" placeholder="Password" required name="password" [(ngModel)]="password">
                 </div>
 
 
@@ -28,6 +28,26 @@
    
      </button>
             </form>
+
+            <br>
+
+            <a (click)="forAdmin()">I'm admin</a>
+            <div *ngIf="i">
+                <form (ngSubmit)="loginForAdmin()">
+                    <div class="field">
+                        <!-- <label class="label">User name</label><i class="fa fa-user fa-2x px-1"></i> -->
+                        <input class="input is-info" style="width: 10%;" type="text" placeholder="Username" required name="userAdmin" [(ngModel)]="userAdmin">
+                    </div>
+
+                    <div class="field">
+                        <!-- <label class="label">Password </label><i class="fa fa-user fa-2x px-1"></i> -->
+                        <input class="input is-info" style="width: 10%;" type="string" placeholder="Password" required name="passwordAdmin" [(ngModel)]="passwordAdmin">
+                    </div>
+
+                    <button type="submit" class="button is-small is-info">
+                        Log in!</button>
+                </form>
+            </div>
 
         </div>
     </section>

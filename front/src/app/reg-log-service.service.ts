@@ -11,14 +11,14 @@ export class RegLogServiceService {
 
   BACKEND_BASE = "http://localhost:3000"
 
-  register(username: string, password: number): Observable<any> {
+  register(username: string, password: string): Observable<any> {
     return this.httpClient.post(this.BACKEND_BASE + "/api/user/register", {
       username: username,
       password:password
      })
   }
 
-  login(username: string, password: number): Observable<any> {
+  login(username: string, password: string): Observable<any> {
     return this.httpClient.post(this.BACKEND_BASE + "/api/user/login", {
       username: username,
       password: password

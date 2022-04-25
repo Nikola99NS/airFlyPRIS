@@ -1,0 +1,36 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item">
+            <i class="fa-solid fa-plane"></i>
+        </a>
+
+    </div>
+
+    <div id="navbarBasicExample " class="navbar-menu ">
+        <div class="navbar-start ">
+            <a class="navbar-item " (click)="dobrodosli()">
+              DOBRODOŠLI NA AIR FLY
+      </a>
+
+            <a class="navbar-item " (click)="prevoznici()">
+        Svi prevoznici
+      </a>
+            <a class="navbar-item ">
+          O nama
+        </a>
+        </div>
+
+        <div class="navbar-end ">
+            <div class="navbar-item ">
+                <div class="buttons ">
+                    &nbsp;&nbsp;
+                    <form (ngSubmit)="logout()">
+                        <button class="button is-info ">
+                            <strong>Log out</strong>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

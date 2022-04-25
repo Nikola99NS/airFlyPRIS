@@ -1,57 +1,17 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item">
-            <i class="fa-solid fa-plane"></i>
-        </a>
+<app-header></app-header>
 
-    </div>
-
-    <div id="navbarBasicExample " class="navbar-menu ">
-        <div class="navbar-start ">
-            <a class="navbar-item ">
-              DOBRODOŠLI NA AIR FLY
-      </a>
-
-            <a class="navbar-item ">
-        Svi prevoznici
-      </a>
-            <a class="navbar-item ">
-          O nama
-        </a>
-        </div>
-
-        <div class="navbar-end ">
-            <div class="navbar-item ">
-                <div class="buttons ">
-                    <form (ngSubmit)="login()">
-                        <button class="button is-info " type="submit">
-                              <strong>Log in</strong>
-                        </button>
-                    </form>
-                    &nbsp;&nbsp;
-                    <form (ngSubmit)="logout()">
-                        <button class="button is-info ">
-                            <strong>Log out</strong>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-
-
-<div class="pretraga">
-    <br><br><br><br> &nbsp;&nbsp;&nbsp;Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove, potrebno je da se ulogujete ukoliko ste se prethodno registrovali.
-    <br><br>
-    <form (ngSubmit)="pretrazi()">
-      <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
-      <input class="input is-info"  type="text" style="width: 250px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
+<body>
+    <div class="pretraga">
+        <br><br><br><br> &nbsp;&nbsp;&nbsp;<label class="recenica">Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove, 
+            potrebno je da se ulogujete ukoliko ste se prethodno registrovali.</label>
+        <br><br>
+        <form (ngSubmit)="pretrazi()">
+            <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
+      <input class="input is-info"  type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
 
 
       &nbsp;&nbsp;&nbsp;
-                          <input class="input is-info" type="text" style="width: 250px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
+                          <input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
                           &nbsp;&nbsp;&nbsp;
                           <button class="button is-info is-small" type="submit">
         Search
@@ -59,11 +19,71 @@
                               <br><br><br>
 
       </span>
-    </form>
-    <br><br><br>
-</div>
+        </form>
+        <br><br><br>
+    </div>
 
-<ul class="rezultati">
-  <li *ngFor="let l of letovi" >
-    {{l.polazak}} - {{l.dolazak}}  Datum: {{l.datum}} -  Vreme polaska: {{l.vreme_polaska}}  Vreme dolaska: {{l.vreme_dolaska}}   &nbsp;&nbsp;  <button class="button2" (click)="rezervisi(l.id)" >Rezervisi</button>
-</ul>
+    <div *ngIf="p">
+
+        <table style="width:60%">
+            <tr>
+                <th> Polazak</th>
+                <th> Dolazak</th>
+                <th> Datum</th>
+                <th> Vreme polaska</th>
+                <th> Vreme dolaska</th>
+                <th> Klasa</th>
+                <th> Prevoznik</th>
+            </tr>
+            <ng-container *ngFor="let l of letovi">
+                <tr>
+                    <td> {{l.polazak}}</td>
+                    <td> {{l.dolazak}}</td>
+                    <td> {{l.datum}}</td>
+                    <td> {{l.vreme_polaska}}</td>
+                    <td> {{l.vreme_dolaska}}</td>
+                    <td> {{l.klasa}}</td>
+                    <td> {{l.prevoznik}}</td>
+                </tr>
+            </ng-container>
+        </table>
+    </div>
+    <div class="adminovDeo" *ngIf="getToken() == 'adminovToken'">
+        <form (ngSubmit)="unesiNoviLet()">
+            &nbsp;
+            <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>
+            <br> &nbsp;
+            <input class=" input is-info " type="text " style="width: 200px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
+            <input class="input is-info " type="text " style="width: 200px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
+
+            <label for="leti" style="font-weight: 500; color:rgb(22, 86, 151);">Koliko često leti : </label>
+            <select id="leti" name="letlist " form="letform ">
+        <option value="volvo ">Svakodnevno</option>
+        <option value="saab ">Jednkratno</option>
+        <option value="opel ">Radnim danima</option>
+    </select>&nbsp;&nbsp;
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>Favorite food</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let t of tipovi" [value]="t.id">
+                        {{t.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+
+            <label for="klasa " style="font-weight: 500; color:rgb(22, 86, 151);">Tip klase : </label>
+            <select id="tipKlase ">
+        <option value="ekonomska ">Ekonomska</option>
+        <option value="biznis ">Biznis</option>
+    </select>&nbsp;
+            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte : </label>
+            <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€"> &nbsp;&nbsp;
+            <button class="button is-info is-small " type="submit ">
+            Unesi
+        </button>
+        </form>
+
+    </div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+</body>

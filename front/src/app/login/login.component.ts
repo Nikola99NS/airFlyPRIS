@@ -12,8 +12,12 @@ import { RegLogServiceService } from '../reg-log-service.service';
 export class LoginComponent implements OnInit {
 
   username: string='';
-  password: number=0;
-  
+  password: string='';
+  message: string='';
+  i : boolean=false;
+
+  userAdmin:string='';
+  passwordAdmin:string='';
   
   constructor(private service:RegLogServiceService,private router: Router) { }
   
@@ -25,18 +29,36 @@ export class LoginComponent implements OnInit {
   }
   
   login() {
-    console.log(this.username)
+    // console.log(this.username)
     this.service.login(this.username, this.password).subscribe(resp =>{
+      alert(resp.msg)
       localStorage.setItem("token", resp.token),
       localStorage.setItem("trenutniUser", JSON.stringify(resp.trenutniUser.username)),
-      
-      // console.log(this.username)
-      alert(resp.msg),
+      // console.log(this.username)     
       this.router.navigate(['pocetna'])
     })
-    // console.log(this.username)
-    // this.router.navigate(['pocetna'])
+  }
 
+  forAdmin() {
+    this.i = true
   }
+
+  loginForAdmin(){
+    if(this.userAdmin=="Pero" && this.passwordAdmin=='123'){
+      localStorage.setItem("adminT","adminovToken")
+      this.router.navigate(['pocetna'])
+      alert("You are admin")
+
+    }else{
+      alert("You are not admin")
+    }
   }
+
+  unesiNoviLet(){
+    
+  }
+}
+
+
+
   

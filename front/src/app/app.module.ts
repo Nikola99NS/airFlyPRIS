@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
+import { HeaderComponent } from './header/header.component';
+import { PrevozniciComponent } from './prevoznici/prevoznici.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { PocetnaComponent } from './pocetna/pocetna.component';
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
-    PocetnaComponent
+    PocetnaComponent,
+    HeaderComponent,
+    PrevozniciComponent
   ],
   imports: [
     BrowserModule,

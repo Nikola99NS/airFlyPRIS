@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   constructor(private service: RegLogServiceService,private router: Router) { }
   
   public username: string = '';
-  public password: number =0;
+  public password: string ='';
   
   ngOnInit(): void {
   }
