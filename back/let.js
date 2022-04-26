@@ -23,12 +23,12 @@ router.get('/pretrazi', (req, res) => {
 router.post('/rezervisi', (req, res) => {
 
     try {
-        if (req.body.username != "" && req.body.let_id != "") {
+        if (req.body.username != "" && req.body.let_id != "" && letovi[req.body.let_id].slobodna_mesta > 0) {
             rezervacije.push(req.body)
+            res.json({
+                msg: 'Rezervisano!'
+            });
         }
-        res.json({
-            msg: 'Rezervisano!'
-        });
     } catch {
         res.json({
             msg: 'Greska'
@@ -50,19 +50,24 @@ router.get('/prevoznik', (req, res) => {
 
 const prevoznici = [{
         "id": "1",
-        "ime": "Turkish airlines",
+        "ime": "Turkish Airlines",
         "opis": "Najveci prevoznik u Evropi",
-        "slika": ""
     },
+
     {
         "id": "2",
-        "ime": "Serbia air",
+        "ime": "Serbia Air",
         "opis": "Najveci prevoznik u Srbiji",
-        "slika": "",
+    },
+    
+    {
+        "id": "3",
+        "ime": "Doha Air",
+        "opis": "Najveci prevoznik u Africi",
     }
 ]
 
-const letovi = [{
+let letovi = [{
         "id": "1",
         "polazak": "Beograd",
         "dolazak": "Istanbul",
@@ -70,8 +75,12 @@ const letovi = [{
         "vreme_polaska": "9:00",
         "vreme_dolaska": "10:30",
         "tip": "svakodnevni",
-        "klasa": "ekonomska",
-        "prevoznik": "Turkish airlines"
+        "prevoznik_id": "1",
+        "cena": {
+            "ekonomska": "80",
+            "biznis": "100"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "2",
@@ -81,8 +90,12 @@ const letovi = [{
         "vreme_polaska": "10",
         "vreme_dolaska": "11",
         "tip": "jednokratni",
-        "klasa": "biznis",
-        "prevoznik": "Serbia airlines"
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "50",
+            "biznis": "80"
+        },   
+        "slobodna_mesta": 50,
     },
     {
         "id": "3",
@@ -92,8 +105,12 @@ const letovi = [{
         "vreme_polaska": "12",
         "vreme_dolaska": "13:30",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "1",
+        "cena": {
+            "ekonomska": "60",
+            "biznis": "100"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "4",
@@ -102,9 +119,13 @@ const letovi = [{
         "datum": "2022-04-05",
         "vreme_polaska": "16",
         "vreme_dolaska": "22",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "jednokratni",
+        "prevoznik_id": "3",
+        "cena": {
+            "ekonomska": "200",
+            "biznis": "400"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "5",
@@ -113,9 +134,13 @@ const letovi = [{
         "datum": "2022-04-05",
         "vreme_polaska": "9",
         "vreme_dolaska": "10:30",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "jednokratni",
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "120"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "6",
@@ -124,9 +149,13 @@ const letovi = [{
         "datum": "2022-04-05",
         "vreme_polaska": "10",
         "vreme_dolaska": "11",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "svakodnevni",
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "80",
+            "biznis": "100"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "7",
@@ -135,9 +164,13 @@ const letovi = [{
         "datum": "2022-04-05",
         "vreme_polaska": "12",
         "vreme_dolaska": "14",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "jednokratni",
+        "prevoznik_id": "1",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "200"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "8",
@@ -147,8 +180,12 @@ const letovi = [{
         "vreme_polaska": "16",
         "vreme_dolaska": "21",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "3",
+        "cena": {
+            "ekonomska": "300",
+            "biznis": "500"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "9",
@@ -157,9 +194,13 @@ const letovi = [{
         "datum": "2022-04-6",
         "vreme_polaska": "9",
         "vreme_dolaska": "10",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "svakodnevni",
+        "prevoznik_id": "3",
+        "cena": {
+            "ekonomska": "300",
+            "biznis": "400"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "10",
@@ -169,8 +210,12 @@ const letovi = [{
         "vreme_polaska": "8",
         "vreme_dolaska": "10:30",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "1",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "200"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "11",
@@ -180,8 +225,12 @@ const letovi = [{
         "vreme_polaska": "12",
         "vreme_dolaska": "13:30",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "80",
+            "biznis": "120"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "12",
@@ -190,9 +239,13 @@ const letovi = [{
         "datum": "2022-04-07",
         "vreme_polaska": "16",
         "vreme_dolaska": "19",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "jednokratni",
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "120"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "13",
@@ -202,8 +255,12 @@ const letovi = [{
         "vreme_polaska": "9",
         "vreme_dolaska": "10:30",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "1",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "200"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "14",
@@ -212,9 +269,13 @@ const letovi = [{
         "datum": "2022-04-07",
         "vreme_polaska": "15",
         "vreme_dolaska": "22",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "svakodnevni",
+        "prevoznik_id": "3",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "150"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "15",
@@ -224,8 +285,12 @@ const letovi = [{
         "vreme_polaska": "12",
         "vreme_dolaska": "14",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "3",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "150"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "16",
@@ -234,9 +299,13 @@ const letovi = [{
         "datum": "2022-04-08",
         "vreme_polaska": "16",
         "vreme_dolaska": "21",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "svakodnevni",
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "150"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "17",
@@ -245,9 +314,13 @@ const letovi = [{
         "datum": "2022-04-08",
         "vreme_polaska": "9",
         "vreme_dolaska": "10:30",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "jednokratni",
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "80",
+            "biznis": "100"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "18",
@@ -257,8 +330,12 @@ const letovi = [{
         "vreme_polaska": "10",
         "vreme_dolaska": "12",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "120"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "19",
@@ -267,9 +344,13 @@ const letovi = [{
         "datum": "2022-04-09",
         "vreme_polaska": "12",
         "vreme_dolaska": "15",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "jednokratni",
+        "prevoznik_id": "2",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "160"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "20",
@@ -278,9 +359,13 @@ const letovi = [{
         "datum": "2022-04-05",
         "vreme_polaska": "20",
         "vreme_dolaska": "21",
-        "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "tip": "svakodnevni",
+        "prevoznik_id": "1",
+        "cena": {
+            "ekonomska": "60",
+            "biznis": "100"
+        },
+        "slobodna_mesta": 50,
     },
     {
         "id": "21",
@@ -290,8 +375,12 @@ const letovi = [{
         "vreme_polaska": "13:00",
         "vreme_dolaska": "15:00",
         "tip": "radniDan",
-        "klasa": "ekonomska",
-        "prevoznik": "Doha air"
+        "prevoznik_id": "1",
+        "cena": {
+            "ekonomska": "100",
+            "biznis": "120"
+        },
+        "slobodna_mesta": 50,
     }
 ];
 
