@@ -24,10 +24,38 @@ router.post('/rezervisi', (req, res) => {
 
     try {
         if (req.body.username != "" && req.body.let_id != "" && letovi[req.body.let_id].slobodna_mesta > 0) {
-            rezervacije.push(req.body)
-            res.json({
-                msg: 'Rezervisano!'
-            });
+
+            let brRez = 0;
+            for(let i = 0; i < rezervacije.length; i++){
+                if(rezervacije[i].username == req.body.username){
+                    brRez++;
+                }
+            }
+
+            if(brRez >= 5){
+                rezervacije.push({
+                    "username": req.body.username,
+                    "let_id": req.body.let_id,
+                    "popust": "da"
+                })
+                res.json({
+                    popust: "da",
+                    msg: 'Rezervisano! Ovo je 5. put da ste rezervisali let i zbog toga ostvarujete popust od 10%!'
+                });
+
+            }else{
+                rezervacije.push({
+                    "username": req.body.username,
+                    "let_id": req.body.let_id,
+                    "popust": "ne"
+                })
+                res.json({
+                    popust: "ne",
+                    msg: 'Rezervisano!'
+                });
+            }
+
+
         }
     } catch {
         res.json({
