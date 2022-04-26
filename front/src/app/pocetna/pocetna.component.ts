@@ -13,6 +13,7 @@ import { LetService } from '../let.service';
 })
 export class PocetnaComponent {
 
+  // myImage:string='assets/images/sky.webp'
 
   constructor(private letService : LetService, private router: Router){  }
 
@@ -28,12 +29,12 @@ export class PocetnaComponent {
 
   public polazniAdmin: string='';
   public dolazniAdmin: string='';
-  tipovi = [
-    { id: 1, name: "svakodnevno" },
-    { id: 2, name: "jednokratno" },
-    { id: 3, name: "radnimDanima" }
-  ];
+  tipovi = ['svakodnevno','jednokratno','radniDan'];
 
+  public selected:string ='';
+
+
+  public cena : number=0;
 
   public p : boolean=false;
 
@@ -59,10 +60,15 @@ export class PocetnaComponent {
   rezervisi(id:string){
 
     const user:string | null = localStorage.getItem("trenutniUser");
-
-    this.letService.rezervisi(user, id).subscribe(resp => {
-      alert(resp.msg)
-    })
+    if(localStorage.getItem("trenutniUser")){
+      this.letService.rezervisi(user, id).subscribe(resp => {
+        alert(resp.msg)
+      })
+    }else{
+      alert("Morate se ulogovati")
+      this.router.navigate(['login'])
+    }
+   
 
   }
 

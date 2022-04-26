@@ -1,29 +1,92 @@
 <app-header></app-header>
 
-<body>
-    <div class="pretraga">
+<body class="has-text-centered " [ngStyle]="{backgroundImage:'url(assets/images/sky4.jpg)'} ">
+    <!-- <img [src]="myImage"> -->
+    <div class="tile is-ancestor">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="tile is-vertical is-10">
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-info">
+                    <div class="pretraga">
+                        <br><br><br><br> &nbsp;&nbsp;&nbsp;<label class="recenica">Ovde možete da pretražujete letove.</label>
+                        <br><br>
+                        <form (ngSubmit)="pretrazi()">
+                            <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
+                            <input class="input is-info"  type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
+                            &nbsp;&nbsp;&nbsp;
+                            <input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
+                            &nbsp;&nbsp;&nbsp;
+                           <button class="button is-info is-small" type="submit">
+                            Search
+                           </button>
+                       
+                            </span>
+                        </form>
+                        <br><br><br>
+                        <div *ngIf="p">
+
+                            <table style="width:60%">
+                                <tr>
+                                    <th> Polazak</th>
+                                    <th> Dolazak</th>
+                                    <th> Datum</th>
+                                    <th> Vreme polaska</th>
+                                    <th> Vreme dolaska</th>
+                                    <th> Klasa</th>
+                                    <th> Prevoznik</th>
+                                    <th> Rezervisi</th>
+                                </tr>
+                                <ng-container *ngFor="let l of letovi">
+                                    <tr>
+                                        <td> {{l.polazak}}</td>
+                                        <td> {{l.dolazak}}</td>
+                                        <td> {{l.datum}}</td>
+                                        <td> {{l.vreme_polaska}}</td>
+                                        <td> {{l.vreme_dolaska}}</td>
+                                        <td> {{l.klasa}}</td>
+                                        <td> {{l.prevoznik}}</td>
+                                        <td>
+                                            <form (ngSubmit)="rezervisi(l.id)">
+                                                <button class="button is-info is-small" type="submit">
+                                                Click
+                                               </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </table>
+                        </div>
+                        <br><br><br>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- <div class="pretraga">
         <br><br><br><br> &nbsp;&nbsp;&nbsp;<label class="recenica">Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove, 
             potrebno je da se ulogujete ukoliko ste se prethodno registrovali.</label>
         <br><br>
         <form (ngSubmit)="pretrazi()">
             <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
-      <input class="input is-info"  type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
-
-
-      &nbsp;&nbsp;&nbsp;
-                          <input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
-                          &nbsp;&nbsp;&nbsp;
-                          <button class="button is-info is-small" type="submit">
-        Search
-                          </button>
-                              <br><br><br>
-
-      </span>
+            <input class="input is-info"  type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
+            &nbsp;&nbsp;&nbsp;
+            <input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
+            &nbsp;&nbsp;&nbsp;
+           <button class="button is-info is-small" type="submit">
+            Search
+           </button>
+       <br><br><br>
+            </span>
         </form>
         <br><br><br>
-    </div>
+    </div> -->
 
-    <div *ngIf="p">
+    <!-- <div *ngIf="p">
 
         <table style="width:60%">
             <tr>
@@ -47,8 +110,8 @@
                 </tr>
             </ng-container>
         </table>
-    </div>
-    <div class="adminovDeo" *ngIf="getToken() == 'adminovToken'">
+    </div> -->
+    <!-- <div class="adminovDeo has-text-centered" *ngIf="getToken() == 'adminovToken'">
         <form (ngSubmit)="unesiNoviLet()">
             &nbsp;
             <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>
@@ -57,32 +120,78 @@
             <input class="input is-info " type="text " style="width: 200px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
 
             <label for="leti" style="font-weight: 500; color:rgb(22, 86, 151);">Koliko često leti : </label>
-            <select id="leti" name="letlist " form="letform ">
-        <option value="volvo ">Svakodnevno</option>
-        <option value="saab ">Jednkratno</option>
-        <option value="opel ">Radnim danima</option>
-    </select>&nbsp;&nbsp;
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Favorite food</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let t of tipovi" [value]="t.id">
-                        {{t.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
-
+            <div class="select is-link is-small">
+                <select>
+                  <option>Jednokratno</option>
+                  <option>Svakodnevno</option>
+                  <option>Radnim danima</option>
+                </select>
+            </div>&nbsp;&nbsp;
 
             <label for="klasa " style="font-weight: 500; color:rgb(22, 86, 151);">Tip klase : </label>
-            <select id="tipKlase ">
-        <option value="ekonomska ">Ekonomska</option>
-        <option value="biznis ">Biznis</option>
-    </select>&nbsp;
+            <div class="select is-link is-small">
+                <select>
+                  <option>Ekonomska</option>
+                  <option>Biznis</option>
+                </select>
+            </div>&nbsp;
             <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte : </label>
             <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€"> &nbsp;&nbsp;
             <button class="button is-info is-small " type="submit ">
             Unesi
         </button>
         </form>
+    </div> -->
+    <div class="tile is-ancestor " *ngIf="getToken() == 'adminovToken'">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="tile is-vertical is-10">
+
+            <!-- <div class="tile is-parent is-vertical">
+
+
+                </div> -->
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-info">
+                    <div class="adminovDeo has-text-centered" *ngIf="getToken() == 'adminovToken'">
+                        <form (ngSubmit)="unesiNoviLet()">
+                            &nbsp;
+                            <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>
+                            <br> &nbsp;
+                            <input class=" input is-info " type="text " style="width: 200px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
+                            <input class="input is-info " type="text " style="width: 200px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
+
+                            <label for="leti" style="font-weight: 500; color:rgb(22, 86, 151);">Koliko često leti : </label>
+                            <div class="select is-link is-small" [(ngModel)]='selected' name="s">
+                                <select>
+                                      <option *ngFor="let t of tipovi">{{t}}</option>
+                                </select> {{selected}}
+                                <!-- <span *ngIf="selected=='jednokratno'">Datum i vreme</span> -->
+                            </div>&nbsp;&nbsp;
+
+
+
+                            <label for="klasa " style="font-weight: 500; color:rgb(22, 86, 151);">Tip klase : </label>
+                            <div class="select is-link is-small">
+                                <select>
+                                      <option>Ekonomska</option>
+                                      <option>Biznis</option>
+                                    </select>
+                            </div>&nbsp;
+                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte : </label>
+                            <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cena" [(ngModel)]="cena"> &nbsp;&nbsp;
+                            <button class="button is-info is-small " type="submit ">
+                                Unesi
+                            </button>
+                            <br><br><br><br><br><br>
+                        </form>
+
+
+                    </div>
+                </article>
+            </div>
+
+
+        </div>
 
     </div>
     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>

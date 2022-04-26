@@ -12,6 +12,7 @@ import { PocetnaComponent } from './pocetna/pocetna.component';
 import { HeaderComponent } from './header/header.component';
 import { PrevozniciComponent } from './prevoznici/prevoznici.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

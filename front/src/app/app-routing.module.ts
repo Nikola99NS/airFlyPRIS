@@ -10,8 +10,8 @@ import { PrevozniciComponent } from './prevoznici/prevoznici.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path:'pocetna', component: PocetnaComponent, canActivate : [AuthGuard]},
+  { path: '', redirectTo: 'pocetna', pathMatch: 'full' },
+  { path:'pocetna', component: PocetnaComponent},
   { path:'login',component: LoginComponent},
   {path:'register',component: RegisterComponent},
   {path:'prevoznici', component:PrevozniciComponent}

@@ -18,7 +18,8 @@
 }
 
 body {
-    background-color: #cfe6fe;
+    /* background-color: #cfe6fe; */
+    /* height: 100% */
 }
 
 .main {
@@ -74,11 +75,11 @@ table {
 
 th {
     align-items: center;
-    background-color: #64b8f8;
+    background-color: #6cbefc;
     border: 1px solid black;
 }
 
 td {
-    background-color: #D6EEEE;
+    background-color: #b0daff;
     border: 1px solid black;
 }
