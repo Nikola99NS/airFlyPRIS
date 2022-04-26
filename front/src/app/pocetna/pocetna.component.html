@@ -19,7 +19,7 @@
                            <button class="button is-info is-small" type="submit">
                             Search
                            </button>
-                       
+
                             </span>
                         </form>
                         <br><br><br>
@@ -43,8 +43,7 @@
                                         <td> {{l.datum}}</td>
                                         <td> {{l.vreme_polaska}}</td>
                                         <td> {{l.vreme_dolaska}}</td>
-                                        <td> {{l.klasa}}</td>
-                                        <td> <a (click)="getPrevoznik(l.prevoznik)">{{l.prevoznik}}</a></td>
+                                        <!-- <td> <a (click)="getPrevoznik(l.prevoznik)">{{l.prevoznik}}</a></td> -->
                                         <td>
                                             <form (ngSubmit)="rezervisi(l.id)">
                                                 <button class="button is-info is-small" type="submit">
@@ -68,7 +67,7 @@
 
     </div>
     <!-- <div class="pretraga">
-        <br><br><br><br> &nbsp;&nbsp;&nbsp;<label class="recenica">Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove, 
+        <br><br><br><br> &nbsp;&nbsp;&nbsp;<label class="recenica">Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove,
             potrebno je da se ulogujete ukoliko ste se prethodno registrovali.</label>
         <br><br>
         <form (ngSubmit)="pretrazi()">
@@ -142,17 +141,12 @@
         </button>
         </form>
     </div> -->
-    <div class="tile is-ancestor " *ngIf="getToken() == 'adminovToken'">
+    <div class="tile is-ancestor " *ngIf="auth.isAdmin()">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="tile is-vertical is-10">
-
-            <!-- <div class="tile is-parent is-vertical">
-
-
-                </div> -->
             <div class="tile is-parent">
                 <article class="tile is-child notification is-info">
-                    <div class="adminovDeo has-text-centered" *ngIf="getToken() == 'adminovToken'">
+                    <div class="adminovDeo has-text-centered" *ngIf="auth.isAdmin()">
                         <form (ngSubmit)="unesiNoviLet()">
                             &nbsp;
                             <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>

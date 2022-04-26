@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Let } from '../Let';
 import { LetService } from '../let.service';
+import { AuthService } from '../shared/auth.service'
 import { Prevoznik } from '../prevoznici/prevoznik';
 
 
@@ -16,10 +17,8 @@ export class PocetnaComponent {
 
   // myImage:string='assets/images/sky.webp'
 
-  constructor(private letService : LetService, private router: Router){  }
+  constructor(public auth: AuthService, private letService : LetService, private router: Router){  }
 
-
-  headers = ["Polazak - dolazak", "datum", "vreme polaska", "vreme dolaska"]
 
   public user: string | null = localStorage.getItem("trenutniUser")
 
@@ -75,12 +74,8 @@ export class PocetnaComponent {
       alert("Morate se ulogovati")
       this.router.navigate(['login'])
     }
-   
 
-  }
 
-  getToken(){
-    return localStorage.getItem("adminT")
   }
 
   prevoznici(){

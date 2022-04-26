@@ -26,4 +26,13 @@ export class RegLogServiceService {
       return resp;
     }))
   }
+
+  adminLogin(username: string, password: string): Observable<any> {
+    return this.httpClient.post(this.BACKEND_BASE + "/api/user/login-admin", {
+      username: username,
+      password: password
+    }).pipe(map((resp: any) => {
+      return resp;
+    }))
+  }
 }

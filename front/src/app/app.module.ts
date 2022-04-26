@@ -11,6 +11,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { HeaderComponent } from './header/header.component';
 import { PrevozniciComponent } from './prevoznici/prevoznici.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PrevozniciComponent } from './prevoznici/prevoznici.component';
     LogoutComponent,
     PocetnaComponent,
     HeaderComponent,
-    PrevozniciComponent
+    PrevozniciComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

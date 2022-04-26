@@ -24,11 +24,12 @@
             <div class="navbar-item ">
                 <div class="buttons ">
                     &nbsp;&nbsp;
-                    <form (ngSubmit)="logout()">
-                        <button class="button is-info ">
-                            <strong>Log out</strong>
-                        </button>
-                    </form>
+                    <button class="button is-info " (click)="login()" *ngIf="!auth.isLoggedIn()">
+                        <strong>Log in</strong>
+                    </button>
+                    <button class="button is-info " (click)="logout()" *ngIf="auth.isLoggedIn()">
+                        <strong>Log out</strong>
+                    </button>
                 </div>
             </div>
         </div>

@@ -25,29 +25,11 @@
 
                 <button type="submit" class="button is-medium is-info">
         Log in!
-   
+
      </button>
             </form>
 
             <br>
-
-            <a (click)="forAdmin()">I'm admin</a>
-            <div *ngIf="i">
-                <form (ngSubmit)="loginForAdmin()">
-                    <div class="field">
-                        <!-- <label class="label">User name</label><i class="fa fa-user fa-2x px-1"></i> -->
-                        <input class="input is-info" style="width: 10%;" type="text" placeholder="Username" required name="userAdmin" [(ngModel)]="userAdmin">
-                    </div>
-
-                    <div class="field">
-                        <!-- <label class="label">Password </label><i class="fa fa-user fa-2x px-1"></i> -->
-                        <input class="input is-info" style="width: 10%;" type="string" placeholder="Password" required name="passwordAdmin" [(ngModel)]="passwordAdmin">
-                    </div>
-
-                    <button type="submit" class="button is-small is-info">
-                        Log in!</button>
-                </form>
-            </div>
 
         </div>
     </section>
