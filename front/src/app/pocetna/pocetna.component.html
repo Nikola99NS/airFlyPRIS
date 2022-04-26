@@ -44,7 +44,7 @@
                                         <td> {{l.vreme_polaska}}</td>
                                         <td> {{l.vreme_dolaska}}</td>
                                         <td> {{l.klasa}}</td>
-                                        <td> {{l.prevoznik}}</td>
+                                        <td> <a (click)="getPrevoznik(l.prevoznik)">{{l.prevoznik}}</a></td>
                                         <td>
                                             <form (ngSubmit)="rezervisi(l.id)">
                                                 <button class="button is-info is-small" type="submit">
@@ -157,24 +157,32 @@
                             &nbsp;
                             <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>
                             <br> &nbsp;
-                            <input class=" input is-info " type="text " style="width: 200px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
-                            <input class="input is-info " type="text " style="width: 200px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
+                            <input class=" input is-info " type="text " style="width: 150px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
+                            <input class="input is-info " type="text " style="width: 150px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
+                            <input class="input is-info" type="text" style="width: 150px; height:30px" placeholder="Prevoznik" name="prevoznik" [(ngModel)]="prevoznik">&nbsp;&nbsp;
+                            <label for="leti" style="font-weight: 500; color:rgb(22, 86, 151);">Tip leta : </label>
+                            <!-- <div class="select is-link is-small" [(ngModel)]='selected' name="s"> -->
+                            <div class="select is-link is-small">
 
-                            <label for="leti" style="font-weight: 500; color:rgb(22, 86, 151);">Koliko često leti : </label>
-                            <div class="select is-link is-small" [(ngModel)]='selected' name="s">
-                                <select>
+                                <select [(ngModel)]='selected' name="s">
                                       <option *ngFor="let t of tipovi">{{t}}</option>
-                                </select> {{selected}}
-                                <!-- <span *ngIf="selected=='jednokratno'">Datum i vreme</span> -->
+                                </select>
+                                <span style="color:rgb(22, 86, 151); font-weight:bold" *ngIf="selected=='jednokratno'">Datum i vreme<br>
+                                    <input type="date" style="width: 110px; height:20px " name="datum2" [(ngModel)]="datum2"><br>
+                                    <input type="text" style="width: 110px; height:20px " placeholder="18:00"  name="vreme" [(ngModel)]="vreme">
+                                </span>
+                                <span style="color:rgb(22, 86, 151); font-weight:bold" *ngIf="selected=='svakodnevno' || selected=='radniDan'">Vreme<br>
+                                    <input type="text" style="width: 110px; height:20px " placeholder="18:00"  name="vreme" [(ngModel)]="vreme">
+                                </span>
+
                             </div>&nbsp;&nbsp;
 
 
 
                             <label for="klasa " style="font-weight: 500; color:rgb(22, 86, 151);">Tip klase : </label>
                             <div class="select is-link is-small">
-                                <select>
-                                      <option>Ekonomska</option>
-                                      <option>Biznis</option>
+                                <select [(ngModel)]='selected2' name="s2">
+                                    <option *ngFor="let k of klase">{{k}}</option>
                                     </select>
                             </div>&nbsp;
                             <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte : </label>

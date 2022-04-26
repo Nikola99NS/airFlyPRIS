@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Let } from '../Let';
 import { LetService } from '../let.service';
+import { Prevoznik } from '../prevoznici/prevoznik';
 
 
 @Component({
@@ -27,16 +28,22 @@ export class PocetnaComponent {
   public dolazni: string='';
   public letovi: Let[] | null = null;
 
+  public prev!: Prevoznik;
+
   public polazniAdmin: string='';
   public dolazniAdmin: string='';
+  public prevoznik : string='';
   tipovi = ['svakodnevno','jednokratno','radniDan'];
-
+  klase = ['biznis','ekonomska'];
   public selected:string ='';
-
-
+  public selected2: string='';
+  public datum2: string='';
   public cena : number=0;
-
+  public vreme : string='';
   public p : boolean=false;
+
+
+   noviLet: any = [ ];
 
   login(){
     this.router.navigate(['login'])
@@ -82,6 +89,25 @@ export class PocetnaComponent {
   }
 
   unesiNoviLet(){
-    console.log(this.polazniAdmin)
+    this.noviLet.push(this.polazniAdmin)
+    this.noviLet.push(this.dolazniAdmin)
+    this.noviLet.push(this.datum2)
+    this.noviLet.push(this.vreme)
+    this.noviLet.push(this.selected)
+    this.noviLet.push(this.selected2)
+    this.noviLet.push(this.prevoznik)
+
+    //pozvatiServis
+
+    // console.log(this.noviLet)
+  }
+
+  getPrevoznik(p:string){
+    console.log(p)
+    this.letService.vratiPrevoznika(p).subscribe(resp=>{
+      this.router.navigate(['prevoznici'],resp)
+      // console.log(resp.opis)
+
+    })
   }
 }

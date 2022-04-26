@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Prevoznik } from './prevoznik';
 
 @Component({
   selector: 'app-prevoznici',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prevoznici.component.css']
 })
 export class PrevozniciComponent implements OnInit {
+
+public prevoznik: Prevoznik | undefined;
 
   constructor() { }
 

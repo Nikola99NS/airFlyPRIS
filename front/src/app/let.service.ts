@@ -33,4 +33,21 @@ export class LetService {
      })
   }
 
+  vratiPrevoznika(ime:string): Observable<any>{
+
+    let params = new HttpParams().set("prevoznik", ime);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    
+    return this.httpClient.get<Let>(this.BACKEND_BASE+"/api/let/prevoznik",{
+      headers,
+      params
+    })
+  }
+
+  //todo
+  unesiNoviLet(){
+
+  }
 }
