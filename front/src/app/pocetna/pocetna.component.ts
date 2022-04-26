@@ -1,4 +1,3 @@
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -27,8 +26,6 @@ export class PocetnaComponent {
   public dolazni: string='';
   public letovi: Let[] | null = null;
 
-  public prev!: Prevoznik;
-
   public polazniAdmin: string='';
   public dolazniAdmin: string='';
   public prevoznik : string='';
@@ -41,18 +38,13 @@ export class PocetnaComponent {
   public vreme : string='';
   public p : boolean=false;
 
+  public popust: boolean=false;
+  public popustMsg: string= '';
+
 
    noviLet: any = [ ];
 
   login(){
-    this.router.navigate(['login'])
-    console.log('nesto')
-  }
-
-  logout(){
-    localStorage.removeItem("token")
-    localStorage.removeItem("trenutniUser")
-    localStorage.removeItem("adminT")
     this.router.navigate(['login'])
   }
 
@@ -68,7 +60,15 @@ export class PocetnaComponent {
     const user:string | null = localStorage.getItem("trenutniUser");
     if(localStorage.getItem("trenutniUser")){
       this.letService.rezervisi(user, id).subscribe(resp => {
-        alert(resp.msg)
+
+        console.log(resp.popust)
+        if(resp.popust == "da"){
+          this.popust = true;
+          this.popustMsg = resp.msg;
+        }else{
+          alert(resp.msg)
+        }
+
       })
     }else{
       alert("Morate se ulogovati")
@@ -98,11 +98,6 @@ export class PocetnaComponent {
   }
 
   getPrevoznik(p:string){
-    console.log(p)
-    this.letService.vratiPrevoznika(p).subscribe(resp=>{
-      this.router.navigate(['prevoznici'],resp)
-      // console.log(resp.opis)
-
-    })
+    console.log("aaa-" + p)
   }
 }

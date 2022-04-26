@@ -1,5 +1,5 @@
-var express = require('express')
-var router = express.Router();
+let express = require('express')
+let router = express.Router();
 
 let rezervacije = []
 
@@ -10,10 +10,13 @@ router.get('/', (req, res) => {
 router.get('/pretrazi', (req, res) => {
 
     let resultList = [];
+    let resultItem;
 
     for (let i = 0; i < letovi.length; i++) {
-        if (letovi[i].polazak == req.query.polazak && letovi[i].dolazak == req.query.dolazak && letovi[i].datum == req.query.datum) {
-            resultList.push(letovi[i]);
+        if ((letovi[i].polazak == req.query.polazak || req.query.polazak == "") && (letovi[i].dolazak == req.query.dolazak || req.query.dolazak == "") && (letovi[i].datum == req.query.datum || req.query.datum == "")) {
+            resultItem = letovi[i];
+            resultItem.prevoznik_ime = prevoznici[resultItem.prevoznik_id-1].ime;
+            resultList.push(resultItem);
         }
     }
 
@@ -32,7 +35,7 @@ router.post('/rezervisi', (req, res) => {
                 }
             }
 
-            if(brRez >= 5){
+            if(brRez != 0 && brRez % 5 == 0){
                 rezervacije.push({
                     "username": req.body.username,
                     "let_id": req.body.let_id,
@@ -64,19 +67,46 @@ router.post('/rezervisi', (req, res) => {
     }
 })
 
-router.get('/prevoznik', (req, res) => {
-    let prevoznik = []
-    console.log(req.query.prevoznik)
+router.post('/dodaj-let', (req, res) => {
+    let noviLet = req.body;
 
-    for (let i = 0; i < prevoznici.length; i++) {
-        if (prevoznici[i].ime == req.query.prevoznik) {
-            prevoznik = prevoznici[i];
+    if(noviLet){
+        try{            
+            letovi = noviLet;
+            res.json({
+                msg: "Unet let!"
+            })
+        }catch{
+            res.json({
+                msg: "Greska!"
+            })
         }
+    }else{        
+        res.json({
+            msg: "Greska!"
+        })
     }
-    return res.status(200).json(prevoznik);
+
 })
 
-const prevoznici = [{
+router.get('/prevoznik', (req, res) => {
+    let prevoznik = null;
+    console.log(1)
+
+    for (let i = 0; i < prevoznici.length; i++) {
+        if (prevoznici[i].id == req.query.prevoznik) {
+            prevoznik = prevoznici[i];
+            break;
+        }
+    }
+
+    if(prevoznik){
+        res.status(200).json(prevoznik);
+    }
+})
+
+let prevoznici = [
+    {
         "id": "1",
         "ime": "Turkish Airlines",
         "opis": "Najveci prevoznik u Evropi",
@@ -104,10 +134,9 @@ let letovi = [{
         "vreme_dolaska": "10:30",
         "tip": "svakodnevni",
         "prevoznik_id": "1",
-        "cena": {
-            "ekonomska": "80",
-            "biznis": "100"
-        },
+        "cena_ekonomska": "80",
+        "cena_biznis": "100"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -115,14 +144,13 @@ let letovi = [{
         "polazak": "Beograd",
         "dolazak": "Sofia",
         "datum": "2022-04-05",
-        "vreme_polaska": "10",
-        "vreme_dolaska": "11",
+        "vreme_polaska": "10:00",
+        "vreme_dolaska": "11:00",
         "tip": "jednokratni",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "50",
-            "biznis": "80"
-        },   
+        "cena_ekonomska": "50",
+        "cena_biznis": "80"
+        ,   
         "slobodna_mesta": 50,
     },
     {
@@ -130,14 +158,13 @@ let letovi = [{
         "polazak": "Istanbul",
         "dolazak": "Dubai",
         "datum": "2022-04-05",
-        "vreme_polaska": "12",
+        "vreme_polaska": "12:00",
         "vreme_dolaska": "13:30",
         "tip": "radniDan",
         "prevoznik_id": "1",
-        "cena": {
-            "ekonomska": "60",
-            "biznis": "100"
-        },
+        "cena_ekonomska": "60",
+        "cena_biznis": "100"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -145,14 +172,13 @@ let letovi = [{
         "polazak": "New York",
         "dolazak": "Los Angeles",
         "datum": "2022-04-05",
-        "vreme_polaska": "16",
-        "vreme_dolaska": "22",
+        "vreme_polaska": "16:00",
+        "vreme_dolaska": "22:00",
         "tip": "jednokratni",
         "prevoznik_id": "3",
-        "cena": {
-            "ekonomska": "200",
-            "biznis": "400"
-        },
+        "cena_ekonomska": "200",
+        "cena_biznis": "400"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -160,14 +186,13 @@ let letovi = [{
         "polazak": "Podgorica",
         "dolazak": "Budimpešta",
         "datum": "2022-04-05",
-        "vreme_polaska": "9",
+        "vreme_polaska": "9:00",
         "vreme_dolaska": "10:30",
         "tip": "jednokratni",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "120"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "120"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -175,14 +200,13 @@ let letovi = [{
         "polazak": "Zagreb",
         "dolazak": "Bukurešt",
         "datum": "2022-04-05",
-        "vreme_polaska": "10",
-        "vreme_dolaska": "11",
+        "vreme_polaska": "10:00",
+        "vreme_dolaska": "11:00",
         "tip": "svakodnevni",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "80",
-            "biznis": "100"
-        },
+        "cena_ekonomska": "80",
+        "cena_biznis": "100"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -190,14 +214,13 @@ let letovi = [{
         "polazak": "Ljubljana",
         "dolazak": "Dubai",
         "datum": "2022-04-05",
-        "vreme_polaska": "12",
-        "vreme_dolaska": "14",
+        "vreme_polaska": "12:00",
+        "vreme_dolaska": "14:00",
         "tip": "jednokratni",
         "prevoznik_id": "1",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "200"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "200"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -205,14 +228,13 @@ let letovi = [{
         "polazak": "Baku",
         "dolazak": "Tokio",
         "datum": "2022-04-06",
-        "vreme_polaska": "16",
-        "vreme_dolaska": "21",
+        "vreme_polaska": "16:00",
+        "vreme_dolaska": "21:00",
         "tip": "radniDan",
         "prevoznik_id": "3",
-        "cena": {
-            "ekonomska": "300",
-            "biznis": "500"
-        },
+        "cena_ekonomska": "300",
+        "cena_biznis": "500"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -220,14 +242,13 @@ let letovi = [{
         "polazak": "London",
         "dolazak": "Madrid",
         "datum": "2022-04-6",
-        "vreme_polaska": "9",
-        "vreme_dolaska": "10",
+        "vreme_polaska": "9:00",
+        "vreme_dolaska": "10:00",
         "tip": "svakodnevni",
         "prevoznik_id": "3",
-        "cena": {
-            "ekonomska": "300",
-            "biznis": "400"
-        },
+        "cena_ekonomska": "300",
+        "cena_biznis": "400"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -235,14 +256,13 @@ let letovi = [{
         "polazak": "Pariz",
         "dolazak": "Rim",
         "datum": "2022-04-06",
-        "vreme_polaska": "8",
+        "vreme_polaska": "8:00",
         "vreme_dolaska": "10:30",
         "tip": "radniDan",
         "prevoznik_id": "1",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "200"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "200"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -250,14 +270,13 @@ let letovi = [{
         "polazak": "Beograd",
         "dolazak": "Amesterdam",
         "datum": "2022-04-06",
-        "vreme_polaska": "12",
+        "vreme_polaska": "12:00",
         "vreme_dolaska": "13:30",
         "tip": "radniDan",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "80",
-            "biznis": "120"
-        },
+        "cena_ekonomska": "80",
+        "cena_biznis": "120"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -265,14 +284,13 @@ let letovi = [{
         "polazak": "Niš",
         "dolazak": "Atina",
         "datum": "2022-04-07",
-        "vreme_polaska": "16",
-        "vreme_dolaska": "19",
+        "vreme_polaska": "16:00",
+        "vreme_dolaska": "19:00",
         "tip": "jednokratni",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "120"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "120"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -280,14 +298,13 @@ let letovi = [{
         "polazak": "Kazablanka",
         "dolazak": "Istanbul",
         "datum": "2022-04-07",
-        "vreme_polaska": "9",
+        "vreme_polaska": "9:00",
         "vreme_dolaska": "10:30",
         "tip": "radniDan",
         "prevoznik_id": "1",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "200"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "200"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -295,29 +312,27 @@ let letovi = [{
         "polazak": "Tokio",
         "dolazak": "Moskva",
         "datum": "2022-04-07",
-        "vreme_polaska": "15",
-        "vreme_dolaska": "22",
+        "vreme_polaska": "15:00",
+        "vreme_dolaska": "22:00",
         "tip": "svakodnevni",
         "prevoznik_id": "3",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "150"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "150"
+        ,
         "slobodna_mesta": 50,
     },
     {
         "id": "15",
         "polazak": "Kijev",
-        "dolazak": "Varšava",
+        "dolazak": "letšava",
         "datum": "2022-04-08",
-        "vreme_polaska": "12",
-        "vreme_dolaska": "14",
+        "vreme_polaska": "12:00",
+        "vreme_dolaska": "14:00",
         "tip": "radniDan",
         "prevoznik_id": "3",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "150"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "150"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -325,14 +340,13 @@ let letovi = [{
         "polazak": "Beograd",
         "dolazak": "Moskva",
         "datum": "2022-04-08",
-        "vreme_polaska": "16",
-        "vreme_dolaska": "21",
+        "vreme_polaska": "16:00",
+        "vreme_dolaska": "21:00",
         "tip": "svakodnevni",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "150"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "150"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -340,14 +354,13 @@ let letovi = [{
         "polazak": "Beograd",
         "dolazak": "Beč",
         "datum": "2022-04-08",
-        "vreme_polaska": "9",
+        "vreme_polaska": "9:00",
         "vreme_dolaska": "10:30",
         "tip": "jednokratni",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "80",
-            "biznis": "100"
-        },
+        "cena_ekonomska": "80",
+        "cena_biznis": "100"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -355,14 +368,13 @@ let letovi = [{
         "polazak": "Beograd",
         "dolazak": "Kopenhagen",
         "datum": "2022-04-09",
-        "vreme_polaska": "10",
-        "vreme_dolaska": "12",
+        "vreme_polaska": "10:00",
+        "vreme_dolaska": "12:00",
         "tip": "radniDan",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "120"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "120"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -370,14 +382,13 @@ let letovi = [{
         "polazak": "Sarajevo",
         "dolazak": "Dubai",
         "datum": "2022-04-09",
-        "vreme_polaska": "12",
-        "vreme_dolaska": "15",
+        "vreme_polaska": "12:00",
+        "vreme_dolaska": "15:00",
         "tip": "jednokratni",
         "prevoznik_id": "2",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "160"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "160"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -385,14 +396,13 @@ let letovi = [{
         "polazak": "Skoplje",
         "dolazak": "Atina",
         "datum": "2022-04-05",
-        "vreme_polaska": "20",
-        "vreme_dolaska": "21",
+        "vreme_polaska": "20:00",
+        "vreme_dolaska": "21:00",
         "tip": "svakodnevni",
         "prevoznik_id": "1",
-        "cena": {
-            "ekonomska": "60",
-            "biznis": "100"
-        },
+        "cena_ekonomska": "60",
+        "cena_biznis": "100"
+        ,
         "slobodna_mesta": 50,
     },
     {
@@ -404,10 +414,9 @@ let letovi = [{
         "vreme_dolaska": "15:00",
         "tip": "radniDan",
         "prevoznik_id": "1",
-        "cena": {
-            "ekonomska": "100",
-            "biznis": "120"
-        },
+        "cena_ekonomska": "100",
+        "cena_biznis": "120"
+        ,
         "slobodna_mesta": 50,
     }
 ];

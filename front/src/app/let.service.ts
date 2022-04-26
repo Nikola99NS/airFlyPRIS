@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import {Let} from './Let';
+import { Prevoznik } from './prevoznici/prevoznik';
 
 @Injectable({
   providedIn: 'root'
@@ -33,14 +34,14 @@ export class LetService {
      })
   }
 
-  vratiPrevoznika(ime:string): Observable<any>{
+  vratiPrevoznika(id:string): Observable<Prevoznik>{
 
-    let params = new HttpParams().set("prevoznik", ime);
+    let params = new HttpParams().set("prevoznik", id);
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    
-    return this.httpClient.get<Let>(this.BACKEND_BASE+"/api/let/prevoznik",{
+
+    return this.httpClient.get<Prevoznik>(this.BACKEND_BASE+"/api/let/prevoznik",{
       headers,
       params
     })

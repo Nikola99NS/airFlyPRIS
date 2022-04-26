@@ -32,28 +32,36 @@
                                     <th> Datum</th>
                                     <th> Vreme polaska</th>
                                     <th> Vreme dolaska</th>
-                                    <th> Klasa</th>
                                     <th> Prevoznik</th>
+                                    <th> Ekonomska klasa (cena)</th>
+                                    <th> Biznis klasa (cena)</th>
                                     <th> Rezervisi</th>
                                 </tr>
-                                <ng-container *ngFor="let l of letovi">
-                                    <tr>
-                                        <td> {{l.polazak}}</td>
-                                        <td> {{l.dolazak}}</td>
-                                        <td> {{l.datum}}</td>
-                                        <td> {{l.vreme_polaska}}</td>
-                                        <td> {{l.vreme_dolaska}}</td>
-                                        <!-- <td> <a (click)="getPrevoznik(l.prevoznik)">{{l.prevoznik}}</a></td> -->
-                                        <td>
-                                            <form (ngSubmit)="rezervisi(l.id)">
-                                                <button class="button is-info is-small" type="submit">
-                                                Click
-                                               </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </ng-container>
+
+                                <tr *ngFor="let l of letovi">
+                                    <td> {{l.polazak}}</td>
+                                    <td> {{l.dolazak}}</td>
+                                    <td> {{l.datum}}</td>
+                                    <td> {{l.vreme_polaska}}</td>
+                                    <td> {{l.vreme_dolaska}}</td>
+                                    <td> {{l.prevoznik_ime}}</td>
+                                    <td> {{l.cena_ekonomska}}</td>
+                                    <td> {{l.cena_biznis}}</td>
+                                    <td>
+                                        <form (ngSubmit)="rezervisi(l.id)">
+                                            <button class="button is-info is-small" type="submit">
+                                            Rezervisi
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
                             </table>
+
+                            <br><br>
+
+                            <p *ngIf="popust" >{{popustMsg}}</p>
+
                         </div>
                         <br><br><br>
                     </div>
@@ -66,81 +74,9 @@
         </div>
 
     </div>
-    <!-- <div class="pretraga">
-        <br><br><br><br> &nbsp;&nbsp;&nbsp;<label class="recenica">Ovde možete da pretražujete letove. Da biste uspešno rezervisali letove,
-            potrebno je da se ulogujete ukoliko ste se prethodno registrovali.</label>
-        <br><br>
-        <form (ngSubmit)="pretrazi()">
-            <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
-            <input class="input is-info"  type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
-            &nbsp;&nbsp;&nbsp;
-            <input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
-            &nbsp;&nbsp;&nbsp;
-           <button class="button is-info is-small" type="submit">
-            Search
-           </button>
-       <br><br><br>
-            </span>
-        </form>
-        <br><br><br>
-    </div> -->
 
-    <!-- <div *ngIf="p">
 
-        <table style="width:60%">
-            <tr>
-                <th> Polazak</th>
-                <th> Dolazak</th>
-                <th> Datum</th>
-                <th> Vreme polaska</th>
-                <th> Vreme dolaska</th>
-                <th> Klasa</th>
-                <th> Prevoznik</th>
-            </tr>
-            <ng-container *ngFor="let l of letovi">
-                <tr>
-                    <td> {{l.polazak}}</td>
-                    <td> {{l.dolazak}}</td>
-                    <td> {{l.datum}}</td>
-                    <td> {{l.vreme_polaska}}</td>
-                    <td> {{l.vreme_dolaska}}</td>
-                    <td> {{l.klasa}}</td>
-                    <td> {{l.prevoznik}}</td>
-                </tr>
-            </ng-container>
-        </table>
-    </div> -->
-    <!-- <div class="adminovDeo has-text-centered" *ngIf="getToken() == 'adminovToken'">
-        <form (ngSubmit)="unesiNoviLet()">
-            &nbsp;
-            <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>
-            <br> &nbsp;
-            <input class=" input is-info " type="text " style="width: 200px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
-            <input class="input is-info " type="text " style="width: 200px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
 
-            <label for="leti" style="font-weight: 500; color:rgb(22, 86, 151);">Koliko često leti : </label>
-            <div class="select is-link is-small">
-                <select>
-                  <option>Jednokratno</option>
-                  <option>Svakodnevno</option>
-                  <option>Radnim danima</option>
-                </select>
-            </div>&nbsp;&nbsp;
-
-            <label for="klasa " style="font-weight: 500; color:rgb(22, 86, 151);">Tip klase : </label>
-            <div class="select is-link is-small">
-                <select>
-                  <option>Ekonomska</option>
-                  <option>Biznis</option>
-                </select>
-            </div>&nbsp;
-            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte : </label>
-            <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€"> &nbsp;&nbsp;
-            <button class="button is-info is-small " type="submit ">
-            Unesi
-        </button>
-        </form>
-    </div> -->
     <div class="tile is-ancestor " *ngIf="auth.isAdmin()">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="tile is-vertical is-10">

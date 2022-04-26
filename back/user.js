@@ -1,49 +1,57 @@
-var express = require('express')
-var jwt = require('jsonwebtoken');
+let express = require('express')
+let jwt = require('jsonwebtoken');
 
-var router = express.Router();
+let router = express.Router();
 
-const users = {};
-const korisnici = []
+let users = {
+    "luka": "123"
+};
 
-const admin = ["pero", "6377"];
+let admins = {
+    "pero": "1234",
+};
 
-var trenutniUser;
 
 router.get('/', (req, res) => {
     return res.status(200).json(users);
 });
 
 router.post('/login', (req, res) => {
-    var user = req.body;
+    let user = req.body;
     if (users[user.username] && users[user.username] === user.password) {
-        trenutniUser = user;
-        // pincode = Math.floor(Math.random() * 1000)
-        // console.log(pincode)
         res.json({
-            // pin: pincode,
-            msg: 'Successfully logged in',
+            msg: 'Ulogovan!',
             token: jwt.sign({ user: user.username }, 'SECRET'),
-            trenutniUser: trenutniUser,
-
-
+            trenutniUser: user,
         });
     } else {
-        res.json({ msg: 'Invalide username or password' });
+        res.json({ msg: 'Netacan username ili sifra' });
+    }
+});
+
+router.post('/login-admin', (req, res) => {
+    let admin = req.body;
+    if (admins[admin.username] && admins[admin.username] === admin.password) {
+        res.json({
+            msg: 'Admin ulogovan!',
+            token: jwt.sign({ user: admin.username }, 'SECRET'),
+            trenutniUser: admin,
+        });
+    } else {
+        res.json({ msg: 'Netacan username ili sifra' });
     }
 });
 
 router.post('/register', (req, res) => {
-    var user = req.body;
+    let user = req.body;
     if (users[user.username]) {
-        res.json({ msg: 'User already exists, please login.' });
+        res.json({ msg: 'Korisnik sa tim username vec postoji!' });
     } else {
         users[user.username] = user.password;
         res.json({
-            msg: 'Successfully created user, please login'
+            msg: 'Uspesna registracija. Ulogujte se!'
         });
     }
-    korisnici.push(req.body)
 });
 
 
