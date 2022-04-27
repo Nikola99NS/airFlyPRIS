@@ -18,6 +18,12 @@ export class PocetnaComponent {
 
   constructor(public auth: AuthService, private letService : LetService, private router: Router){  }
 
+  ngOnInit(): void{
+    this.letService.prevoznici().subscribe(resp => {
+      this.prevozniciList = resp
+    })
+  }
+
 
   public user: string | null = localStorage.getItem("trenutniUser")
 
@@ -28,21 +34,22 @@ export class PocetnaComponent {
 
   public polazniAdmin: string='';
   public dolazniAdmin: string='';
+  public prevozniciList: Prevoznik[] = [];
   public prevoznik : string='';
   tipovi = ['svakodnevno','jednokratno','radniDan'];
-  klase = ['biznis','ekonomska'];
   public selected:string ='';
-  public selected2: string='';
-  public datum2: string='';
-  public cena : number=0;
-  public vreme : string='';
+  public datumAdmin: string='';
+  public cenaEkonomska : number=0;
+  public cenaBiznis : number=0;
+  public vremePolaska : string='';
+  public vremeDolaska : string='';
+  public slobodnaMesta: number=0;
+
   public p : boolean=false;
 
   public popust: boolean=false;
   public popustMsg: string= '';
 
-
-   noviLet: any = [ ];
 
   login(){
     this.router.navigate(['login'])
@@ -87,20 +94,22 @@ export class PocetnaComponent {
   }
 
   unesiNoviLet(){
-    this.noviLet.push(this.polazniAdmin)
-    this.noviLet.push(this.dolazniAdmin)
-    this.noviLet.push(this.datum2)
-    this.noviLet.push(this.vreme)
-    this.noviLet.push(this.selected)
-    this.noviLet.push(this.selected2)
-    this.noviLet.push(this.prevoznik)
+    let noviLet = {
+      polazak: this.polazniAdmin,
+      dolazak: this.dolazniAdmin,
+      datum: this.datumAdmin,
+      vreme_polaska: this.vremePolaska,
+      vreme_dolaska: this.vremeDolaska,
+      tip: this.selected,
+      prevoznik: this.prevoznik,
+      cena_ekonomska: this.cenaEkonomska,
+      cena_biznis: this.cenaBiznis,
+      slobodna_mesta: this.slobodnaMesta
+    }
 
-    //pozvatiServis
+    this.letService.unesiNoviLet(noviLet).subscribe(resp => {
+      alert(resp.msg)
+    })
 
-    // console.log(this.noviLet)
-  }
-
-  getPrevoznik(p:string){
-    console.log("aaa-" + p)
   }
 }

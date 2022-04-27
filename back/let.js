@@ -71,10 +71,14 @@ router.post('/rezervisi', (req, res) => {
 
 router.post('/dodaj-let', (req, res) => {
     let noviLet = req.body;
+    noviLet.id = letovi.length + ""
+
+    console.log(letovi)
 
     if(noviLet){
         try{            
-            letovi = noviLet;
+            letovi.push(noviLet);
+            console.log(letovi)
             res.json({
                 msg: "Unet let!"
             })
@@ -90,6 +94,10 @@ router.post('/dodaj-let', (req, res) => {
     }
 
 })
+
+router.get('/prevoznici', (req, res) => {
+    return res.status(200).json(prevoznici);
+});
 
 router.get('/prevoznik', (req, res) => {
     let prevoznik = null;
