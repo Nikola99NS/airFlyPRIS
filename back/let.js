@@ -28,7 +28,9 @@ router.post('/rezervisi', (req, res) => {
     try {
         if (req.body.username != "" && req.body.let_id != "" && letovi[req.body.let_id].slobodna_mesta > 0) {
 
-            let brRez = 0;
+            letovi[req.body.let_id].slobodna_mesta -= 1;
+
+            let brRez = 1;
             for(let i = 0; i < rezervacije.length; i++){
                 if(rezervacije[i].username == req.body.username){
                     brRez++;
@@ -135,9 +137,8 @@ let letovi = [{
         "tip": "svakodnevni",
         "prevoznik_id": "1",
         "cena_ekonomska": "80",
-        "cena_biznis": "100"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "100",
+        "slobodna_mesta": "50",
     },
     {
         "id": "2",
@@ -149,9 +150,8 @@ let letovi = [{
         "tip": "jednokratni",
         "prevoznik_id": "2",
         "cena_ekonomska": "50",
-        "cena_biznis": "80"
-        ,   
-        "slobodna_mesta": 50,
+        "cena_biznis": "80",   
+        "slobodna_mesta": "50",
     },
     {
         "id": "3",
@@ -163,9 +163,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "1",
         "cena_ekonomska": "60",
-        "cena_biznis": "100"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "100",
+        "slobodna_mesta": "50",
     },
     {
         "id": "4",
@@ -177,9 +176,8 @@ let letovi = [{
         "tip": "jednokratni",
         "prevoznik_id": "3",
         "cena_ekonomska": "200",
-        "cena_biznis": "400"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "400",
+        "slobodna_mesta": "50",
     },
     {
         "id": "5",
@@ -191,9 +189,8 @@ let letovi = [{
         "tip": "jednokratni",
         "prevoznik_id": "2",
         "cena_ekonomska": "100",
-        "cena_biznis": "120"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "120",
+        "slobodna_mesta": "50",
     },
     {
         "id": "6",
@@ -205,9 +202,8 @@ let letovi = [{
         "tip": "svakodnevni",
         "prevoznik_id": "2",
         "cena_ekonomska": "80",
-        "cena_biznis": "100"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "100",
+        "slobodna_mesta": "50",
     },
     {
         "id": "7",
@@ -219,9 +215,8 @@ let letovi = [{
         "tip": "jednokratni",
         "prevoznik_id": "1",
         "cena_ekonomska": "100",
-        "cena_biznis": "200"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "200",
+        "slobodna_mesta": "50",
     },
     {
         "id": "8",
@@ -233,9 +228,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "3",
         "cena_ekonomska": "300",
-        "cena_biznis": "500"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "500",
+        "slobodna_mesta": "50",
     },
     {
         "id": "9",
@@ -247,9 +241,8 @@ let letovi = [{
         "tip": "svakodnevni",
         "prevoznik_id": "3",
         "cena_ekonomska": "300",
-        "cena_biznis": "400"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "400",
+        "slobodna_mesta": "50",
     },
     {
         "id": "10",
@@ -261,9 +254,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "1",
         "cena_ekonomska": "100",
-        "cena_biznis": "200"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "200",
+        "slobodna_mesta": "50",
     },
     {
         "id": "11",
@@ -275,9 +267,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "2",
         "cena_ekonomska": "80",
-        "cena_biznis": "120"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "120",
+        "slobodna_mesta": "50",
     },
     {
         "id": "12",
@@ -289,9 +280,8 @@ let letovi = [{
         "tip": "jednokratni",
         "prevoznik_id": "2",
         "cena_ekonomska": "100",
-        "cena_biznis": "120"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "120",
+        "slobodna_mesta": "50",
     },
     {
         "id": "13",
@@ -303,9 +293,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "1",
         "cena_ekonomska": "100",
-        "cena_biznis": "200"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "200",
+        "slobodna_mesta": "50",
     },
     {
         "id": "14",
@@ -317,9 +306,8 @@ let letovi = [{
         "tip": "svakodnevni",
         "prevoznik_id": "3",
         "cena_ekonomska": "100",
-        "cena_biznis": "150"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "150",
+        "slobodna_mesta": "50",
     },
     {
         "id": "15",
@@ -331,9 +319,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "3",
         "cena_ekonomska": "100",
-        "cena_biznis": "150"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "150",
+        "slobodna_mesta": "50",
     },
     {
         "id": "16",
@@ -345,9 +332,8 @@ let letovi = [{
         "tip": "svakodnevni",
         "prevoznik_id": "2",
         "cena_ekonomska": "100",
-        "cena_biznis": "150"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "150",
+        "slobodna_mesta": "50",
     },
     {
         "id": "17",
@@ -359,9 +345,8 @@ let letovi = [{
         "tip": "jednokratni",
         "prevoznik_id": "2",
         "cena_ekonomska": "80",
-        "cena_biznis": "100"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "100",
+        "slobodna_mesta": "50",
     },
     {
         "id": "18",
@@ -373,9 +358,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "2",
         "cena_ekonomska": "100",
-        "cena_biznis": "120"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "120",
+        "slobodna_mesta": "50",
     },
     {
         "id": "19",
@@ -387,9 +371,8 @@ let letovi = [{
         "tip": "jednokratni",
         "prevoznik_id": "2",
         "cena_ekonomska": "100",
-        "cena_biznis": "160"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "160",
+        "slobodna_mesta": "50",
     },
     {
         "id": "20",
@@ -401,9 +384,8 @@ let letovi = [{
         "tip": "svakodnevni",
         "prevoznik_id": "1",
         "cena_ekonomska": "60",
-        "cena_biznis": "100"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "100",
+        "slobodna_mesta": "50",
     },
     {
         "id": "21",
@@ -415,9 +397,8 @@ let letovi = [{
         "tip": "radniDan",
         "prevoznik_id": "1",
         "cena_ekonomska": "100",
-        "cena_biznis": "120"
-        ,
-        "slobodna_mesta": 50,
+        "cena_biznis": "120",
+        "slobodna_mesta": "50",
     }
 ];
 

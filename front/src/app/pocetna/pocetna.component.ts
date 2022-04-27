@@ -57,17 +57,20 @@ export class PocetnaComponent {
 
   rezervisi(id:string){
 
+
+    this.popust = false;
+    this.popustMsg = "";
+
     const user:string | null = localStorage.getItem("trenutniUser");
     if(localStorage.getItem("trenutniUser")){
       this.letService.rezervisi(user, id).subscribe(resp => {
 
-        console.log(resp.popust)
         if(resp.popust == "da"){
           this.popust = true;
           this.popustMsg = resp.msg;
-        }else{
-          alert(resp.msg)
         }
+
+        alert(resp.msg)
 
       })
     }else{
