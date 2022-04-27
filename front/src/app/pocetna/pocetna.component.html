@@ -60,7 +60,7 @@
 
                             <br><br>
 
-                            <p *ngIf="popust" >{{popustMsg}}</p>
+                            <p *ngIf="popust">{{popustMsg}}</p>
 
                         </div>
                         <br><br><br>
@@ -89,34 +89,39 @@
                             <br> &nbsp;
                             <input class=" input is-info " type="text " style="width: 150px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
                             <input class="input is-info " type="text " style="width: 150px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
-                            <input class="input is-info" type="text" style="width: 150px; height:30px" placeholder="Prevoznik" name="prevoznik" [(ngModel)]="prevoznik">&nbsp;&nbsp;
-                            <label for="leti" style="font-weight: 500; color:rgb(22, 86, 151);">Tip leta : </label>
-                            <!-- <div class="select is-link is-small" [(ngModel)]='selected' name="s"> -->
+
+                            <select [(ngModel)]='prevoznik' name="s">
+                                <option *ngFor="let p of prevozniciList" value="{{p.id}}">{{p.ime}}</option>
+                            </select>
+
                             <div class="select is-link is-small">
 
                                 <select [(ngModel)]='selected' name="s">
                                       <option *ngFor="let t of tipovi">{{t}}</option>
                                 </select>
                                 <span style="color:rgb(22, 86, 151); font-weight:bold" *ngIf="selected=='jednokratno'">Datum i vreme<br>
-                                    <input type="date" style="width: 110px; height:20px " name="datum2" [(ngModel)]="datum2"><br>
-                                    <input type="text" style="width: 110px; height:20px " placeholder="18:00"  name="vreme" [(ngModel)]="vreme">
+                                    <input type="date" style="width: 110px; height:20px " name="datumAdmin" [(ngModel)]="datumAdmin"><br>
+                                    <input type="text" style="width: 110px; height:20px " placeholder="Vreme polaska"  name="vremePolaska" [(ngModel)]="vremePolaska">&nbsp;-&nbsp;
+                                    <input type="text" style="width: 110px; height:20px " placeholder="Vreme dolaska"  name="vremeDolaska" [(ngModel)]="vremeDolaska">
                                 </span>
                                 <span style="color:rgb(22, 86, 151); font-weight:bold" *ngIf="selected=='svakodnevno' || selected=='radniDan'">Vreme<br>
-                                    <input type="text" style="width: 110px; height:20px " placeholder="18:00"  name="vreme" [(ngModel)]="vreme">
+                                  <input type="text" style="width: 110px; height:20px " placeholder="Vreme polaska"  name="vremePolaska" [(ngModel)]="vremePolaska">&nbsp;-&nbsp;
+                                  <input type="text" style="width: 110px; height:20px " placeholder="Vreme dolaska"  name="vremeDolaska" [(ngModel)]="vremeDolaska">
                                 </span>
 
                             </div>&nbsp;&nbsp;
 
 
 
-                            <label for="klasa " style="font-weight: 500; color:rgb(22, 86, 151);">Tip klase : </label>
-                            <div class="select is-link is-small">
-                                <select [(ngModel)]='selected2' name="s2">
-                                    <option *ngFor="let k of klase">{{k}}</option>
-                                    </select>
-                            </div>&nbsp;
-                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte : </label>
-                            <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cena" [(ngModel)]="cena"> &nbsp;&nbsp;
+                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(ekonomska) : </label>
+                            <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cenaEkonomska" [(ngModel)]="cenaEkonomska"> &nbsp;&nbsp;
+                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(biznis) : </label>
+                            <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cenaBiznis" [(ngModel)]="cenaBiznis"> &nbsp;&nbsp;
+
+                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Slobodna mesta : </label>
+                            <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="" name="slobodnaMesta" [(ngModel)]="slobodnaMesta"> &nbsp;&nbsp;
+
+
                             <button class="button is-info is-small " type="submit ">
                                 Unesi
                             </button>
