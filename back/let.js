@@ -151,6 +151,54 @@ router.post('/ocena', (req, res) => {
 
 })
 
+router.get('/komentari', (req, res) => {
+    try{
+
+        let komentari_prevoznika = [];
+
+        for(let k of komentari){
+            if(k.id_prevoznik == req.query.id_prevoznik){
+                 komentari_prevoznika.push(k);
+            }
+        }
+        
+        return res.status(200).json(komentari_prevoznika);
+
+    }catch(e){  
+        console.log(e)
+        return res.json({
+            msg: "Greska!"
+        })
+    }
+});
+
+router.post('/komentar', (req, res) => {
+
+    if(req.body.id_prevoznik != "" || req.body.id_prevoznik != ""|| req.body.tekst != ""){
+        try{
+            komentari.push({
+                "id_korisnik": req.body.id_korisnik,
+                "id_prevoznik": req.body.id_prevoznik,
+                "tekst": req.body.tekst
+            })
+
+            return res.json({
+                msg: "Dodat komentar!"
+            })
+        }catch{
+            return res.json({
+                msg: "Greska!"
+            })
+        }
+
+    }else{     
+        res.json({
+            msg: "Greska!"
+        })
+    }
+
+})
+
 let prevoznici = [
     {
         "id": "1",
