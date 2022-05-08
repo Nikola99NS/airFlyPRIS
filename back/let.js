@@ -115,6 +115,42 @@ router.get('/prevoznik', (req, res) => {
     }
 })
 
+router.post('/ocena', (req, res) => {
+
+    if(req.body.id_prevoznik != "" || req.body.ocena != ""){
+        ocene.push({
+            "id_prevoznik": req.body.id_prevoznik,
+            "ocena": req.body.ocena
+        })
+
+        let zbir_ocena = 0;
+        let broj_ocena = 0;
+        for(let o of ocene){
+            if(o.id_prevoznik == req.body.id_prevoznik){
+                zbir_ocena += o.ocena;
+                broj_ocena++;
+            }
+        }
+
+        for(let p of prevoznici){
+            if(p.id == req.body.id_prevoznik){
+                p.ocena = zbir_ocena/broj_ocena;
+                break;
+            }
+        }
+
+        return res.status(200).json({
+            msg: "Uspesno!"
+        });
+
+    }else{     
+        res.json({
+            msg: "Greska!"
+        })
+    }
+
+})
+
 let prevoznici = [
     {
         "id": "1",
