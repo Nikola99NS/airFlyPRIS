@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Let } from '../Let';
 import { LetService } from '../let.service';
 import { AuthService } from '../shared/auth.service'
-import { Prevoznik } from '../prevoznici/prevoznik';
+import { Prevoznik } from '../Prevoznik';
 
 
 @Component({

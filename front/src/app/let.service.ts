@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import {Let} from './Let';
-import { Prevoznik } from './prevoznici/prevoznik';
+import { Prevoznik } from './Prevoznik';
 
 @Injectable({
   providedIn: 'root'

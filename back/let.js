@@ -120,22 +120,109 @@ let prevoznici = [
         "id": "1",
         "ime": "Turkish Airlines",
         "opis": "Najveci prevoznik u Evropi",
+        "ocena": "4.5"
     },
 
     {
         "id": "2",
         "ime": "Serbia Air",
         "opis": "Najveci prevoznik u Srbiji",
+        "ocena": "4.6"
     },
     
     {
         "id": "3",
         "ime": "Doha Air",
         "opis": "Najveci prevoznik u Africi",
+        "ocena": "4.0"
     }
 ]
 
-let letovi = [{
+let ocene = [
+    {
+        "id_prevoznik": "1",
+        "ocena": "4.0"
+    },
+    {
+        "id_prevoznik": "1",
+        "ocena": "5.0"
+    },
+    {
+        "id_prevoznik": "2",
+        "ocena": "4.3"
+    },
+    {
+        "id_prevoznik": "2",
+        "ocena": "4.9"
+    },
+    {
+        "id_prevoznik": "2",
+        "ocena": "4.4"
+    },
+    {
+        "id_prevoznik": "2",
+        "ocena": "4.8"
+    },
+    {
+        "id_prevoznik": "3",
+        "ocena": "3.5"
+    },
+    {
+        "id_prevoznik": "3",
+        "ocena": "4.5"
+    },
+]
+
+let komentari = [
+    {
+        "id_korisnik": "1",
+        "id_prevoznik": "1",
+        "tekst": "Dobra usluga"
+    },
+    {
+        "id_korisnik": "1",
+        "id_prevoznik": "1",
+        "tekst": "Losa usluga"
+    },
+    {
+        "id_korisnik": "1",
+        "id_prevoznik": "1",
+        "tekst": "Puno kasnio"
+    },
+    {
+        "id_korisnik": "2",
+        "id_prevoznik": "2",
+        "tekst": "Jako dobra usluga"
+    },
+    {
+        "id_korisnik": "2",
+        "id_prevoznik": "2",
+        "tekst": "Jako losa usluga"
+    },
+    {
+        "id_korisnik": "2",
+        "id_prevoznik": "2",
+        "tekst": "Jako puno kasnio"
+    },
+    {
+        "id_korisnik": "3",
+        "id_prevoznik": "3",
+        "tekst": "Super usluga"
+    },
+    {
+        "id_korisnik": "3",
+        "id_prevoznik": "3",
+        "tekst": "Prijatna voznja"
+    },
+    {
+        "id_korisnik": "3",
+        "id_prevoznik": "3",
+        "tekst": "Nista ne valja"
+    }
+]
+
+let letovi = [
+    {
         "id": "1",
         "polazak": "Beograd",
         "dolazak": "Istanbul",

@@ -4,7 +4,9 @@ let jwt = require('jsonwebtoken');
 let router = express.Router();
 
 let users = {
-    "luka": "123"
+    "luka": "123",
+    "nikola": "123",
+    "tamara": "123"
 };
 
 let admins = {

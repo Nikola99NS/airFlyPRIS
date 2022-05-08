@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Prevoznik } from './prevoznik';
+import { Prevoznik } from '../Prevoznik';
 
 @Component({
   selector: 'app-prevoznici',
