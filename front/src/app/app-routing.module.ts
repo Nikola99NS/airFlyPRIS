@@ -8,6 +8,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { AuthGuard } from './shared/auth.guard';
 import { PrevozniciComponent } from './prevoznici/prevoznici.component';
+import { PrevoznikComponent } from './prevoznik/prevoznik.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path:'login',component: LoginComponent},
   { path:'admin-login',component: AdminLoginComponent},
   {path:'register',component: RegisterComponent},
-  {path:'prevoznici', component:PrevozniciComponent}
+  {path:'prevoznici', component:PrevozniciComponent},
+  {path: 'prevoznik/:id', component: PrevoznikComponent }
 ];
 
   @NgModule({

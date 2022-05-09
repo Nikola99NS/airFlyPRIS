@@ -1,2 +1,7 @@
 <app-header></app-header>
-<!-- <br> {{prevoznik.ime}} -->
+<br><br><br>
+<div *ngFor="let p of prevoznici">
+    {{p.ime}}
+    <button (click)="klikni(p.id)">dugme</button>
+</div>
+<br><br>

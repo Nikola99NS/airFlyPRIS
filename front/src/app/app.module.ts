@@ -12,6 +12,7 @@ import { PocetnaComponent } from './pocetna/pocetna.component';
 import { HeaderComponent } from './header/header.component';
 import { PrevozniciComponent } from './prevoznici/prevoznici.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { PrevoznikComponent } from './prevoznik/prevoznik.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     PocetnaComponent,
     HeaderComponent,
     PrevozniciComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    PrevoznikComponent
   ],
   imports: [
     BrowserModule,

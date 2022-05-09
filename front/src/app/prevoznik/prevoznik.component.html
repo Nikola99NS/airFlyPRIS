@@ -1,0 +1,11 @@
+<p *ngIf="prevoznik">
+    {{prevoznik.ime}}
+</p>
+<br>
+
+<div *ngIf="komentari">
+    <div *ngFor="let k of komentari">
+        {{k.tekst}}
+    </div>
+
+    <input type="text" required name="komentar" [(ngModel)]="komentar"><button class="button is-small is-info" (click)="dodajKom()">Komentarisi</button> </div>

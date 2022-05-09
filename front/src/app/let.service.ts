@@ -3,6 +3,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Komentar } from './Komentar';
 
 import {Let} from './Let';
 import { Prevoznik } from './Prevoznik';
@@ -35,10 +36,41 @@ export class LetService {
   }
 
   prevoznici(): Observable<any> {
-    return this.httpClient.get<Let[]>(this.BACKEND_BASE + "/api/let/prevoznici")
+    return this.httpClient.get<Prevoznik[]>(this.BACKEND_BASE + "/api/let/prevoznici")
   }
 
   unesiNoviLet(noviLet:object): Observable<any>{
     return this.httpClient.post(this.BACKEND_BASE + "/api/let/dodaj-let", noviLet)
+  }
+
+  getPrevoznik(prevoznikId : string):Observable<any>{
+
+    let params = new HttpParams().set("prevoznik", prevoznikId);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    return this.httpClient.get<Prevoznik>(this.BACKEND_BASE + "/api/let/prevoznik", {
+      headers,
+      params
+    })
+  }
+
+  getKomentari(idPrevoznik : string){
+    let params = new HttpParams().set("id_prevoznik", idPrevoznik);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    return this.httpClient.get<Komentar[]>(this.BACKEND_BASE + "/api/let/komentari", {
+      headers,
+      params
+    })
+  }
+
+  addComment(idPrevoznik:string,korisnik:string|null, tekst:string):Observable<any>{
+    return this.httpClient.post(this.BACKEND_BASE+"/api/let/komentar",{
+      id_prevoznik:idPrevoznik,
+      korisnik:korisnik,
+      tekst:tekst
+    })
   }
 }

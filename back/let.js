@@ -15,7 +15,7 @@ router.get('/pretrazi', (req, res) => {
     for (let i = 0; i < letovi.length; i++) {
         if ((letovi[i].polazak == req.query.polazak || req.query.polazak == "") && (letovi[i].dolazak == req.query.dolazak || req.query.dolazak == "") && (letovi[i].datum == req.query.datum || req.query.datum == "")) {
             resultItem = letovi[i];
-            resultItem.prevoznik_ime = prevoznici[resultItem.prevoznik_id-1].ime;
+            resultItem.prevoznik_ime = prevoznici[resultItem.prevoznik_id - 1].ime;
             resultList.push(resultItem);
         }
     }
@@ -31,13 +31,13 @@ router.post('/rezervisi', (req, res) => {
             letovi[req.body.let_id].slobodna_mesta -= 1;
 
             let brRez = 1;
-            for(let i = 0; i < rezervacije.length; i++){
-                if(rezervacije[i].username == req.body.username){
+            for (let i = 0; i < rezervacije.length; i++) {
+                if (rezervacije[i].username == req.body.username) {
                     brRez++;
                 }
             }
 
-            if(brRez != 0 && brRez % 5 == 0){
+            if (brRez != 0 && brRez % 5 == 0) {
                 rezervacije.push({
                     "username": req.body.username,
                     "let_id": req.body.let_id,
@@ -48,7 +48,7 @@ router.post('/rezervisi', (req, res) => {
                     msg: 'Rezervisano! Ovo je 5. put da ste rezervisali let i zbog toga ostvarujete popust od 10%!'
                 });
 
-            }else{
+            } else {
                 rezervacije.push({
                     "username": req.body.username,
                     "let_id": req.body.let_id,
@@ -73,21 +73,21 @@ router.post('/dodaj-let', (req, res) => {
     let noviLet = req.body;
     noviLet.id = letovi.length + ""
 
-    console.log(letovi)
+    // console.log(letovi)
 
-    if(noviLet){
-        try{            
+    if (noviLet) {
+        try {
             letovi.push(noviLet);
-            console.log(letovi)
+            // console.log(letovi)
             res.json({
                 msg: "Unet let!"
             })
-        }catch{
+        } catch {
             res.json({
                 msg: "Greska!"
             })
         }
-    }else{        
+    } else {
         res.json({
             msg: "Greska!"
         })
@@ -101,7 +101,6 @@ router.get('/prevoznici', (req, res) => {
 
 router.get('/prevoznik', (req, res) => {
     let prevoznik = null;
-    console.log(1)
 
     for (let i = 0; i < prevoznici.length; i++) {
         if (prevoznici[i].id == req.query.prevoznik) {
@@ -110,14 +109,15 @@ router.get('/prevoznik', (req, res) => {
         }
     }
 
-    if(prevoznik){
+    if (prevoznik) {
+        // console.log(prevoznik.ime + " nesto")
         res.status(200).json(prevoznik);
     }
 })
 
 router.post('/ocena', (req, res) => {
 
-    if(req.body.id_prevoznik != "" || req.body.ocena != ""){
+    if (req.body.id_prevoznik != "" || req.body.ocena != "") {
         ocene.push({
             "id_prevoznik": req.body.id_prevoznik,
             "ocena": req.body.ocena
@@ -125,16 +125,16 @@ router.post('/ocena', (req, res) => {
 
         let zbir_ocena = 0;
         let broj_ocena = 0;
-        for(let o of ocene){
-            if(o.id_prevoznik == req.body.id_prevoznik){
+        for (let o of ocene) {
+            if (o.id_prevoznik == req.body.id_prevoznik) {
                 zbir_ocena += o.ocena;
                 broj_ocena++;
             }
         }
 
-        for(let p of prevoznici){
-            if(p.id == req.body.id_prevoznik){
-                p.ocena = zbir_ocena/broj_ocena;
+        for (let p of prevoznici) {
+            if (p.id == req.body.id_prevoznik) {
+                p.ocena = zbir_ocena / broj_ocena;
                 break;
             }
         }
@@ -143,7 +143,7 @@ router.post('/ocena', (req, res) => {
             msg: "Uspesno!"
         });
 
-    }else{     
+    } else {
         res.json({
             msg: "Greska!"
         })
@@ -152,19 +152,19 @@ router.post('/ocena', (req, res) => {
 })
 
 router.get('/komentari', (req, res) => {
-    try{
+    try {
 
         let komentari_prevoznika = [];
 
-        for(let k of komentari){
-            if(k.id_prevoznik == req.query.id_prevoznik){
-                 komentari_prevoznika.push(k);
+        for (let k of komentari) {
+            if (k.id_prevoznik == req.query.id_prevoznik) {
+                komentari_prevoznika.push(k);
             }
         }
-        
+
         return res.status(200).json(komentari_prevoznika);
 
-    }catch(e){  
+    } catch (e) {
         console.log(e)
         return res.json({
             msg: "Greska!"
@@ -174,10 +174,10 @@ router.get('/komentari', (req, res) => {
 
 router.post('/komentar', (req, res) => {
 
-    if(req.body.id_prevoznik != "" || req.body.id_prevoznik != ""|| req.body.tekst != ""){
-        try{
+    if (req.body.id_prevoznik != "" || req.body.korisnik != "" || req.body.tekst != "") {
+        try {
             komentari.push({
-                "id_korisnik": req.body.id_korisnik,
+                "korisnik": req.body.korisnik,
                 "id_prevoznik": req.body.id_prevoznik,
                 "tekst": req.body.tekst
             })
@@ -185,13 +185,13 @@ router.post('/komentar', (req, res) => {
             return res.json({
                 msg: "Dodat komentar!"
             })
-        }catch{
+        } catch {
             return res.json({
                 msg: "Greska!"
             })
         }
 
-    }else{     
+    } else {
         res.json({
             msg: "Greska!"
         })
@@ -199,8 +199,7 @@ router.post('/komentar', (req, res) => {
 
 })
 
-let prevoznici = [
-    {
+let prevoznici = [{
         "id": "1",
         "ime": "Turkish Airlines",
         "opis": "Najveci prevoznik u Evropi",
@@ -213,7 +212,7 @@ let prevoznici = [
         "opis": "Najveci prevoznik u Srbiji",
         "ocena": "4.6"
     },
-    
+
     {
         "id": "3",
         "ime": "Doha Air",
@@ -222,8 +221,7 @@ let prevoznici = [
     }
 ]
 
-let ocene = [
-    {
+let ocene = [{
         "id_prevoznik": "1",
         "ocena": "4.0"
     },
@@ -257,56 +255,54 @@ let ocene = [
     },
 ]
 
-let komentari = [
-    {
-        "id_korisnik": "1",
+let komentari = [{
+        "korisnik": "1",
         "id_prevoznik": "1",
         "tekst": "Dobra usluga"
     },
     {
-        "id_korisnik": "1",
+        "korisnik": "1",
         "id_prevoznik": "1",
         "tekst": "Losa usluga"
     },
     {
-        "id_korisnik": "1",
+        "korisnik": "1",
         "id_prevoznik": "1",
         "tekst": "Puno kasnio"
     },
     {
-        "id_korisnik": "2",
+        "korisnik": "2",
         "id_prevoznik": "2",
         "tekst": "Jako dobra usluga"
     },
     {
-        "id_korisnik": "2",
+        "korisnik": "2",
         "id_prevoznik": "2",
         "tekst": "Jako losa usluga"
     },
     {
-        "id_korisnik": "2",
+        "korisnik": "2",
         "id_prevoznik": "2",
         "tekst": "Jako puno kasnio"
     },
     {
-        "id_korisnik": "3",
+        "korisnik": "3",
         "id_prevoznik": "3",
         "tekst": "Super usluga"
     },
     {
-        "id_korisnik": "3",
+        "korisnik": "3",
         "id_prevoznik": "3",
         "tekst": "Prijatna voznja"
     },
     {
-        "id_korisnik": "3",
+        "korisnik": "3",
         "id_prevoznik": "3",
         "tekst": "Nista ne valja"
     }
 ]
 
-let letovi = [
-    {
+let letovi = [{
         "id": "1",
         "polazak": "Beograd",
         "dolazak": "Istanbul",
@@ -329,7 +325,7 @@ let letovi = [
         "tip": "jednokratni",
         "prevoznik_id": "2",
         "cena_ekonomska": "50",
-        "cena_biznis": "80",   
+        "cena_biznis": "80",
         "slobodna_mesta": "50",
     },
     {
