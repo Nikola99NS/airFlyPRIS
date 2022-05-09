@@ -73,4 +73,11 @@ export class LetService {
       tekst:tekst
     })
   }
+
+  addOcena(idPrevoznik:string, rate:string):Observable<any>{
+    return this.httpClient.post(this.BACKEND_BASE+"/api/let/ocena",{
+      id_prevoznik:idPrevoznik,
+      ocena:rate
+    })
+  }
 }

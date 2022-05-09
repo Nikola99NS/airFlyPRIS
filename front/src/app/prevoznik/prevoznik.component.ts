@@ -20,6 +20,10 @@ export class PrevoznikComponent implements OnInit {
   // public tekst : string = '';
   public komentar : string ='';
 
+  public currentRate : number=0;
+  public str: any ;
+
+
   ngOnInit(): void {
     this.user = localStorage.getItem("trenutniUser");
 
@@ -49,5 +53,14 @@ export class PrevoznikComponent implements OnInit {
     }
   }
 
+  oceni(idPrevoznik : string){
+    if(this.currentRate!=0){
+       this.str=this.currentRate + '';
+
+      this.service.addOcena(idPrevoznik, this.str).subscribe(resp=>{
+        alert(resp.msg)
+      })
+    }
+  }
  
 }

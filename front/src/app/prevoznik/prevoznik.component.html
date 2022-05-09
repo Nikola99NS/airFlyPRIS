@@ -1,5 +1,9 @@
 <p *ngIf="prevoznik">
-    {{prevoznik.ime}}
+    {{prevoznik.ime}} <br>
+    <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false">
+
+    </ngb-rating>
+    <button (click)="oceni(prevoznik.id)">Oceni</button> {{prevoznik.ocena}}
 </p>
 <br>
 
@@ -8,4 +12,6 @@
         {{k.tekst}}
     </div>
 
-    <input type="text" required name="komentar" [(ngModel)]="komentar"><button class="button is-small is-info" (click)="dodajKom()">Komentarisi</button> </div>
+    <input type="text" required name="komentar" [(ngModel)]="komentar">
+    <button class="button is-small is-info" (click)="dodajKom()">Komentarisi</button>
+</div>

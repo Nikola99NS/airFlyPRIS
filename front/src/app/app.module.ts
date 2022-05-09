@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { PrevozniciComponent } from './prevoznici/prevoznici.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { PrevoznikComponent } from './prevoznik/prevoznik.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PrevoznikComponent } from './prevoznik/prevoznik.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

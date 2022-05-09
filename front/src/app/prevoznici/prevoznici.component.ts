@@ -13,6 +13,8 @@ export class PrevozniciComponent implements OnInit {
 public prevoznik: Prevoznik | undefined;
 public prevoznici: Prevoznik[] | null = null;
 
+
+
   constructor( private letService : LetService,private router: Router) { }
 
   ngOnInit(): void {

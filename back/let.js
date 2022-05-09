@@ -129,6 +129,7 @@ router.post('/ocena', (req, res) => {
             if (o.id_prevoznik == req.body.id_prevoznik) {
                 zbir_ocena += o.ocena;
                 broj_ocena++;
+                // console.log(zbir_ocena)
             }
         }
 
@@ -140,6 +141,7 @@ router.post('/ocena', (req, res) => {
         }
 
         return res.status(200).json({
+
             msg: "Uspesno!"
         });
 
