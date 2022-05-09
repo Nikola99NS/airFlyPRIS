@@ -1,17 +1,65 @@
-<p *ngIf="prevoznik">
-    {{prevoznik.ime}} <br>
+<app-header></app-header>
+<br><br><br><br>
+<div class="nesto has-text-centered"  *ngIf="prevoznik" >
+   <b> <span class="ime">{{prevoznik.ime}} </span> </b> <br><br> <br>{{prevoznik.opis}} <br><br><br>
     <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false">
 
     </ngb-rating>
     <button (click)="oceni(prevoznik.id)">Oceni</button> {{prevoznik.ocena}}
-</p>
+</div>
 <br>
 
-<div *ngIf="komentari">
-    <div *ngFor="let k of komentari">
-        {{k.tekst}}
-    </div>
 
-    <input type="text" required name="komentar" [(ngModel)]="komentar">
-    <button class="button is-small is-info" (click)="dodajKom()">Komentarisi</button>
+
+    Komentari 
+    <br>
+<div *ngFor="let k of komentari">
+<article class="media">
+
+    <div class="media-content">
+
+
+        <article class="media">
+            <figure class="media-left">
+
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>{{k.id_korisnik}}</strong>
+                        <br> {{k.tekst}}
+                        <br>
+
+                    </p>
+                </div>
+
+
+            </div>
+        </article>
+
+        
+    </div>
+</article>
 </div>
+<br>
+<article class="media">
+
+    <figure class="media-left">
+
+
+    </figure>
+    <div class="media-content">
+        <div class="field">
+            <p class="control">
+                <textarea class="textarea" placeholder="Dodaj komentar..." name="komentar" [(ngModel)]="komentar"></textarea>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control">
+                <button class="button" 
+                (click)="dodajKom()">Komentarisi</button>
+            </p>
+        </div>
+    </div>
+    <br>
+</article>

@@ -1,7 +1,30 @@
 <app-header></app-header>
 <br><br><br>
 <div *ngFor="let p of prevoznici">
-    {{p.ime}} {{p.ocena}}
-    <button (click)="klikni(p.id)">dugme</button>
+    <a (click)="klikni(p.id)">
+    <div class="card">
+    
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-1x1">
+                <img src={{p.slika}} alt="Placeholder image" width="50" height="50">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">{{p.ime}}</p>
+              <p class="subtitle is-6">{{p.opis}}</p>
+            </div>
+          </div>
+      
+          <div class="content">
+           Ocena: {{p.ocena}}
+            <br>
+            
+          </div>
+        </div>
+      </div>
+    </a>
 </div>
 <br><br>
+

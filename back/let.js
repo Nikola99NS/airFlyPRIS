@@ -205,21 +205,28 @@ let prevoznici = [{
         "id": "1",
         "ime": "Turkish Airlines",
         "opis": "Najveci prevoznik u Evropi",
-        "ocena": "4.5"
+        "ocena": "4.5" ,
+        "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg/200px-Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg?fbclid=IwAR1u4Bx8GnTJD1ANNZrRQrfkRq9LwAtqxOSHEku95ddNj2d4ZeDabHAHbpQ"
     },
 
     {
         "id": "2",
         "ime": "Serbia Air",
         "opis": "Najveci prevoznik u Srbiji",
-        "ocena": "4.6"
+        "ocena": "4.6" ,
+        "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Air_Serbia_Airbus_A330-202_YU-ARA_at_JFK_Airport.jpg/200px-Air_Serbia_Airbus_A330-202_YU-ARA_at_JFK_Airport.jpg?fbclid=IwAR0A73r-hkyCVvVZMG0u6Y2N2dVqaAQ41oA1o6niu_hB4_m5585GnZSEp6E"
     },
+
+    
 
     {
         "id": "3",
         "ime": "Doha Air",
         "opis": "Najveci prevoznik u Africi",
-        "ocena": "4.0"
+        "ocena": "4.0" ,
+        "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/A380-861%2C_Korean_Air%2C_F-WWAY%2C_HL7613%2C_%28MSN_59%29.jpg/200px-A380-861%2C_Korean_Air%2C_F-WWAY%2C_HL7613%2C_%28MSN_59%29.jpg?fbclid=IwAR3DvuMb7lc21VpS8uEKPNZ7y_eSvLeWRzophbMY5waAChw5-MQVhzUBhwk"
+   
+
     }
 ]
 
