@@ -194,7 +194,7 @@ router.post('/komentar', (req, res) => {
 
     var prevoznici = prevozniciMap.get(req.body.id_prevoznik);
 
-    prevoznici.komentari.push(req.body.komentar)
+   // prevoznici.komentari.push(req.body.komentar)
 
     if (req.body.id_prevoznik != "" || req.body.korisnik != "" || req.body.komentar != "") {
         try {
