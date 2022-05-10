@@ -15,7 +15,7 @@ export class PrevoznikComponent implements OnInit {
 
   prevoznikId : string= '';
   public prevoznik : Prevoznik | null = null ;
-  public komentari : Komentar[] | null = null;
+  public comments : Komentar[] =[];
   public user : string | null = null;
   // public tekst : string = '';
   public komentar : string ='';
@@ -23,6 +23,7 @@ export class PrevoznikComponent implements OnInit {
   public currentRate : number=0;
   public str: any ;
 
+  public prosecnaOcena : number = 0;
 
   ngOnInit(): void {
     this.user = localStorage.getItem("trenutniUser");
@@ -31,11 +32,11 @@ export class PrevoznikComponent implements OnInit {
 
     this.service.getPrevoznik(this.prevoznikId).subscribe(resp => {
       this.prevoznik = resp; 
+      
     })
 
     this.service.getKomentari(this.prevoznikId).subscribe(resp=>{
-      console.log(resp)
-      this.komentari = resp;
+      this.comments=resp
     })
 
   
@@ -43,24 +44,31 @@ export class PrevoznikComponent implements OnInit {
 
   dodajKom(){
     if(localStorage.getItem("trenutniUser")!=null){
+
       const user:string | null= localStorage.getItem("trenutniUser");
-      this.service.addComment(this.prevoznikId,user, this.komentar).subscribe(resp => {
+      const komentar = user + " : " + this.komentar
+      this.service.addComment(this.prevoznikId,user, komentar).subscribe(resp => {
         alert(resp.msg)
       })
      
     }else{
       alert("Niste se ulogovali")
     }
+    this.ngOnInit()
   }
 
   oceni(idPrevoznik : string){
-    if(this.currentRate!=0){
-       this.str=this.currentRate + '';
-
-      this.service.addOcena(idPrevoznik, this.str).subscribe(resp=>{
+    if(this.currentRate!=0 && localStorage.getItem("trenutniUser")!=null){
+      var user = localStorage.getItem("trenutniUser")
+      this.service.addOcena(idPrevoznik, this.currentRate, user).subscribe(resp=>{
+        this.prosecnaOcena = resp.ocena;
+        console.log(this.prosecnaOcena)
         alert(resp.msg)
       })
+    }else{
+      alert("Niste se ulogovali")
     }
+    this.ngOnInit()
   }
  
 }

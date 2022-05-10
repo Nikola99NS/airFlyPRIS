@@ -66,18 +66,22 @@ export class LetService {
     })
   }
 
-  addComment(idPrevoznik:string,korisnik:string|null, tekst:string):Observable<any>{
+  addComment(idPrevoznik:string,korisnik:string|null, komentar:string):Observable<any>{
     return this.httpClient.post(this.BACKEND_BASE+"/api/let/komentar",{
       id_prevoznik:idPrevoznik,
       korisnik:korisnik,
-      tekst:tekst
+      komentar:komentar
     })
   }
 
-  addOcena(idPrevoznik:string, rate:string):Observable<any>{
+  addOcena(idPrevoznik:string, rate:number, user : any):Observable<any>{
     return this.httpClient.post(this.BACKEND_BASE+"/api/let/ocena",{
       id_prevoznik:idPrevoznik,
-      ocena:rate
+      ocena:rate,
+      user : user
     })
   }
+
+  
 }
+

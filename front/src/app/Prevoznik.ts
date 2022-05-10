@@ -2,10 +2,10 @@ export class Prevoznik{
     id:string;
     ime:string;
     opis:string;
-    ocena:string;
+    ocena:number;
     slika:string;
 
-    constructor(id:string, ime:string, opis:string, ocena:string, slika:string){
+    constructor(id:string, ime:string, opis:string, ocena:number, slika:string){
         this.id=id;
         this.ime=ime;
         this.opis=opis;

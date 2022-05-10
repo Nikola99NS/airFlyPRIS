@@ -110,61 +110,77 @@ router.get('/prevoznik', (req, res) => {
     }
 
     if (prevoznik) {
-        // console.log(prevoznik.ime + " nesto")
         res.status(200).json(prevoznik);
     }
 })
 
+
 router.post('/ocena', (req, res) => {
 
-    if (req.body.id_prevoznik != "" || req.body.ocena != "") {
-        ocene.push({
-            "id_prevoznik": req.body.id_prevoznik,
-            "ocena": req.body.ocena
-        })
+    let rate = 0;
+    var rates = prevozniciMap.get(req.body.id_prevoznik);
 
-        let zbir_ocena = 0;
-        let broj_ocena = 0;
-        for (let o of ocene) {
-            if (o.id_prevoznik == req.body.id_prevoznik) {
-                zbir_ocena += o.ocena;
-                broj_ocena++;
-                // console.log(zbir_ocena)
+    var kor = prevozniciMap.get(req.body.id_prevoznik);
+
+    var b = true;
+
+    if (req.body.user != "") {
+        for (let k of kor.korisnici) {
+            if (k === req.body.user) {
+                b = false;
             }
         }
-
-        for (let p of prevoznici) {
-            if (p.id == req.body.id_prevoznik) {
-                p.ocena = zbir_ocena / broj_ocena;
-                break;
-            }
+        if (b) {
+            kor.korisnici.push(req.body.user)
         }
+    }
 
-        return res.status(200).json({
 
-            msg: "Uspesno!"
-        });
+    if (b) {
+        if (req.body.id_prevoznik != "" || req.body.ocena != "") {
+            rates.ocene.push(req.body.ocena)
+            let zbir_ocena = 0;
+            let broj_ocena = rates.ocene.length;
+            for (let o of rates.ocene) {
+                zbir_ocena = zbir_ocena + o;
 
-    } else {
+            }
+
+            rate = zbir_ocena / broj_ocena;
+
+            for (let p of prevoznici) {
+                if (req.body.id_prevoznik == p.id) {
+                    p.ocena = rate
+                }
+            }
+
+            return res.status(200).json({
+                ocena: rate,
+                msg: "Uspesno!"
+            });
+
+        } else {
+            res.json({
+                msg: "Greska!"
+            })
+        }
+    } {
         res.json({
-            msg: "Greska!"
+            msg: 'Ne moze isti user glasati opet'
         })
     }
 
+
 })
+
+
+
 
 router.get('/komentari', (req, res) => {
     try {
 
-        let komentari_prevoznika = [];
-
-        for (let k of komentari) {
-            if (k.id_prevoznik == req.query.id_prevoznik) {
-                komentari_prevoznika.push(k);
-            }
-        }
-
-        return res.status(200).json(komentari_prevoznika);
+        var prevoznici = prevozniciMap.get(req.query.id_prevoznik);
+        return res.status(200).json(prevoznici.komentari);
 
     } catch (e) {
         console.log(e)
@@ -176,13 +192,13 @@ router.get('/komentari', (req, res) => {
 
 router.post('/komentar', (req, res) => {
 
-    if (req.body.id_prevoznik != "" || req.body.korisnik != "" || req.body.tekst != "") {
+    var prevoznici = prevozniciMap.get(req.body.id_prevoznik);
+
+    prevoznici.komentari.push(req.body.komentar)
+
+    if (req.body.id_prevoznik != "" || req.body.korisnik != "" || req.body.komentar != "") {
         try {
-            komentari.push({
-                "korisnik": req.body.korisnik,
-                "id_prevoznik": req.body.id_prevoznik,
-                "tekst": req.body.tekst
-            })
+            prevoznici.komentari.push(req.body.komentar)
 
             return res.json({
                 msg: "Dodat komentar!"
@@ -201,11 +217,29 @@ router.post('/komentar', (req, res) => {
 
 })
 
+const prevozniciMap = new Map([
+    ["1", {
+        ocene: [],
+        korisnici: [""],
+        komentari: ["Pero : Odlicno", "Nikola : Nije lose"]
+    }],
+    ["2", {
+        ocene: [],
+        korisnici: [""],
+        komentari: [""]
+    }],
+    ["3", {
+        ocene: [],
+        korisnici: [""],
+        komentari: [""]
+    }]
+])
+
 let prevoznici = [{
         "id": "1",
         "ime": "Turkish Airlines",
         "opis": "Najveci prevoznik u Evropi",
-        "ocena": "4.5" ,
+        "ocena": 0,
         "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg/200px-Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg?fbclid=IwAR1u4Bx8GnTJD1ANNZrRQrfkRq9LwAtqxOSHEku95ddNj2d4ZeDabHAHbpQ"
     },
 
@@ -213,55 +247,39 @@ let prevoznici = [{
         "id": "2",
         "ime": "Serbia Air",
         "opis": "Najveci prevoznik u Srbiji",
-        "ocena": "4.6" ,
+        "ocena": 0,
         "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Air_Serbia_Airbus_A330-202_YU-ARA_at_JFK_Airport.jpg/200px-Air_Serbia_Airbus_A330-202_YU-ARA_at_JFK_Airport.jpg?fbclid=IwAR0A73r-hkyCVvVZMG0u6Y2N2dVqaAQ41oA1o6niu_hB4_m5585GnZSEp6E"
     },
 
-    
+
 
     {
         "id": "3",
         "ime": "Doha Air",
         "opis": "Najveci prevoznik u Africi",
-        "ocena": "4.0" ,
+        "ocena": 0,
         "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/A380-861%2C_Korean_Air%2C_F-WWAY%2C_HL7613%2C_%28MSN_59%29.jpg/200px-A380-861%2C_Korean_Air%2C_F-WWAY%2C_HL7613%2C_%28MSN_59%29.jpg?fbclid=IwAR3DvuMb7lc21VpS8uEKPNZ7y_eSvLeWRzophbMY5waAChw5-MQVhzUBhwk"
-   
+
 
     }
 ]
 
 let ocene = [{
         "id_prevoznik": "1",
-        "ocena": "4.0"
-    },
-    {
-        "id_prevoznik": "1",
-        "ocena": "5.0"
-    },
-    {
-        "id_prevoznik": "2",
-        "ocena": "4.3"
+        ocene: [],
+        korisnici: []
+
     },
     {
         "id_prevoznik": "2",
-        "ocena": "4.9"
-    },
-    {
-        "id_prevoznik": "2",
-        "ocena": "4.4"
-    },
-    {
-        "id_prevoznik": "2",
-        "ocena": "4.8"
+        ocene: [],
+        korisnici: []
     },
     {
         "id_prevoznik": "3",
-        "ocena": "3.5"
-    },
-    {
-        "id_prevoznik": "3",
-        "ocena": "4.5"
-    },
+        ocene: [],
+        korisnici: []
+    }
 ]
 
 let komentari = [{
@@ -310,6 +328,10 @@ let komentari = [{
         "tekst": "Nista ne valja"
     }
 ]
+
+const komentariMap = new Map([
+
+])
 
 let letovi = [{
         "id": "1",

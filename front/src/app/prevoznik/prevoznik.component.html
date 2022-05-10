@@ -1,45 +1,41 @@
 <app-header></app-header>
 <br><br><br><br>
-<div class="nesto has-text-centered"  *ngIf="prevoznik" >
-   <b> <span class="ime">{{prevoznik.ime}} </span> </b> <br><br> <br>{{prevoznik.opis}} <br><br><br>
-    <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false">
+<div class="nesto has-text-centered" *ngIf="prevoznik">
+    <b> <span class="ime">{{prevoznik.ime}} </span> </b> <br><br> <br>{{prevoznik.opis}} <br><br><br>
+    <ngb-rating class="px-3" [max]="5" [(rate)]="currentRate" [readonly]="false">
 
     </ngb-rating>
-    <button (click)="oceni(prevoznik.id)">Oceni</button> {{prevoznik.ocena}}
+    <button class="button is-info is-small px-2" (click)="oceni(prevoznik.id)">Oceni</button><label class="px-4">Ocena : {{prevoznik.ocena}}</label>
 </div>
+
+<br> Komentari
 <br>
+<div *ngFor="let k of comments">
+    <article class="media">
+
+        <div class="media-content">
 
 
+            <article class="media">
+                <figure class="media-left">
 
-    Komentari 
-    <br>
-<div *ngFor="let k of komentari">
-<article class="media">
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong></strong>
+                            <br>{{k}}
 
-    <div class="media-content">
+                        </p>
+                    </div>
 
 
-        <article class="media">
-            <figure class="media-left">
-
-            </figure>
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <strong>{{k.id_korisnik}}</strong>
-                        <br> {{k.tekst}}
-                        <br>
-
-                    </p>
                 </div>
+            </article>
 
 
-            </div>
-        </article>
-
-        
-    </div>
-</article>
+        </div>
+    </article>
 </div>
 <br>
 <article class="media">
@@ -56,8 +52,7 @@
         </div>
         <div class="field">
             <p class="control">
-                <button class="button" 
-                (click)="dodajKom()">Komentarisi</button>
+                <button class="button" (click)="dodajKom()">Komentarisi</button>
             </p>
         </div>
     </div>
