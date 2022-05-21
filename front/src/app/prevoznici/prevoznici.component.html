@@ -1,51 +1,72 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <br><br><br>
 <div *ngFor="let p of prevoznici">
     <a (click)="klikni(p.id)">
-        <div class="card">
-
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-1x1">
-                            <img src={{p.slika}} alt="Placeholder image" width="50" height="50">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4">{{p.ime}}</p>
-                        <p class="subtitle is-6">{{p.opis}}</p>
-                    </div>
-                </div>
-
-                <div class="content">
-                    Ocena: {{p.ocena}}
-                    <br>
-
-                </div>
+    <div class="card">
+    
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-1x1">
+                <img src={{p.slika}} alt="Placeholder image" width="50" height="50">
+              </figure>
             </div>
+            <div class="media-content">
+              <p class="title is-4">{{p.ime}}</p>
+              <p class="subtitle is-6">{{p.opis}}</p>
+            </div>
+          </div>
+      
+          <div class="content">
+           Ocena: {{p.ocena}}
+            <br>
+            
+          </div>
         </div>
+      </div>
     </a>
 </div>
 <br><br>
-
-
-<!-- <app-header></app-header>
-<br><br><br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12" *ngFor="let p of prevoznici">
-            <div class="card" style="width: 35rem;">
-                <img src={{p.slika}} class="card-img-top" alt="Placeholder image">
-                <div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{p.ime}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Season {{p.opis}} Episode {{p.opis}}</h6>
-                        <h6 class="card-footer mb-1 text-muted">hehe</h6>
-                        <p class="card-text">{{p.opis}}</p>
-                        <a href="#" class="btn btn-primary">View</a>
-                    </div>
-                </div>
-            </div><br>
-        </div>
-    </div>
-</div> -->
+ -->
+ 
+ <app-header></app-header>
+ <body class="body">
+ <br><br><br><br>
+ <div class="container">
+     <!-- <div class="row"> -->
+     <div class="col-md-12" *ngFor="let p of prevoznici">
+         <a (click)="klikni(p.id)">
+             <div class="card" style="width: 18rem;">
+                 <img src={{p.slika}} class="card-img-top" alt="Placeholder image">
+                 <div>
+                     <div class="card-body">
+                         <h1 class="card-title">{{p.ime}} <span class="ocena px-3">{{p.ocena}}<mat-icon class="star px-2">star</mat-icon></span></h1>
+                         <h5 class="card-subtitle mb-2 text-muted">{{p.opis}}</h5>
+                         <!-- <h6 class="card-footer mb-1 text-muted">hehe</h6>
+                         <p class="card-text"></p> -->
+                         <!-- <a href="#" class="btn btn-primary">View</a> -->
+                     </div>
+                 </div>
+             </div>
+         </a>
+         <br>
+     </div>
+     <!-- </div> -->
+ </div>
+</body>
+ <!-- <app-header></app-header><br><br><br>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-12">
+             <div class="card">
+                 <img src="https://mdbootstrap.com/img/new/standard/nature/184.webp" class="card-img-top" alt="..." />
+                 <div class="card-body">
+                     <h5 class="card-title">Card title</h5>
+                     <p class="card-text">
+                         Some quick example text to build on the card title and make up the bulk of the card's content.
+                     </p>
+                     <a href="#!" class="btn btn-primary">Button</a>
+                 </div>
+             </div>
+         </div>
+     </div> -->

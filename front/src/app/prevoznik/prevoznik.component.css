@@ -1,6 +1,85 @@
-.nesto{
+.nesto {
     text-align: center;
 }
-.ime{
+
+.h1 {
+    color: #1976d2
+}
+
+.ime {
     font-size: 40px;
+}
+
+.body {
+    background-color: black;
+    height: 1500px;
+}
+
+.p-6 {
+    background-color: white;
+    text-align: left;
+    /* font-size: large; */
+}
+
+.p-5 {
+    background-color: white;
+    text-align: left;
+    color: #1976d2;
+}
+
+.h1 {
+    font-size: 3em;
+}
+
+.stars {
+    color: rgb(0, 157, 255);
+    font-size: 30px;
+}
+
+.opis {
+    font-size: medium;
+    text-align: left;
+    background-color: #cfe6fe;
+    color: #1976d2;
+}
+
+.oceni {
+    font-size: medium;
+    text-align: left;
+    background-color: #cfe6fe;
+    color: #1976d2;
+}
+
+.slika {
+    text-align: left;
+}
+
+.img-fluid {
+    align-items: baseline;
+    width: 500px;
+    height: 400px
+}
+
+.komentar {
+    color: black;
+}
+
+.blue-border textarea {
+    border: 1px solid #1976d2;
+    width: 400px;
+}
+
+.blue-border .form-control:focus {
+    border: 1px solid #1976d2;
+    box-shadow: 0 0 0 0.2rem #1976d2;
+}
+
+.button {
+    background: #1976d2;
+    color: white
+}
+
+.h2 {
+    text-align: left;
+    color: #1976d2
 }

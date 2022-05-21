@@ -45,7 +45,7 @@ export class PrevoznikComponent implements OnInit {
   dodajKom(){
     if(localStorage.getItem("trenutniUser")!=null){
 
-      const user:string | null= localStorage.getItem("trenutniUser");
+      const user = JSON.parse(String(localStorage.getItem("trenutniUser"))) as string | null   ;
       const komentar = user + " : " + this.komentar
       this.service.addComment(this.prevoznikId,user, komentar).subscribe(resp => {
         alert(resp.msg)

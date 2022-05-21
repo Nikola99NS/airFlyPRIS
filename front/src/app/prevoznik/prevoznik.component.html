@@ -1,60 +1,74 @@
-<app-header></app-header>
-<br><br><br><br>
-<div class="nesto has-text-centered" *ngIf="prevoznik">
-    <b> <span class="ime">{{prevoznik.ime}} </span> </b> <br><br> <br>{{prevoznik.opis}} <br><br><br>
-    <ngb-rating class="px-3" [max]="5" [(rate)]="currentRate" [readonly]="false">
+<body class="body">
+    <app-header></app-header>
+    <br><br><br>
+    <div class="container px-6" *ngIf="prevoznik">
 
-    </ngb-rating>
-    <button class="button is-info is-small px-2" (click)="oceni(prevoznik.id)">Oceni</button><label class="px-4">Ocena : {{prevoznik.ocena}}</label>
-</div>
+        <div class="p-6">
+            <span class="h1">{{prevoznik.ime}}</span>
 
-<br> Komentari
-<br>
-<div *ngFor="let k of comments">
-    <article class="media">
+            <br><br>
+            <div class="row">
+                <div class="col-md-4 slika w-50">
+                    <img src={{prevoznik.slika}} class="img-fluid">
+                </div><br>
+                <div class="col-md-5 oceni">
+                    <h2 class="px-2">OCENI PREVOZNIKA<br></h2>
+                    <ngb-rating class="stars px-2" [max]="5" [(rate)]="currentRate" [readonly]="false">
+                    </ngb-rating><br>
+                    <button class="button is-info is-small px-5" (click)="oceni(prevoznik.id)">OCENI</button><label class="px-4">Ocena : {{prevoznik.ocena}}</label>
 
-        <div class="media-content">
-
-
-            <article class="media">
-                <figure class="media-left">
-
-                </figure>
-                <div class="media-content">
-                    <div class="content">
-                        <p>
-                            <strong></strong>
-                            <br>{{k}}
-
-                        </p>
-                    </div>
-
-
+                    <div class="form-group blue-border"><br>
+                        <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name="komentar" [(ngModel)]="komentar" placeholder="Dodaj komentar..."></textarea>
+                    </div><br>
+                    <button class="button" (click)="dodajKom()">Komentarisi</button>
                 </div>
-            </article>
 
-
+            </div><br>
+            <div class="opis px-2">
+                <h2 class="h2">OPIS</h2>
+                {{prevoznik.opis}}<br><br>
+            </div>
         </div>
-    </article>
-</div>
-<br>
-<article class="media">
 
-    <figure class="media-left">
+        <div class="p-5 ">
+            <h1>KOMENTARI</h1>
+            <br>
+            <div *ngFor="let k of comments">
+                <article class="media">
+
+                    <div class="media-content">
 
 
-    </figure>
-    <div class="media-content">
-        <div class="field">
-            <p class="control">
-                <textarea class="textarea" placeholder="Dodaj komentar..." name="komentar" [(ngModel)]="komentar"></textarea>
-            </p>
+                        <article class="media">
+                            <figure class="media-left">
+
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p class="komentar">
+                                        <br>{{k}}
+
+                                    </p>
+                                </div>
+
+
+                            </div>
+                        </article>
+
+
+                    </div>
+                </article>
+            </div>
         </div>
-        <div class="field">
-            <p class="control">
-                <button class="button" (click)="dodajKom()">Komentarisi</button>
-            </p>
-        </div>
+        <br>
+        <article class="media">
+
+            <figure class="media-left">
+
+
+            </figure>
+            <br>
+        </article>
     </div>
-    <br>
-</article>
+
+</body>

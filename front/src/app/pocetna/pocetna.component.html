@@ -1,84 +1,115 @@
-<app-header></app-header>
+<body class="body has-text-centered ">
+    <app-header></app-header>
 
-<body class="has-text-centered " [ngStyle]="{backgroundImage:'url(assets/images/sky4.jpg)'} ">
-    <!-- <img [src]="myImage"> -->
-    <div class="tile is-ancestor">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="tile is-vertical is-10">
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-info">
-                    <div class="pretraga">
-                        <br><br><br><br> &nbsp;&nbsp;&nbsp;<label class="recenica">Ovde možete da pretražujete letove.</label>
-                        <br><br>
-                        <form (ngSubmit)="pretrazi()">
-                            <span class="datum"> &nbsp;&nbsp;&nbsp;Datum : &nbsp;<input type="date" name="datum" [(ngModel)]="datum"> &nbsp;&nbsp;&nbsp;
-                            <input class="input is-info"  type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni">
-                            &nbsp;&nbsp;&nbsp;
-                            <input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni">
-                            &nbsp;&nbsp;&nbsp;
-                           <button class="button is-info is-small" type="submit">
-                            Search
-                           </button>
 
-                            </span>
-                        </form>
-                        <br><br><br>
-                        <div *ngIf="p">
-
-                            <table style="width:60%">
-                                <tr>
-                                    <th> Polazak</th>
-                                    <th> Dolazak</th>
-                                    <th> Datum</th>
-                                    <th> Vreme polaska</th>
-                                    <th> Vreme dolaska</th>
-                                    <th> Prevoznik</th>
-                                    <th> Ekonomska klasa (cena)</th>
-                                    <th> Biznis klasa (cena)</th>
-                                    <th> Rezervisi</th>
-                                </tr>
-
-                                <tr *ngFor="let l of letovi">
-                                    <td> {{l.polazak}}</td>
-                                    <td> {{l.dolazak}}</td>
-                                    <td> {{l.datum}}</td>
-                                    <td> {{l.vreme_polaska}}</td>
-                                    <td> {{l.vreme_dolaska}}</td>
-                                    <td> {{l.prevoznik_ime}}</td>
-                                    <td> {{l.cena_ekonomska}}</td>
-                                    <td> {{l.cena_biznis}}</td>
-                                    <td>
-                                        <form (ngSubmit)="rezervisi(l.id)">
-                                            <button class="button is-info is-small" type="submit">
-                                            Rezervisi
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-
-                            </table>
-
-                            <br><br>
-
-                            <p *ngIf="popust">{{popustMsg}}</p>
-
+    <br><br>
+    <div class="container">
+        <div class="carousel">
+            <br><br>
+            <ngb-carousel>
+                <ng-template ngbSlide *ngIf="images2">
+                    <a (click)="slide1(1)">
+                        <div class="picsum-img-wrapper">
+                            <img class="slika" [src]="images2[0]" alt="Random first slide">
                         </div>
-                        <br><br><br>
+                        <div class="carousel-caption">
+                            <h1>Najpovoljniji letovi </h1>
+                            <p class="opisSlajda">Kliknite da bi vam se učitala tabela sa najpovoljijim letovima.</p>
+                        </div>
+                    </a>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <a (click)="slide2(1)">
+                        <div class="picsum-img-wrapper">
+                            <img class="slika" [src]="images2[1]" alt="Random second slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <!-- <h1>Najbolje ocenjeni prevoznik.</h1> -->
+                            <p class="opisSlajda">Ovde mozete videti najbolje ocenjeni prevoznik od strane nasih putnika.</p>
+                        </div>
+                    </a>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img class="slika" [src]="images2[2]" alt="Random third slide">
                     </div>
+                    <div class="carousel-caption">
+                        <h3>Third slide label</h3>
+                        <p class="opisSlajda">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <br>
 
-                </article>
+    <br>
+    <div class="form-group">
+        <h1 style="color:white; font-size: 20px;" >Ovde mozete rezervisati let.</h1><br><br>
+        <div class="d-inline">
+            <form (ngSubmit)="pretrazi()">
+                <input class="datum" type="date" name="datum" [(ngModel)]="datum"> &nbsp;
+                <mat-icon>flight_takeoff</mat-icon>&nbsp;
+                <input class="input is-info " type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni"> &nbsp;
+                <span class="material-icons">flight_land</span>&nbsp;<input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni"> &nbsp;
+                <button class="button is-info is-small" type="submit">
+                     Search
+                </button>
+            </form>
+        </div>
+        <br>
+        <div *ngIf="p">
 
+            <table style="width:60%">
+                <tr>
+                    <th class="px-2"> Polazak</th>
+                    <th class="px-2"> Dolazak</th>
+                    <th class="px-2"> Datum</th>
+                    <th class="px-2"> Vreme polaska</th>
+                    <th class="px-2"> Vreme dolaska</th>
+                    <th class="px-2"> Prevoznik</th>
+                    <th class="px-2"> Ekonomska klasa (cena)</th>
+                    <th class="px-2"> Biznis klasa (cena)</th>
+                    <th class="px-2"> Tip aviona</th>
+                    <th class="px-2"> Rezervisi</th>
+                </tr>
+
+                <tr *ngFor="let l of letovi">
+                    <td> {{l.polazak}}</td>
+                    <td> {{l.dolazak}}</td>
+                    <td> {{l.datum}}</td>
+                    <td> {{l.vreme_polaska}}</td>
+                    <td> {{l.vreme_dolaska}}</td>
+                    <td><a (click)="klikni(l.id)">{{l.prevoznik_ime}}</a></td>
+                    <td> {{l.cena_ekonomska}}</td>
+                    <td> {{l.cena_biznis}}</td>
+                    <td><a (click)="tip(l.id)">{{l.tip}}</a></td>
+                    <td>
+                        <form (ngSubmit)="rezervisi(l.id)">
+                            <button class="button is-info is-small" type="submit">
+                            Rezervisi
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+
+            </table>
+
+            <br><br>&nbsp;&nbsp;&nbsp;
+            <div class="tipAviona" *ngIf="tipAviona">
+                <h2 class="imeTipa">{{tipAviona[0]}}</h2>
+                &nbsp;&nbsp;&nbsp; <img class="slikaTipa" src={{tipAviona[2]}}> &nbsp;&nbsp;&nbsp;<br><br> &nbsp;
+                <h4 class="opisTipa">{{tipAviona[1]}}</h4>
             </div>
 
+            <p *ngIf="popust">{{popustMsg}}</p>
 
         </div>
-
     </div>
 
 
 
-    <div class="tile is-ancestor " *ngIf="auth.isAdmin()">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="adminKontejner " *ngIf="auth.isAdmin()">
         <div class="tile is-vertical is-10">
             <div class="tile is-parent">
                 <article class="tile is-child notification is-info">
@@ -92,8 +123,7 @@
 
                             <select [(ngModel)]='prevoznik' name="s">
                                 <option *ngFor="let p of prevozniciList" value="{{p.id}}">{{p.ime}}</option>
-                            </select>
-
+                            </select> &nbsp;
                             <div class="select is-link is-small">
 
                                 <select [(ngModel)]='selected' name="s">
