@@ -19,7 +19,7 @@
                     </a>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <a (click)="slide2(1)">
+                    <a (click)="slide2()">
                         <div class="picsum-img-wrapper">
                             <img class="slika" [src]="images2[1]" alt="Random second slide">
                         </div>
@@ -29,15 +29,6 @@
                         </div>
                     </a>
                 </ng-template>
-                <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper">
-                        <img class="slika" [src]="images2[2]" alt="Random third slide">
-                    </div>
-                    <div class="carousel-caption">
-                        <h3>Third slide label</h3>
-                        <p class="opisSlajda">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div>
-                </ng-template>
             </ngb-carousel>
         </div>
     </div>
@@ -45,13 +36,13 @@
 
     <br>
     <div class="form-group">
-        <h1 style="color:white; font-size: 20px;" >Ovde mozete rezervisati let.</h1><br><br>
+        <h1 style="color:white; font-size: 20px;">Ovde mozete rezervisati let.</h1><br><br>
         <div class="d-inline">
             <form (ngSubmit)="pretrazi()">
                 <input class="datum" type="date" name="datum" [(ngModel)]="datum"> &nbsp;
-                <mat-icon>flight_takeoff</mat-icon>&nbsp;
+                <mat-icon style="color:white">flight_takeoff</mat-icon>&nbsp;
                 <input class="input is-info " type="text" style="width: 200px; height:30px" placeholder="Polazni" name="polazni" [(ngModel)]="polazni"> &nbsp;
-                <span class="material-icons">flight_land</span>&nbsp;<input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni"> &nbsp;
+                <mat-icon style="color:white">flight_land</mat-icon>&nbsp;<input class="input is-info" type="text" style="width: 200px; height:30px" placeholder="Dolazni" name="dolazni" [(ngModel)]="dolazni"> &nbsp;
                 <button class="button is-info is-small" type="submit">
                      Search
                 </button>

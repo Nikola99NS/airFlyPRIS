@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 5em;
-    background-color: black;
 }
 
 .card {
@@ -17,12 +16,14 @@ img {
 
 .card-title {
     color: #1976d2;
+    font-size: 25px;
 }
 
 .star {
     color: rgb(158, 158, 11);
 }
-body{
+
+body {
     background-color: black;
-   height: 1160px;
+    height: 1150px
 }

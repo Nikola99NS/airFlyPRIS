@@ -93,11 +93,12 @@ export class LetService {
     })
   }
   
-  najboljiPrevoznici(id:number):Observable<any>{
-    let params = new HttpParams().set("id",id);
+  najboljiPrevoznici():Observable<any>{
+    // let params = new HttpParams().set("id",id);
+    let params = new HttpParams().set("nesto",'nesto')
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.httpClient.get<Prevoznik[]>(this.BACKEND_BASE + "/api/let/najboljiPrevoznici", {
+    return this.httpClient.get<number>(this.BACKEND_BASE + "/api/let/najboljiPrevoznici", {
       headers,
       params
     })

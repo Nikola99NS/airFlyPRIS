@@ -138,10 +138,10 @@ export class PocetnaComponent {
     this.p=true;
   }
 
-  slide2(id:number){
-    this.letService.najboljiPrevoznici(id).subscribe(resp => {
-      this.najboljiPrevoznici = resp;
-      this.router.navigate(['prevoznik',resp[0].id])
+  slide2(){
+    this.letService.najboljiPrevoznici().subscribe(resp => {
+      // this.najboljiPrevoznici = resp;
+      this.router.navigate(['prevoznik',resp])
     })
     
   }

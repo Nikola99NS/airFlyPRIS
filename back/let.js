@@ -51,9 +51,8 @@ router.get('/najpovoljnijiLetovi', (req, res) => {
 
 router.get('/najboljiPrevoznici', (req, res) => {
     var lodash = require('lodash');
-    // var arr = [3, 6, 1, 5, 8];
-    // var sum = lodash.sum(arr);
-    // console.log(sum);
+
+
     var najboljiPrevoznici = []
     var broj = ""
     for (let i = 1; i <= prevozniciMap.size; i++) {
@@ -61,6 +60,7 @@ router.get('/najboljiPrevoznici', (req, res) => {
         var sum = lodash.sum(prevozniciMap.get(broj).ocene);
         sum = sum / (prevozniciMap.get(broj).ocene.length)
         sum = sum.toFixed(2)
+
         prevozniciMap.get(broj).prosek = sum
         najboljiPrevoznici.push(sum)
     }
@@ -69,15 +69,20 @@ router.get('/najboljiPrevoznici', (req, res) => {
     });
 
     var najboljiPrevoznici1 = najboljiPrevoznici.slice(0, 1)
-        // console.log(najboljiPrevoznici1)
-
+    najboljiPrevoznici1 = najboljiPrevoznici[0]
     console.log(najboljiPrevoznici1)
+
     var vratiOvo = []
     for (let i = 1; i <= prevozniciMap.size; i++) {
         broj = i.toString();
         if (najboljiPrevoznici1 == prevozniciMap.get(broj).prosek) {
-            prevoznici[broj].ocena = prevozniciMap.get(broj).prosek;
-            vratiOvo.push(prevoznici[broj])
+            console.log(i)
+            return res.status(200).json(i)
+                // prevoznici[broj].ocena = prevozniciMap.get(broj).prosek;
+                // console.log(prevoznici[broj].ocena)
+                // vratiOvo.push(prevoznici[broj])
+                // break;
+
         }
     }
     return res.status(200).json(vratiOvo);
