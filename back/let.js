@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 let express = require('express')
 let router = express.Router();
 
@@ -22,6 +23,65 @@ router.get('/pretrazi', (req, res) => {
 
     return res.status(200).json(resultList);
 });
+
+router.get('/najpovoljnijiLetovi', (req, res) => {
+    let id = req.query.id
+    let ceneList = [];
+    for (let i = 0; i < letovi.length; i++) {
+        ceneList.push(letovi[i].cena_ekonomska)
+    }
+
+    ceneList.sort(function(a, b) {
+        return a - b;
+    });
+
+    const prvaTriBroja = ceneList.slice(0, 3);
+
+    const prvaTriLeta = []
+    let resultItem;
+    for (let i = 0; i < letovi.length; i++) {
+        if (prvaTriBroja.includes(letovi[i].cena_ekonomska)) {
+            resultItem = letovi[i];
+            resultItem.prevoznik_ime = prevoznici[resultItem.prevoznik_id - 1].ime;
+            prvaTriLeta.push(resultItem);
+        }
+    }
+    return res.status(200).json(prvaTriLeta);
+})
+
+router.get('/najboljiPrevoznici', (req, res) => {
+    var lodash = require('lodash');
+    // var arr = [3, 6, 1, 5, 8];
+    // var sum = lodash.sum(arr);
+    // console.log(sum);
+    var najboljiPrevoznici = []
+    var broj = ""
+    for (let i = 1; i <= prevozniciMap.size; i++) {
+        broj = i.toString()
+        var sum = lodash.sum(prevozniciMap.get(broj).ocene);
+        sum = sum / (prevozniciMap.get(broj).ocene.length)
+        sum = sum.toFixed(2)
+        prevozniciMap.get(broj).prosek = sum
+        najboljiPrevoznici.push(sum)
+    }
+    najboljiPrevoznici.sort(function(a, b) {
+        return b - a;
+    });
+
+    var najboljiPrevoznici1 = najboljiPrevoznici.slice(0, 1)
+        // console.log(najboljiPrevoznici1)
+
+    console.log(najboljiPrevoznici1)
+    var vratiOvo = []
+    for (let i = 1; i <= prevozniciMap.size; i++) {
+        broj = i.toString();
+        if (najboljiPrevoznici1 == prevozniciMap.get(broj).prosek) {
+            prevoznici[broj].ocena = prevozniciMap.get(broj).prosek;
+            vratiOvo.push(prevoznici[broj])
+        }
+    }
+    return res.status(200).json(vratiOvo);
+})
 
 router.post('/rezervisi', (req, res) => {
 
@@ -147,6 +207,8 @@ router.post('/ocena', (req, res) => {
             }
 
             rate = zbir_ocena / broj_ocena;
+            rate = rate.toFixed(2)
+
 
             for (let p of prevoznici) {
                 if (req.body.id_prevoznik == p.id) {
@@ -190,11 +252,25 @@ router.get('/komentari', (req, res) => {
     }
 });
 
+router.get('/tipAviona', (req, res) => {
+    var tipAviona = letovi[req.query.id - 1].tip;
+    console.log(req.query.id)
+    console.log(tipAviona)
+    var opisTipa = tipoviMap.get(tipAviona).opis;
+    var slikaTipa = tipoviMap.get(tipAviona).slika;
+
+    var vrati = []
+    vrati.push(tipAviona)
+    vrati.push(opisTipa)
+    vrati.push(slikaTipa)
+    return res.status(200).json(vrati)
+});
+
 router.post('/komentar', (req, res) => {
 
     var prevoznici = prevozniciMap.get(req.body.id_prevoznik);
 
-   // prevoznici.komentari.push(req.body.komentar)
+    // prevoznici.komentari.push(req.body.komentar)
 
     if (req.body.id_prevoznik != "" || req.body.korisnik != "" || req.body.komentar != "") {
         try {
@@ -220,16 +296,43 @@ router.post('/komentar', (req, res) => {
 const prevozniciMap = new Map([
     ["1", {
         ocene: [],
+        prosek: 0,
         korisnici: [""],
         komentari: ["Pero : Odlicno", "Nikola : Nije lose"]
     }],
     ["2", {
         ocene: [],
+        prosek: 0,
         korisnici: [""],
         komentari: [""]
     }],
     ["3", {
         ocene: [],
+        prosek: 0,
+        korisnici: [""],
+        komentari: [""]
+    }],
+    ["4", {
+        ocene: [],
+        prosek: 0,
+        korisnici: [""],
+        komentari: ["Pero : Odlicno", "Nikola : Nije lose"]
+    }],
+    ["5", {
+        ocene: [],
+        prosek: 0,
+        korisnici: [""],
+        komentari: [""]
+    }],
+    ["6", {
+        ocene: [],
+        prosek: 0,
+        korisnici: [""],
+        komentari: [""]
+    }],
+    ["7", {
+        ocene: [],
+        prosek: 0,
         korisnici: [""],
         komentari: [""]
     }]
@@ -238,7 +341,7 @@ const prevozniciMap = new Map([
 let prevoznici = [{
         "id": "1",
         "ime": "Turkish Airlines",
-        "opis": "Najveci prevoznik u Evropi",
+        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
         "ocena": 0,
         "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg/200px-Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg?fbclid=IwAR1u4Bx8GnTJD1ANNZrRQrfkRq9LwAtqxOSHEku95ddNj2d4ZeDabHAHbpQ"
     },
@@ -246,22 +349,46 @@ let prevoznici = [{
     {
         "id": "2",
         "ime": "Serbia Air",
-        "opis": "Najveci prevoznik u Srbiji",
+        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
         "ocena": 0,
-        "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Air_Serbia_Airbus_A330-202_YU-ARA_at_JFK_Airport.jpg/200px-Air_Serbia_Airbus_A330-202_YU-ARA_at_JFK_Airport.jpg?fbclid=IwAR0A73r-hkyCVvVZMG0u6Y2N2dVqaAQ41oA1o6niu_hB4_m5585GnZSEp6E"
+        "slika": "https://1.bp.blogspot.com/-J0zHmYQFFdI/YQuPaw4LraI/AAAAAAAA8AE/jlMomA0tyyE3oY9_cOECNMpPmYp7ex7pQCLcBGAsYHQ/s1752/Air%2BSerbia%2Baircraft%2Bimage.jpg"
     },
-
-
-
     {
         "id": "3",
-        "ime": "Doha Air",
-        "opis": "Najveci prevoznik u Africi",
+        "ime": "Qatar Air",
+        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
         "ocena": 0,
-        "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/A380-861%2C_Korean_Air%2C_F-WWAY%2C_HL7613%2C_%28MSN_59%29.jpg/200px-A380-861%2C_Korean_Air%2C_F-WWAY%2C_HL7613%2C_%28MSN_59%29.jpg?fbclid=IwAR3DvuMb7lc21VpS8uEKPNZ7y_eSvLeWRzophbMY5waAChw5-MQVhzUBhwk"
-
-
+        "slika": "https://d3pc1xvrcw35tl.cloudfront.net/ln/images/1103x827/960x0_202203352263.jpg"
+    },
+    {
+        "id": "4",
+        "ime": "Croatia Air",
+        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
+        "ocena": 0,
+        "slika": "https://www.diesel-plus.com/wp-content/uploads/2019/07/Airplane-Sky-201811-001-720x475.jpg"
+    },
+    {
+        "id": "5",
+        "ime": "Paris Air",
+        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
+        "ocena": 0,
+        "slika": "https://airlines-airports.com/wp-content/uploads/2018/06/Air-France.jpg"
+    },
+    {
+        "id": "6",
+        "ime": "Emirates Air",
+        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
+        "ocena": 0,
+        "slika": "https://cdn.jns.org/uploads/2022/03/Emirates-Airline.jpg"
+    },
+    {
+        "id": "7",
+        "ime": "American Air",
+        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
+        "ocena": 0,
+        "slika": "https://d3lcr32v2pp4l1.cloudfront.net/Pictures/2000xAny/6/4/5/70645_b787aa_749191.jpg"
     }
+
 ]
 
 let ocene = [{
@@ -345,6 +472,7 @@ let letovi = [{
         "cena_ekonomska": "80",
         "cena_biznis": "100",
         "slobodna_mesta": "50",
+        "tip": "Boing 737"
     },
     {
         "id": "2",
@@ -358,6 +486,7 @@ let letovi = [{
         "cena_ekonomska": "50",
         "cena_biznis": "80",
         "slobodna_mesta": "50",
+        "tip": "Boing 737"
     },
     {
         "id": "3",
@@ -371,6 +500,7 @@ let letovi = [{
         "cena_ekonomska": "60",
         "cena_biznis": "100",
         "slobodna_mesta": "50",
+        "tip": "Boing 747"
     },
     {
         "id": "4",
@@ -384,6 +514,7 @@ let letovi = [{
         "cena_ekonomska": "200",
         "cena_biznis": "400",
         "slobodna_mesta": "50",
+        "tip": "Boing 747"
     },
     {
         "id": "5",
@@ -397,6 +528,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "120",
         "slobodna_mesta": "50",
+        "tip": "Boing 747"
     },
     {
         "id": "6",
@@ -410,6 +542,7 @@ let letovi = [{
         "cena_ekonomska": "80",
         "cena_biznis": "100",
         "slobodna_mesta": "50",
+        "tip": "Boing 747"
     },
     {
         "id": "7",
@@ -423,6 +556,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "200",
         "slobodna_mesta": "50",
+        "tip": "Boing 777"
     },
     {
         "id": "8",
@@ -436,6 +570,7 @@ let letovi = [{
         "cena_ekonomska": "300",
         "cena_biznis": "500",
         "slobodna_mesta": "50",
+        "tip": "Boing 777"
     },
     {
         "id": "9",
@@ -449,6 +584,7 @@ let letovi = [{
         "cena_ekonomska": "300",
         "cena_biznis": "400",
         "slobodna_mesta": "50",
+        "tip": "Boing 777"
     },
     {
         "id": "10",
@@ -462,6 +598,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "200",
         "slobodna_mesta": "50",
+        "tip": "Boing 787"
     },
     {
         "id": "11",
@@ -475,6 +612,7 @@ let letovi = [{
         "cena_ekonomska": "80",
         "cena_biznis": "120",
         "slobodna_mesta": "50",
+        "tip": "Airbus A300"
     },
     {
         "id": "12",
@@ -488,6 +626,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "120",
         "slobodna_mesta": "50",
+        "tip": "Airbus A320"
     },
     {
         "id": "13",
@@ -501,6 +640,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "200",
         "slobodna_mesta": "50",
+        "tip": "Airbus A300"
     },
     {
         "id": "14",
@@ -514,6 +654,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "150",
         "slobodna_mesta": "50",
+        "tip": "Airbus A320"
     },
     {
         "id": "15",
@@ -527,6 +668,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "150",
         "slobodna_mesta": "50",
+        "tip": "Airbus A380"
     },
     {
         "id": "16",
@@ -540,6 +682,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "150",
         "slobodna_mesta": "50",
+        "tip": "Tu-104"
     },
     {
         "id": "17",
@@ -553,6 +696,7 @@ let letovi = [{
         "cena_ekonomska": "80",
         "cena_biznis": "100",
         "slobodna_mesta": "50",
+        "tip": "Boing 747"
     },
     {
         "id": "18",
@@ -566,6 +710,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "120",
         "slobodna_mesta": "50",
+        "tip": "Concorde"
     },
     {
         "id": "19",
@@ -579,6 +724,7 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "160",
         "slobodna_mesta": "50",
+        "tip": "IL-114"
     },
     {
         "id": "20",
@@ -589,9 +735,10 @@ let letovi = [{
         "vreme_dolaska": "21:00",
         "tip": "svakodnevni",
         "prevoznik_id": "1",
-        "cena_ekonomska": "60",
+        "cena_ekonomska": "65",
         "cena_biznis": "100",
         "slobodna_mesta": "50",
+        "tip": "ATR 72"
     },
     {
         "id": "21",
@@ -605,8 +752,68 @@ let letovi = [{
         "cena_ekonomska": "100",
         "cena_biznis": "120",
         "slobodna_mesta": "50",
+        "tip": "ATR 72"
     }
 ];
+
+
+const tipoviMap = new Map([
+    ["Boing 737", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/boeing-747-airliner-flying-low-overhead-picture-id102769318?s=612x612"
+    }],
+    ["Boing 747", {
+        opis: "Boing 747 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet)." +
+            "Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.",
+        slika: "https://media.istockphoto.com/photos/-picture-id489756564?s=612x612"
+    }],
+    ["Boing 777", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/pakistan-airways-boing-777-picture-id515275755?s=612x612"
+    }],
+    ["Boing 787", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/boeing-787-dreamliner-during-takeoff-picture-id458086589?s=612x612"
+    }],
+    ["Airbus A300", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/jet-airplane-flying-in-blue-sky-picture-id182436155?s=612x612"
+    }],
+    ["Airbus A320", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/jet-airplane-landing-at-dusk-picture-id173897349?s=612x612"
+    }],
+    ["Airbus A300", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/airbus-a300608st-beluga-2-picture-id685899810?s=612x612"
+    }],
+    ["Airbus A380", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/airbus-a380-in-flight-picture-id611289498?s=612x612"
+    }],
+    ["Tu-104", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/soviet-aircraft-picture-id92394714?s=612x612"
+    }],
+    ["Concorde", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/concord-picture-id532332081?s=612x612"
+    }],
+    ["IL-114", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/demonstration-flight-of-ilyushin-il114300-international-aviation-and-picture-id1360172497?s=612x612"
+    }],
+    ["ATR 72-600", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/aeromar-atr72600-xauym-to-puerto-vallarta-intl-picture-id1263492739?s=612x612"
+    }],
+    ["ATR 72", {
+        opis: "Dobar",
+        slika: "https://media.istockphoto.com/photos/of-thaiairway-picture-id482610072?s=612x612"
+    }]
+])
+
+
 
 
 module.exports = router;

@@ -16,6 +16,9 @@ export class PocetnaComponent {
 
   // myImage:string='assets/images/sky.webp'
 
+  images2=["https://images.pexels.com/photos/164357/pexels-photo-164357.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://images.pexels.com/photos/2180457/pexels-photo-2180457.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://images.pexels.com/photos/1157255/pexels-photo-1157255.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"]
+
+
   constructor(public auth: AuthService, private letService : LetService, private router: Router){  }
 
   ngOnInit(): void{
@@ -24,6 +27,8 @@ export class PocetnaComponent {
     })
   }
 
+  public tipAviona : string[] | null=null;
+
 
   public user: string | null = localStorage.getItem("trenutniUser")
 
@@ -31,6 +36,11 @@ export class PocetnaComponent {
   public polazni: string='';
   public dolazni: string='';
   public letovi: Let[] | null = null;
+
+  public najpovoljnijiLetovi: Let[] | null=null;
+
+  public najboljiPrevoznici: Prevoznik[] | null=null;
+
 
   public polazniAdmin: string='';
   public dolazniAdmin: string='';
@@ -111,5 +121,35 @@ export class PocetnaComponent {
       alert(resp.msg)
     })
 
+  }
+
+  
+  klikni(id:string){
+    console.log(id)
+    this.router.navigate(['prevoznik',id])
+  }
+
+  slide1(id:number){
+    this.letService.najpovoljnijiLetovi(id).subscribe(resp => {
+      this.najpovoljnijiLetovi = resp;
+    })
+
+    this.letovi=this.najpovoljnijiLetovi;
+    this.p=true;
+  }
+
+  slide2(id:number){
+    this.letService.najboljiPrevoznici(id).subscribe(resp => {
+      this.najboljiPrevoznici = resp;
+      this.router.navigate(['prevoznik',resp[0].id])
+    })
+    
+  }
+
+  tip(id:string){
+    this.letService.vratiTip(id).subscribe(resp=>{
+      this.tipAviona=resp;
+      
+    })
   }
 }

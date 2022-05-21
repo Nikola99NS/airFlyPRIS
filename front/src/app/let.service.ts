@@ -82,6 +82,36 @@ export class LetService {
     })
   }
 
+  najpovoljnijiLetovi(id:number): Observable<any>{
+    console.log(id)
+    let params = new HttpParams().set("id",id);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.httpClient.get<Let[]>(this.BACKEND_BASE + "/api/let/najpovoljnijiLetovi", {
+      headers,
+      params
+    })
+  }
   
+  najboljiPrevoznici(id:number):Observable<any>{
+    let params = new HttpParams().set("id",id);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.httpClient.get<Prevoznik[]>(this.BACKEND_BASE + "/api/let/najboljiPrevoznici", {
+      headers,
+      params
+    })
+  }
+
+  vratiTip(id:string){
+    let params = new HttpParams().set("id",id);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.httpClient.get<string[]>(this.BACKEND_BASE + "/api/let/tipAviona", {
+      headers,
+      params
+    })
+  }
 }
+
 

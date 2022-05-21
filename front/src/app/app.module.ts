@@ -14,7 +14,9 @@ import { PrevozniciComponent } from './prevoznici/prevoznici.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { PrevoznikComponent } from './prevoznik/prevoznik.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatIcon, MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NoopAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
