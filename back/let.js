@@ -344,57 +344,58 @@ const prevozniciMap = new Map([
 ])
 
 let prevoznici = [{
-        "id": "1",
-        "ime": "Turkish Airlines",
-        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
-        "ocena": 0,
-        "slika": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg/200px-Turkish_Airlines_Boeing_777-300ER_TC-JJG.jpg?fbclid=IwAR1u4Bx8GnTJD1ANNZrRQrfkRq9LwAtqxOSHEku95ddNj2d4ZeDabHAHbpQ"
-    },
+    "id": "1",
+    "ime": "Turkish Airlines",
+    "opis": "TTurkish Airlines je glavna i nacionalna turska avio-kompanija sa sedištem u Istanbulu. Njeni avioni lete redovno na 103 međunarodne i 28 domaćnih destinacija u Evropi, Aziji, Africi i Severnoj Americi. Glavno sedište je aerodrom Ataturk u Istanbul. Ostala sedišta su aerodrom Ankara i aerodrom Sabiha Gokčen u Istanbulu.",
+    "ocena": 0,
+    "slika": "https://images.pexels.com/photos/8250524/pexels-photo-8250524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1&fbclid=IwAR1YxnkHkzYQLcp-CLLxLuakhiCfR3NZU3tDmNe68vr2Szm25-BR9Bjwaak"
+},
 
-    {
-        "id": "2",
-        "ime": "Serbia Air",
-        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
-        "ocena": 0,
-        "slika": "https://1.bp.blogspot.com/-J0zHmYQFFdI/YQuPaw4LraI/AAAAAAAA8AE/jlMomA0tyyE3oY9_cOECNMpPmYp7ex7pQCLcBGAsYHQ/s1752/Air%2BSerbia%2Baircraft%2Bimage.jpg"
-    },
-    {
-        "id": "3",
-        "ime": "Qatar Air",
-        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
-        "ocena": 0,
-        "slika": "https://d3pc1xvrcw35tl.cloudfront.net/ln/images/1103x827/960x0_202203352263.jpg"
-    },
-    {
-        "id": "4",
-        "ime": "Croatia Air",
-        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
-        "ocena": 0,
-        "slika": "https://www.diesel-plus.com/wp-content/uploads/2019/07/Airplane-Sky-201811-001-720x475.jpg"
-    },
-    {
-        "id": "5",
-        "ime": "Paris Air",
-        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
-        "ocena": 0,
-        "slika": "https://airlines-airports.com/wp-content/uploads/2018/06/Air-France.jpg"
-    },
-    {
-        "id": "6",
-        "ime": "Emirates Air",
-        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
-        "ocena": 0,
-        "slika": "https://cdn.jns.org/uploads/2022/03/Emirates-Airline.jpg"
-    },
-    {
-        "id": "7",
-        "ime": "American Air",
-        "opis": "To је национална авио-компанија Србије са седиштем у Београду. Чвориште компаније је београдски аеродром Никола Тесла. Већински власник је Влада Србије (82%), а сувласник (са 18%) је Етихад ервејз, национални авио-превозник Уједињених Арапских Емирата.",
-        "ocena": 0,
-        "slika": "https://d3lcr32v2pp4l1.cloudfront.net/Pictures/2000xAny/6/4/5/70645_b787aa_749191.jpg"
-    }
+{
+    "id": "2",
+    "ime": "Serbia Air",
+    "opis": "Air Serbia je nacionalna avio-kompanija Srbije sa sedištem u Beogradu. Čvorište kompanije je beogradski aerodrom Nikola Tesla. Većinski vlasnik je Vlada Srbije (82%), a suvlasnik (sa 18%) je Etihad ervejz, nacionalni avio-prevoznik Ujedinjenih Arapskih Emirata.",
+    "ocena": 0,
+    "slika": "https://1.bp.blogspot.com/-J0zHmYQFFdI/YQuPaw4LraI/AAAAAAAA8AE/jlMomA0tyyE3oY9_cOECNMpPmYp7ex7pQCLcBGAsYHQ/s1752/Air%2BSerbia%2Baircraft%2Bimage.jpg"
+},
+{
+    "id": "3",
+    "ime": "Qatar Air",
+    "opis": "Qatar Airways katarska je nacionalna i najveća avio-kompanija sa sedištem u Dohi.Jedina je od pet avio-kompanije sveta koja je nagrađena sa „pet zvezdica“ od Skajtraksa. Skajtraks je takođe nagradio Qatar Airways u 2006. godine za najbolju posadu na Bliskom istoku i drugu najbolju na svetu. ",
+    "ocena": 0,
+    "slika": "https://d3pc1xvrcw35tl.cloudfront.net/ln/images/1103x827/960x0_202203352263.jpg"
+},
+{
+    "id": "4",
+    "ime": "Croatia Air",
+    "opis": "Croatia Airlines je hrvatska nacionalna avio-kompanija sa sedištem u Zagrebu. Kompanija održava redovne domaće i međunarodne linije. Najveća baza joj je aerodrom Zagreb, a takođe ima i baze na aerodromima Dubrovnik i Split. Croatia Airlines je novembra 2004. godine postala regionalna članica saveza Star alajans.",
+    "ocena": 0,
+    "slika": "https://www.diesel-plus.com/wp-content/uploads/2019/07/Airplane-Sky-201811-001-720x475.jpg"
+},
+{
+    "id": "5",
+    "ime": "Paris Air",
+    "opis": "Air France je avioprevoznik Francuske sa sedištem u Tremble-an-Fransu. Podružnica je Air France – KLM grupe i jedan od osnivača SkiTeam globalnog saveza avio-kompanija. Od 2013. godine Er Frans opslužuje 36 destinacija u Francuskoj i obavlja redovne putničke i kargo usluge širom sveta do 175 destinacija u 78 zemalja, a takođe je prevezao 46.803.000 putnika u 2019.",
+    "ocena": 0,
+    "slika": "https://airlines-airports.com/wp-content/uploads/2018/06/Air-France.jpg"
+},
+{
+    "id": "6",
+    "ime": "Emirates Air",
+    "opis": "Emirates Air je najveća avio-kompanija Ujedinjenih Arapskih Emirata, sa sedištem u Dubaiju. Kompanija leti redovno sa preko 1.990 letova nedeljno, do 101 destinacije u 61 zemlji u Evropi, Severnoj Americi, Bliskom istoku, Africi, Aziji i Okeaniji. Kargo letove kompanija leti pod nazivom Emirejts SkajKargo. Hab kargo letova je takođe na Aerodromu Dubai.",
+    "ocena": 0,
+    "slika": "https://cdn.jns.org/uploads/2022/03/Emirates-Airline.jpg"
+},
+{
+    "id": "7",
+    "ime": "American Air",
+    "opis": "merican Airlines je posle Air Fransa najveća avio-kompanija na svetu po broju letelica i najveća po broju prevezenih putnika. Sedište kompanije je u Fort Vortu u Teksasu što je blizu dalaskog aerodroma. Kompanija ima 5 baza — Dalas/Fort Vort, Majami, San Huan, Čikago i Sent Luis. 84% saobraćaja se odvija sa aerodroma u Dalasu. ",
+    "ocena": 0,
+    "slika": "https://d3lcr32v2pp4l1.cloudfront.net/Pictures/2000xAny/6/4/5/70645_b787aa_749191.jpg"
+}
 
 ]
+
 
 let ocene = [{
         "id_prevoznik": "1",
@@ -764,59 +765,60 @@ let letovi = [{
 
 const tipoviMap = new Map([
     ["Boing 737", {
-        opis: "Dobar",
+        opis: "Boing 737 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/boeing-747-airliner-flying-low-overhead-picture-id102769318?s=612x612"
     }],
     ["Boing 747", {
-        opis: "Boing 747 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet)." +
-            "Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.",
+        opis: "Boing 747  širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/-picture-id489756564?s=612x612"
     }],
     ["Boing 777", {
-        opis: "Dobar",
+        opis: "Boing 777 ( širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/pakistan-airways-boing-777-picture-id515275755?s=612x612"
     }],
     ["Boing 787", {
-        opis: "Dobar",
+        opis: "Boing 787  širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/boeing-787-dreamliner-during-takeoff-picture-id458086589?s=612x612"
     }],
     ["Airbus A300", {
-        opis: "Dobar",
+        opis: "Airbus A300 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/jet-airplane-flying-in-blue-sky-picture-id182436155?s=612x612"
     }],
     ["Airbus A320", {
-        opis: "Dobar",
+        opis: "Airbus A320 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/jet-airplane-landing-at-dusk-picture-id173897349?s=612x612"
     }],
     ["Airbus A300", {
-        opis: "Dobar",
+        opis: "Airbus A300 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/airbus-a300608st-beluga-2-picture-id685899810?s=612x612"
     }],
     ["Airbus A380", {
-        opis: "Dobar",
+        opis: "Airbus A380 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/airbus-a380-in-flight-picture-id611289498?s=612x612"
     }],
     ["Tu-104", {
-        opis: "Dobar",
+        opis: "Tu-104 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/soviet-aircraft-picture-id92394714?s=612x612"
     }],
     ["Concorde", {
-        opis: "Dobar",
+        opis: "Concorde širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/concord-picture-id532332081?s=612x612"
     }],
     ["IL-114", {
-        opis: "Dobar",
+        opis: "IL-114 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/demonstration-flight-of-ilyushin-il114300-international-aviation-and-picture-id1360172497?s=612x612"
     }],
     ["ATR 72-600", {
-        opis: "Dobar",
+        opis: "ATR 72-600 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/aeromar-atr72600-xauym-to-puerto-vallarta-intl-picture-id1263492739?s=612x612"
     }],
     ["ATR 72", {
-        opis: "Dobar",
+        opis: "ATR 72 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/of-thaiairway-picture-id482610072?s=612x612"
     }]
 ])
+
+
 
 
 

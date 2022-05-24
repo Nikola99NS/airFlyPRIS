@@ -1,4 +1,52 @@
 .main {
-    background-color: rgb(215, 239, 255);
+    
     height: 600px;
+    background-image: url('https://wallpaperaccess.com/full/1287373.jpg') ;
+    background-repeat: no-repeat;
+    background-position-x:center;
+    background-size:1520px;
+}
+
+.container{
+    background-color: #2b2c2c;
+    width: 1200px;
+    height: 190px;
+    
+}
+
+.hero-body{
+    background-color: #2b2c2c;
+    padding: 0%;
+   
+}
+
+.section{
+    padding-left: 100px;
+    padding-right: 500px;
+}
+
+.containerr{
+    background-color: #2b2c2c;
+    width: 500px;
+    height: 310px;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+       
+}
+.field{
+    width: 1000px;
+}
+
+.title{
+text-align: left;
+}
+.title2{
+    text-align: left;
+    padding-top: 10px;
+font-size: larger;
+}
+
+.px-2{
+    transform: scale(2);
 }

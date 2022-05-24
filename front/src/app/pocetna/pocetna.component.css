@@ -19,12 +19,13 @@
 
 .body {
     /* background-color: #cfe6fe; */
-    height: 1700px;
-    background-color: black;
+    height: 1900px;
+    background-color: rgb(0, 0, 0);
+    
 }
 
 .main {
-    background-color: #cfe6fe;
+    background-color: #000000;
 }
 
 .navbar-item {
@@ -57,21 +58,21 @@
 .rezultati {
     font-size: large;
     font-weight: 500;
-    color: black;
+    color: rgb(0, 0, 0);
     background-color: #cfe6fe;
 }
 
 .adminovDeo {
-    background-color: #cfe6fe;
+    background-color: rgb(77, 76, 76);
 }
 
 table {
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     font-weight: 500;
     font-size: large;
-    color: black
+    color: rgb(0, 0, 0)
 }
 
 th {
@@ -102,6 +103,7 @@ td {
 .slika {
     height: 400px;
     width: 610px;
+    
 }
 
 .opisSlajda {
@@ -114,12 +116,24 @@ td {
 }
 
 .tipAviona {
-    text-align: left;
-    width: 600px;
+    text-align: center;
+    width: 1520px;
+    background-color:  #2b2c2c;
+   align-items: center;
+    
 }
 
 .imeTipa {
     text-indent: 130px;
+    color: rgb(223, 227, 230);
+    font-size: 30px;
+    text-align: center;
 }
 
-.opisTipa {}
+.opisTipa {
+    color:rgb(223, 227, 230) ;
+}
+
+
+
+

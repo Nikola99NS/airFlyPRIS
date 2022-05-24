@@ -36,7 +36,9 @@
 
     <br>
     <div class="form-group">
-        <h1 style="color:white; font-size: 20px;">Ovde mozete rezervisati let.</h1><br><br>
+        <h1 style="color:white; font-size: 20px;">Ovde mozete rezervisati let.</h1>
+        
+        <br><br>
         <div class="d-inline">
             <form (ngSubmit)="pretrazi()">
                 <input class="datum" type="date" name="datum" [(ngModel)]="datum"> &nbsp;
@@ -86,11 +88,11 @@
 
             </table>
 
-            <br><br>&nbsp;&nbsp;&nbsp;
-            <div class="tipAviona" *ngIf="tipAviona">
-                <h2 class="imeTipa">{{tipAviona[0]}}</h2>
-                &nbsp;&nbsp;&nbsp; <img class="slikaTipa" src={{tipAviona[2]}}> &nbsp;&nbsp;&nbsp;<br><br> &nbsp;
-                <h4 class="opisTipa">{{tipAviona[1]}}</h4>
+            <br><br>
+            <div class="tipAviona" *ngIf="tipAviona"><br>
+                <p class="imeTipa" >{{tipAviona[0]}}</p><br>
+                <img class="slikaTipa" src={{tipAviona[2]}} > <br><br>
+                <h4 class="opisTipa">{{tipAviona[1]}}</h4> <br>
             </div>
 
             <p *ngIf="popust">{{popustMsg}}</p>
@@ -102,12 +104,12 @@
 
     <div class="adminKontejner " *ngIf="auth.isAdmin()">
         <div class="tile is-vertical is-10">
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-info">
+            <div class="tile ">
+                <article class="tile is-child notification">
                     <div class="adminovDeo has-text-centered" *ngIf="auth.isAdmin()">
                         <form (ngSubmit)="unesiNoviLet()">
                             &nbsp;
-                            <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>
+                            <label style="font-weight: 500; font-size: large; color:rgb(255, 255, 255);">Unesi novi let</label><br>
                             <br> &nbsp;
                             <input class=" input is-info " type="text " style="width: 150px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
                             <input class="input is-info " type="text " style="width: 150px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
@@ -120,12 +122,12 @@
                                 <select [(ngModel)]='selected' name="s">
                                       <option *ngFor="let t of tipovi">{{t}}</option>
                                 </select>
-                                <span style="color:rgb(22, 86, 151); font-weight:bold" *ngIf="selected=='jednokratno'">Datum i vreme<br>
+                                <span style="color:rgb(255, 255, 255); font-weight:bold" *ngIf="selected=='jednokratno'">Datum i vreme<br>
                                     <input type="date" style="width: 110px; height:20px " name="datumAdmin" [(ngModel)]="datumAdmin"><br>
                                     <input type="text" style="width: 110px; height:20px " placeholder="Vreme polaska"  name="vremePolaska" [(ngModel)]="vremePolaska">&nbsp;-&nbsp;
                                     <input type="text" style="width: 110px; height:20px " placeholder="Vreme dolaska"  name="vremeDolaska" [(ngModel)]="vremeDolaska">
                                 </span>
-                                <span style="color:rgb(22, 86, 151); font-weight:bold" *ngIf="selected=='svakodnevno' || selected=='radniDan'">Vreme<br>
+                                <span style="color:white; font-weight:bold" *ngIf="selected=='svakodnevno' || selected=='radniDan'">Vreme<br>
                                   <input type="text" style="width: 110px; height:20px " placeholder="Vreme polaska"  name="vremePolaska" [(ngModel)]="vremePolaska">&nbsp;-&nbsp;
                                   <input type="text" style="width: 110px; height:20px " placeholder="Vreme dolaska"  name="vremeDolaska" [(ngModel)]="vremeDolaska">
                                 </span>
@@ -133,13 +135,13 @@
                             </div>&nbsp;&nbsp;
 
 
-
-                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(ekonomska) : </label>
+                            
+                            <label style="font-weight: 500; color:rgb(255, 255, 255);">Cena karte(ekonomska) : </label>
                             <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cenaEkonomska" [(ngModel)]="cenaEkonomska"> &nbsp;&nbsp;
-                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(biznis) : </label>
+                            <label style="font-weight: 500; color:rgb(255, 255, 255);">Cena karte(biznis) : </label>
                             <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cenaBiznis" [(ngModel)]="cenaBiznis"> &nbsp;&nbsp;
-
-                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Slobodna mesta : </label>
+                            <br><br><br>
+                            <label style="font-weight: 500; color:rgb(255, 255, 255);">Slobodna mesta : </label>
                             <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="" name="slobodnaMesta" [(ngModel)]="slobodnaMesta"> &nbsp;&nbsp;
 
 

@@ -1,36 +1,43 @@
 <section class="hero is-info is-bold">
     <div class="hero-body">
-        <div class="container">
-            <h1 class="title is-4">Welcome to Air Fly</h1>
-            <h1 class="title">Log in! Don't have account?<a href="http://localhost:4200/register"> Registration here</a>
+        <div class="container"><br>
+            <h1 class="title is-4"
+                style="text-align: center; font-size: 50px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                Welcome to Air Fly</h1>
+            <h2 style="color:rgb(255, 255, 255);"> Don't have account?</h2>
+            <h1 class="title2" style="color:rgb(143, 196, 226);"><a href="http://localhost:4200/register"> Registration here</a>
                 <mat-icon class="px-2">arrow_back</mat-icon>
             </h1>
 
         </div>
     </div>
 </section>
-<div class="main">
+
+<div class="main" >
     <section class="section">
-        <div class="container">
+        <div class="containerr">
+            <h1 class="title" style="color:rgb(143, 196, 226);">Log in ↓</h1>
             <form (ngSubmit)="login()">
 
                 <div class="field">
-                    <label class="label">User name</label>
-                    <mat-icon>supervised_user_circle</mat-icon>
-                    <input class="input is-info " style="width: 33%;" type="text" placeholder="Username" required name="username" [(ngModel)]="username">
+                    <label class="label" style="color: white;">Username</label>
+                    <mat-icon style="color: white;">supervised_user_circle</mat-icon>&nbsp;
+                    <input class="input is-info " style="width: 33%;" type="text" placeholder="Username" required
+                        name="username" [(ngModel)]="username">
                 </div>
 
                 <div class="field">
-                    <label class="label">Password </label><i class="fa fa-user fa-2x px-1"></i>
-                    <mat-icon> vpn_key</mat-icon>
-                    <input class="input is-info" style="width: 33%;" type="password" placeholder="Password" required name="password" [(ngModel)]="password">
+                    <label class="label" style="color: white;">Password </label><i class="fa fa-user fa-2x px-1"></i>
+                    <mat-icon style="color: white;"> vpn_key</mat-icon>&nbsp;
+                    <input class="input is-info" style="width: 33%;" type="password" placeholder="Password" required
+                        name="password" [(ngModel)]="password">
                 </div>
 
 
                 <button type="submit" class="button is-medium is-info">
-        Log in!
+                    Log in!
 
-     </button>
+                </button>
             </form>
 
             <br>
