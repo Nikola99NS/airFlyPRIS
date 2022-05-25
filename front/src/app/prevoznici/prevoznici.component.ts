@@ -24,7 +24,6 @@ public prevoznici: Prevoznik[] | null = null;
   }
 
   klikni(id:string){
-    console.log(id)
     this.router.navigate(['prevoznik',id])
   }
 

@@ -31,15 +31,15 @@ export class PrevoznikComponent implements OnInit {
     this.route.params.subscribe((params: Params) => this.prevoznikId = params['id']);
 
     this.service.getPrevoznik(this.prevoznikId).subscribe(resp => {
-      this.prevoznik = resp; 
-      
+      this.prevoznik = resp;
+
     })
 
     this.service.getKomentari(this.prevoznikId).subscribe(resp=>{
       this.comments=resp
     })
 
-  
+
   }
 
   dodajKom(){
@@ -47,10 +47,14 @@ export class PrevoznikComponent implements OnInit {
 
       const user = JSON.parse(String(localStorage.getItem("trenutniUser"))) as string | null   ;
       const komentar = user + " : " + this.komentar
-      this.service.addComment(this.prevoznikId,user, komentar).subscribe(resp => {
+      this.service.addComment(this.prevoznikId, komentar).subscribe(resp => {
+        let inputKomentar = (<HTMLInputElement>document.getElementById('inputKomentar'))
+        if(inputKomentar != null){
+          inputKomentar.value = '';
+        }
         alert(resp.msg)
       })
-     
+
     }else{
       alert("Niste se ulogovali")
     }
@@ -61,8 +65,6 @@ export class PrevoznikComponent implements OnInit {
     if(this.currentRate!=0 && localStorage.getItem("trenutniUser")!=null){
       var user = localStorage.getItem("trenutniUser")
       this.service.addOcena(idPrevoznik, this.currentRate, user).subscribe(resp=>{
-        this.prosecnaOcena = resp.ocena;
-        console.log(this.prosecnaOcena)
         alert(resp.msg)
       })
     }else{
@@ -70,5 +72,5 @@ export class PrevoznikComponent implements OnInit {
     }
     this.ngOnInit()
   }
- 
+
 }

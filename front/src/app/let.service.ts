@@ -66,10 +66,9 @@ export class LetService {
     })
   }
 
-  addComment(idPrevoznik:string,korisnik:string|null, komentar:string):Observable<any>{
+  addComment(idPrevoznik:string, komentar:string):Observable<any>{
     return this.httpClient.post(this.BACKEND_BASE+"/api/let/komentar",{
       id_prevoznik:idPrevoznik,
-      korisnik:korisnik,
       komentar:komentar
     })
   }
@@ -78,30 +77,20 @@ export class LetService {
     return this.httpClient.post(this.BACKEND_BASE+"/api/let/ocena",{
       id_prevoznik:idPrevoznik,
       ocena:rate,
-      user : user
+      username : user
     })
   }
 
-  najpovoljnijiLetovi(id:number): Observable<any>{
-    console.log(id)
-    let params = new HttpParams().set("id",id);
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.httpClient.get<Let[]>(this.BACKEND_BASE + "/api/let/najpovoljnijiLetovi", {
-      headers,
-      params
-    })
+  najpovoljnijiLetovi(): Observable<any>{
+    return this.httpClient.get<Let[]>(this.BACKEND_BASE + "/api/let/najpovoljnijiLetovi")
   }
-  
+
   najboljiPrevoznici():Observable<any>{
-    // let params = new HttpParams().set("id",id);
-    let params = new HttpParams().set("nesto",'nesto')
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.httpClient.get<number>(this.BACKEND_BASE + "/api/let/najboljiPrevoznici", {
-      headers,
-      params
-    })
+    return this.httpClient.get<number>(this.BACKEND_BASE + "/api/let/najboljiPrevoznici")
+  }
+
+  tipovi(){
+    return this.httpClient.get<string[]>(this.BACKEND_BASE + "/api/let/tipoviAviona")
   }
 
   vratiTip(id:string){

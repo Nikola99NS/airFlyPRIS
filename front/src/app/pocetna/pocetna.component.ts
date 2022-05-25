@@ -25,9 +25,13 @@ export class PocetnaComponent {
     this.letService.prevoznici().subscribe(resp => {
       this.prevozniciList = resp
     })
+
+    this.letService.tipovi().subscribe(resp => {
+      this.tipoviAviona = resp;
+    })
   }
 
-  public tipAviona : string[] | null=null;
+  public odabraniTip : string[] | null=null;
 
 
   public user: string | null = localStorage.getItem("trenutniUser")
@@ -38,8 +42,6 @@ export class PocetnaComponent {
   public letovi: Let[] | null = null;
 
   public najpovoljnijiLetovi: Let[] | null=null;
-
-  public najboljiPrevoznici: Prevoznik[] | null=null;
 
 
   public polazniAdmin: string='';
@@ -54,6 +56,9 @@ export class PocetnaComponent {
   public vremePolaska : string='';
   public vremeDolaska : string='';
   public slobodnaMesta: number=0;
+  public tipAviona: string = '';
+
+  public tipoviAviona: string[] = [];
 
   public p : boolean=false;
 
@@ -111,10 +116,11 @@ export class PocetnaComponent {
       vreme_polaska: this.vremePolaska,
       vreme_dolaska: this.vremeDolaska,
       tip: this.selected,
-      prevoznik: this.prevoznik,
+      prevoznik_id: this.prevoznik,
       cena_ekonomska: this.cenaEkonomska,
       cena_biznis: this.cenaBiznis,
-      slobodna_mesta: this.slobodnaMesta
+      slobodna_mesta: this.slobodnaMesta,
+      tipAviona: this.tipAviona
     }
 
     this.letService.unesiNoviLet(noviLet).subscribe(resp => {
@@ -123,33 +129,29 @@ export class PocetnaComponent {
 
   }
 
-  
+
   klikni(id:string){
-    console.log(id)
     this.router.navigate(['prevoznik',id])
   }
 
-  slide1(id:number){
-    this.letService.najpovoljnijiLetovi(id).subscribe(resp => {
-      this.najpovoljnijiLetovi = resp;
+  slide1(){
+    this.letService.najpovoljnijiLetovi().subscribe(resp => {
+      this.letovi = resp;
+      this.p=true;
     })
-
-    this.letovi=this.najpovoljnijiLetovi;
-    this.p=true;
   }
 
   slide2(){
     this.letService.najboljiPrevoznici().subscribe(resp => {
-      // this.najboljiPrevoznici = resp;
-      this.router.navigate(['prevoznik',resp])
+      this.router.navigate(['prevoznik', resp])
     })
-    
+
   }
 
   tip(id:string){
     this.letService.vratiTip(id).subscribe(resp=>{
-      this.tipAviona=resp;
-      
+      this.odabraniTip=resp;
+
     })
   }
 }

@@ -8,7 +8,7 @@
             <br><br>
             <ngb-carousel>
                 <ng-template ngbSlide *ngIf="images2">
-                    <a (click)="slide1(1)">
+                    <a  (click)="slide1()">
                         <div class="picsum-img-wrapper">
                             <img class="slika" [src]="images2[0]" alt="Random first slide">
                         </div>
@@ -51,6 +51,7 @@
         <br>
         <div *ngIf="p">
 
+            <br><br>
             <table style="width:60%">
                 <tr>
                     <th class="px-2"> Polazak</th>
@@ -71,10 +72,10 @@
                     <td> {{l.datum}}</td>
                     <td> {{l.vreme_polaska}}</td>
                     <td> {{l.vreme_dolaska}}</td>
-                    <td><a (click)="klikni(l.id)">{{l.prevoznik_ime}}</a></td>
+                    <td><a (click)="klikni(l.prevoznik_id)">{{l.prevoznik_ime}}</a></td>
                     <td> {{l.cena_ekonomska}}</td>
                     <td> {{l.cena_biznis}}</td>
-                    <td><a (click)="tip(l.id)">{{l.tip}}</a></td>
+                    <td><a (click)="tip(l.id)">{{l.tipAviona}}</a></td>
                     <td>
                         <form (ngSubmit)="rezervisi(l.id)">
                             <button class="button is-info is-small" type="submit">
@@ -87,10 +88,10 @@
             </table>
 
             <br><br>&nbsp;&nbsp;&nbsp;
-            <div class="tipAviona" *ngIf="tipAviona">
-                <h2 class="imeTipa">{{tipAviona[0]}}</h2>
-                &nbsp;&nbsp;&nbsp; <img class="slikaTipa" src={{tipAviona[2]}}> &nbsp;&nbsp;&nbsp;<br><br> &nbsp;
-                <h4 class="opisTipa">{{tipAviona[1]}}</h4>
+            <div class="tipAviona" *ngIf="odabraniTip">
+                <h2 class="imeTipa">{{odabraniTip[0]}}</h2>
+                &nbsp;&nbsp;&nbsp; <img class="slikaTipa" src={{odabraniTip[2]}}> &nbsp;&nbsp;&nbsp;<br><br> &nbsp;
+                <h4 class="opisTipa">{{odabraniTip[1]}}</h4>
             </div>
 
             <p *ngIf="popust">{{popustMsg}}</p>
@@ -101,23 +102,26 @@
 
 
     <div class="adminKontejner " *ngIf="auth.isAdmin()">
-        <div class="tile is-vertical is-10">
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-info">
+            <div class="tile">
+                <article class="tile is-child is-info">
                     <div class="adminovDeo has-text-centered" *ngIf="auth.isAdmin()">
                         <form (ngSubmit)="unesiNoviLet()">
                             &nbsp;
                             <label style="font-weight: 500; font-size: large; color:rgb(22, 86, 151);">Unesi novi let</label><br>
                             <br> &nbsp;
+                            <label for="polazniAdmin">Polazni aerodrom: &nbsp;</label>
                             <input class=" input is-info " type="text " style="width: 150px; height:30px " placeholder="Polazni " name="polazniAdmin" [(ngModel)]="polazniAdmin"> &nbsp;&nbsp;
+                            <label for="dolazniAdmin">Dolazni aerodrom: &nbsp;</label>
                             <input class="input is-info " type="text " style="width: 150px; height:30px " placeholder="Dolazni " name="dolazniAdmin" [(ngModel)]="dolazniAdmin"> &nbsp;&nbsp;
 
-                            <select [(ngModel)]='prevoznik' name="s">
+                            <label for="prevoznik">Prevoznik: &nbsp;</label>
+                            <select [(ngModel)]='prevoznik' name="prevoznik">
                                 <option *ngFor="let p of prevozniciList" value="{{p.id}}">{{p.ime}}</option>
                             </select> &nbsp;
                             <div class="select is-link is-small">
 
-                                <select [(ngModel)]='selected' name="s">
+                              <label for="tip">Tip leta: &nbsp;</label>
+                                <select [(ngModel)]='selected' name="tip">
                                       <option *ngFor="let t of tipovi">{{t}}</option>
                                 </select>
                                 <span style="color:rgb(22, 86, 151); font-weight:bold" *ngIf="selected=='jednokratno'">Datum i vreme<br>
@@ -131,22 +135,25 @@
                                 </span>
 
                             </div>&nbsp;&nbsp;
+                            <br><br><br><br><br><br><br>
 
+                            <label for="tipAviona">Tip aviona: &nbsp;</label>
+                            <select [(ngModel)]='tipAviona' name="tipAviona">
+                                <option *ngFor="let t of tipoviAviona" value="{{t}}">{{t}}</option>
+                            </select> &nbsp;
 
-
-                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(ekonomska) : </label>
+                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(ekonomska) : &nbsp; </label>
                             <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cenaEkonomska" [(ngModel)]="cenaEkonomska"> &nbsp;&nbsp;
-                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(biznis) : </label>
+                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Cena karte(biznis) :  &nbsp;</label>
                             <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="€" name="cenaBiznis" [(ngModel)]="cenaBiznis"> &nbsp;&nbsp;
 
-                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Slobodna mesta : </label>
+                            <label style="font-weight: 500; color:rgb(22, 86, 151);">Slobodna mesta :  &nbsp;</label>
                             <input class="input is-info " type="number " style="width: 80px; height:30px " placeholder="" name="slobodnaMesta" [(ngModel)]="slobodnaMesta"> &nbsp;&nbsp;
 
 
                             <button class="button is-info is-small " type="submit ">
                                 Unesi
                             </button>
-                            <br><br><br><br><br><br>
                         </form>
 
 
@@ -155,7 +162,6 @@
             </div>
 
 
-        </div>
 
     </div>
     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>

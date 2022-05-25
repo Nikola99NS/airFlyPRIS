@@ -20,6 +20,7 @@
 .body {
     /* background-color: #cfe6fe; */
     height: 1700px;
+    width: 100%;
     background-color: black;
 }
 
@@ -61,8 +62,28 @@
     background-color: #cfe6fe;
 }
 
+.adminKontejner{
+  width: 80%;
+  margin: 8rem auto 0 auto;
+}
+
 .adminovDeo {
-    background-color: #cfe6fe;
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 5px;
+    color: #333;
+}
+
+.adminovDeo input, label{
+  color: #333!important;
+}
+
+.adminovDeo label{
+  font-weight: 600;
+}
+
+.adminovDeo button{
+  margin-left: 40px;
 }
 
 table {
@@ -78,7 +99,7 @@ th {
     align-items: center;
     background-color: #73a9d3;
     border: 1px solid black;
-    
+
 }
 
 td {
