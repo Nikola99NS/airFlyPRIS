@@ -688,59 +688,60 @@ let letovi = [{
 
 const tipoviMap = new Map([
     ["Boing 737", {
-        opis: "Dobar",
+        opis: "Boing 737 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/boeing-747-airliner-flying-low-overhead-picture-id102769318?s=612x612"
     }],
     ["Boing 747", {
-        opis: "Boing 747 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet)." +
-            "Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.",
+        opis: "Boing 747  širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/-picture-id489756564?s=612x612"
     }],
     ["Boing 777", {
-        opis: "Dobar",
+        opis: "Boing 777 ( širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/pakistan-airways-boing-777-picture-id515275755?s=612x612"
     }],
     ["Boing 787", {
-        opis: "Dobar",
+        opis: "Boing 787  širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/boeing-787-dreamliner-during-takeoff-picture-id458086589?s=612x612"
     }],
     ["Airbus A300", {
-        opis: "Dobar",
+        opis: "Airbus A300 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/jet-airplane-flying-in-blue-sky-picture-id182436155?s=612x612"
     }],
     ["Airbus A320", {
-        opis: "Dobar",
+        opis: "Airbus A320 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/jet-airplane-landing-at-dusk-picture-id173897349?s=612x612"
     }],
     ["Airbus A300", {
-        opis: "Dobar",
+        opis: "Airbus A300 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/airbus-a300608st-beluga-2-picture-id685899810?s=612x612"
     }],
     ["Airbus A380", {
-        opis: "Dobar",
+        opis: "Airbus A380 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/airbus-a380-in-flight-picture-id611289498?s=612x612"
     }],
     ["Tu-104", {
-        opis: "Dobar",
+        opis: "Tu-104 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/soviet-aircraft-picture-id92394714?s=612x612"
     }],
     ["Concorde", {
-        opis: "Dobar",
+        opis: "Concorde širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/concord-picture-id532332081?s=612x612"
     }],
     ["IL-114", {
-        opis: "Dobar",
+        opis: "IL-114 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/demonstration-flight-of-ilyushin-il114300-international-aviation-and-picture-id1360172497?s=612x612"
     }],
     ["ATR 72-600", {
-        opis: "Dobar",
+        opis: "ATR 72-600 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/aeromar-atr72600-xauym-to-puerto-vallarta-intl-picture-id1263492739?s=612x612"
     }],
     ["ATR 72", {
-        opis: "Dobar",
+        opis: "ATR 72 širokotrupni je avion kompanije Boing koji se koristi u putničkom i teretnom saobraćaju. On je prvi širokotrupni avion ikada proizveden i jedan je od najpoznatijih tipova ove vrste aviona na svetu. Često ga nazivaju Kraljicom neba (engl. Queen Of Air) i Džambo džetom (engl. Jumbo Jet).[1] Bio je najveći putnički avion sve do 2007. godine kada je u servis ušao Erbas A380.Dimenzije su mu za oko dva i po puta veće od Boinga 707, koji je tokom šezdesetih godina prošlog veka važio za najveći ikada proizvedeni civilni avion.[2] Prvi test let Boinga 747-100 obavljen je 1970. godine. Prvobitna verzija ovog aviona je 37 godina (od prvog test leta) držala rekord po broju sedišta u putničkom avionskom saobraćaju.",
         slika: "https://media.istockphoto.com/photos/of-thaiairway-picture-id482610072?s=612x612"
     }]
 ])
+
+
 
 
 

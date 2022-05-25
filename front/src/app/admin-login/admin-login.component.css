@@ -1,3 +1,11 @@
 .main {
-  background-color: rgb(215, 239, 255);
+  background-image: url('https://wallpaperaccess.com/full/1287373.jpg');
+  background-repeat: no-repeat;
+  background-position-x:center;
+  background-size:1600px;
+  height: 1000px;
 }
+.hero-body{
+  background-color: #2b2c2c;
+}
+

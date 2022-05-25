@@ -1,42 +1,22 @@
+<app-header></app-header>
 
- <app-header></app-header>
- <body class="body">
- <br><br><br><br>
- <div class="container">
-     <!-- <div class="row"> -->
-     <div class="col-md-12" *ngFor="let p of prevoznici">
-         <a (click)="klikni(p.id)">
-             <div class="card" style="width: 18rem;">
-                 <img src={{p.slika}} class="card-img-top" alt="Placeholder image">
-                 <div>
-                     <div class="card-body">
-                         <h1 class="card-title">{{p.ime}} <span class="ocena px-3">{{p.ocena}}<mat-icon class="star px-2">star</mat-icon></span></h1>
-                         <h5 class="card-subtitle mb-2 text-muted">{{p.opis}}</h5>
-                         <!-- <h6 class="card-footer mb-1 text-muted">hehe</h6>
-                         <p class="card-text"></p> -->
-                         <!-- <a href="#" class="btn btn-primary">View</a> -->
-                     </div>
-                 </div>
-             </div>
-         </a>
-         <br>
-     </div>
-     <!-- </div> -->
- </div>
+<body class="body">
+  <br><br><br><br>
+  <div class="container">
+    <div class="col-md-12" *ngFor="let p of prevoznici">
+      <a (click)="klikni(p.id)">
+        <div class="card h-100" style="width: 18rem;">
+          <img src={{p.slika}} class="card-img-top" alt="Placeholder image">
+          <div>
+            <div class="card-body">
+              <h1 class="card-title">{{p.ime}} <span class="ocena px-3">{{p.ocena}}<mat-icon class="star px-2">star
+                  </mat-icon></span></h1>
+              <h5 class="card-subtitle mb-2 text-muted">{{p.opis}}</h5>
+            </div>
+          </div>
+        </div>
+      </a>
+      <br>
+    </div>
+  </div>
 </body>
- <!-- <app-header></app-header><br><br><br>
- <div class="container">
-     <div class="row">
-         <div class="col-md-12">
-             <div class="card">
-                 <img src="https://mdbootstrap.com/img/new/standard/nature/184.webp" class="card-img-top" alt="..." />
-                 <div class="card-body">
-                     <h5 class="card-title">Card title</h5>
-                     <p class="card-text">
-                         Some quick example text to build on the card title and make up the bulk of the card's content.
-                     </p>
-                     <a href="#!" class="btn btn-primary">Button</a>
-                 </div>
-             </div>
-         </div>
-     </div> -->
